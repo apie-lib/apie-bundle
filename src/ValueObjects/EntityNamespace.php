@@ -37,6 +37,9 @@ class EntityNamespace implements StringValueObjectInterface, HasRegexValueObject
     public function getClasses(string $path): ReflectionClassList
     {
         $classes = [];
+        if (!file_exists($path) || !is_dir($path)) {
+            return new ReflectionClassList([]);
+        }
         foreach (Finder::create()->in($path)->files()->name('*.php')->depth('== 0') as $file) {
             $classes[] = $this->toClass($file->getBasename('.php'));
         }
@@ -46,6 +49,9 @@ class EntityNamespace implements StringValueObjectInterface, HasRegexValueObject
     public function getMethods(string $path): ReflectionMethodList
     {
         $methods = [];
+        if (!file_exists($path) || !is_dir($path)) {
+            return new ReflectionMethodList([]);
+        }
         foreach (Finder::create()->in($path)->files()->name('*.php')->depth('== 0') as $file) {
             $methods[] = $this->toMethod($file->getBasename('.php'));
         }
