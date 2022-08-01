@@ -1,0 +1,3 @@
+services:
+    Apie\SchemaGenerator\ComponentsBuilderFactory:
+      factory: Apie\SchemaGenerator\ComponentsBuilderFactory::createComponentsBuilderFactory

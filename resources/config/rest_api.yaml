@@ -1,0 +1,20 @@
+services:
+
+  Apie\RestApi\RouteDefinitions\RestApiRouteDefinitionProvider:
+    tags: 
+      - name: apie.core.route_definition
+
+  Apie\RestApi\OpenApi\OpenApiGenerator:
+    arguments:
+      - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
+      - '@Apie\SchemaGenerator\ComponentsBuilderFactory'
+      - '@apie.route_definitions.provider'
+      - '@Apie\Serializer\Serializer'
+
+  Apie\RestApi\Controllers\OpenApiDocumentationController:
+    public: true
+    arguments:
+      - '@Apie\Core\BoundedContext\BoundedContextHashmap'
+      - '@Apie\RestApi\OpenApi\OpenApiGenerator'
+    tags: ['controller.service_arguments']
+  

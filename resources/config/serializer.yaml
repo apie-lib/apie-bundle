@@ -1,0 +1,3 @@
+services:
+    Apie\Serializer\Serializer:
+      factory: ['Apie\Serializer\Serializer', 'create']

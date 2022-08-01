@@ -1,0 +1,35 @@
+# Apie core services
+services:
+  apie.bounded_context.hashmap_factory:
+      class: Apie\ApieBundle\Wrappers\BoundedContextHashmapFactory
+      arguments:
+        - "%apie.bounded_contexts%"
+
+  Apie\Core\BoundedContext\BoundedContextHashmap:
+    factory: ["@apie.bounded_context.hashmap_factory", "create"]
+
+  apie.bounded_context.hashmap:
+    alias: Apie\Core\BoundedContext\BoundedContextHashmap
+    public: true
+
+  apie.context.factory:
+    alias: Apie\Core\ContextBuilders\ContextBuilderFactory
+    public: true
+
+  Apie\Core\ContextBuilders\ContextBuilderFactory:
+    factory: ['Apie\ApieBundle\Wrappers\GeneralServiceFactory', 'createContextBuilderFactory']
+    arguments:
+      - !tagged apie.core.context_builder
+
+  apie.route_definitions.provider:
+    class: Apie\Core\RouteDefinitions\ChainedRouteDefinitionProvider
+    factory: ['Apie\ApieBundle\Wrappers\GeneralServiceFactory', 'createRoutedDefinitionProvider']
+    arguments:
+      - !tagged apie.core.route_definition
+
+  Apie\ApieBundle\Routing\ApieRouteLoader:
+    arguments:
+      - "@apie.route_definitions.provider"
+      - "@apie.bounded_context.hashmap"
+      - "@apie.context.factory"
+    tags: [routing.loader]

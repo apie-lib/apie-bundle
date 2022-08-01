@@ -1,0 +1,68 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Apie-lib generated OpenAPI spec",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "\/User": {
+            "post": {
+                "tags": [
+                    "User",
+                    "create"
+                ],
+                "description": "Creates an instance of User",
+                "operationId": "post-User",
+                "requestBody": {
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/User-post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/User-get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User-get": {
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "#\/components\/schemas\/UserIdentifier-get"
+                    }
+                }
+            },
+            "User-post": {
+                "required": [],
+                "type": "object",
+                "properties": {}
+            },
+            "UserIdentifier-get": {
+                "type": "string",
+                "format": "useridentifier",
+                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$"
+            },
+            "mixed": {
+                "nullable": true
+            }
+        }
+    }
+}
