@@ -32,7 +32,10 @@
   "require-dev": {
     "phpunit/phpunit": "^9.5",
     "phpspec/prophecy-phpunit": "^2.0",
+    "apie/country-and-phone-number": "self.version",
+    "apie/text-value-objects": "self.version",
     "apie/rest-api": "self.version",
+    "league/openapi-psr7-validator": "0.18",
     "symfony/framework-bundle": "6.*"
   },
   "minimum-stability": "dev",

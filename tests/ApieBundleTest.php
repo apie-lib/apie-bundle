@@ -3,33 +3,24 @@ namespace Apie\Tests\ApieBundle;
 
 use Apie\Core\BoundedContext\BoundedContextHashmap;
 use Apie\Tests\ApieBundle\BoundedContext\Entities\User;
+use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class ApieBundleTest extends TestCase
 {
+    use ItCreatesASymfonyApplication;
+
     /**
      * @test
      */
     public function bundle_can_be_loaded_out_of_the_box()
     {
-        $boundedContexts = [
-            'default' => [
-                'entities_folder' => __DIR__ . '/BoundedContext/Entities',
-                'entities_namespace' => 'Apie\Tests\ApieBundle\BoundedContext\Entities',
-                'actions_folder' => __DIR__ . '/BoundedContext/Actions',
-                'actions_namespace' => 'Apie\Tests\ApieBundle\BoundedContext\Actions',
-            ],
-        ];
-        $testItem = new ApieBundleTestingKernel(
-            [
-                'bounded_contexts' => $boundedContexts
-            ]
-        );
-        $testItem->boot();
+        $testItem = $this->given_a_symfony_application_with_apie();
+
         $container = $testItem->getContainer();
-        $this->assertEquals($boundedContexts, $container->getParameter('apie.bounded_contexts'));
+        $this->assertTrue($container->hasParameter('apie.bounded_contexts'));
 
         $hashmap = $container->get('apie.bounded_context.hashmap');
         $this->assertInstanceOf(BoundedContextHashmap::class, $hashmap);

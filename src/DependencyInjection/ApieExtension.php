@@ -24,6 +24,7 @@ class ApieExtension extends Extension
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('apie.bounded_contexts', $config['bounded_contexts']);
+        $container->setParameter('apie.rest_api.base_url', rtrim($config['rest_api']['base_url'] ?? '/api', '/'));
         $loaded = [];
         foreach ($this->dependencies as $configName => $dependencyList) {
             if ($config[$configName]) {

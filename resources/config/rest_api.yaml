@@ -10,11 +10,23 @@ services:
       - '@Apie\SchemaGenerator\ComponentsBuilderFactory'
       - '@apie.route_definitions.provider'
       - '@Apie\Serializer\Serializer'
+      - '%apie.rest_api.base_url%'
 
   Apie\RestApi\Controllers\OpenApiDocumentationController:
-    public: true
     arguments:
       - '@Apie\Core\BoundedContext\BoundedContextHashmap'
       - '@Apie\RestApi\OpenApi\OpenApiGenerator'
     tags: ['controller.service_arguments']
   
+  Apie\RestApi\Controllers\CreateResourceController:
+    arguments:
+      - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
+      - '@Apie\Core\BoundedContext\BoundedContextHashmap'
+      - '@Apie\RestApi\Actions\CreateObjectAction'
+      - '@Apie\Serializer\EncoderHashmap'
+      - '@Apie\Serializer\DecoderHashmap'
+    tags: ['controller.service_arguments']
+
+  Apie\RestApi\Actions\CreateObjectAction:
+    arguments:
+      - '@Apie\Serializer\Serializer'

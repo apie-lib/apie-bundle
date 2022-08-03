@@ -5,7 +5,7 @@
         "version": "1.0.0"
     },
     "paths": {
-        "\/User": {
+        "/User": {
             "post": {
                 "tags": [
                     "User",
@@ -15,9 +15,9 @@
                 "operationId": "post-User",
                 "requestBody": {
                     "content": {
-                        "application\/json": {
+                        "application/json": {
                             "schema": {
-                                "$ref": "#\/components\/schemas\/User-post"
+                                "$ref": "#/components/schemas/User-post"
                             }
                         }
                     }
@@ -26,9 +26,31 @@
                     "201": {
                         "description": "OK",
                         "content": {
-                            "application\/json": {
+                            "application/json": {
                                 "schema": {
-                                    "$ref": "#\/components\/schemas\/User-get"
+                                    "$ref": "#/components/schemas/User-get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/__invoke/": {
+            "get": {
+                "tags": [
+                    "ApplicationInfo",
+                    "methodCall"
+                ],
+                "description": "Calls method __invoke and returns return value.",
+                "operationId": "call-method-ApplicationInfo-__invoke",
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApplicationInfo-get"
                                 }
                             }
                         }
@@ -37,8 +59,51 @@
             }
         }
     },
+    "servers": [
+        {
+            "url": "/api/default"
+        },
+        {
+            "url": "http://localhost//api/default"
+        }
+    ],
     "components": {
         "schemas": {
+            "ApplicationInfo-get": {
+                "required": [
+                    "applicationName",
+                    "applicationVersion",
+                    "author"
+                ],
+                "type": "object",
+                "properties": {
+                    "applicationName": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "applicationVersion": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "author": {
+                        "type": "string",
+                        "nullable": false
+                    }
+                }
+            },
+            "BritishPhoneNumber-post": {
+                "type": "string",
+                "format": "britishphonenumber"
+            },
+            "DutchPhoneNumber-post": {
+                "type": "string",
+                "format": "dutchphonenumber"
+            },
+            "StrongPassword-post": {
+                "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,}).{6,42}$",
+                "type": "string",
+                "format": "password"
+            },
             "User-get": {
                 "required": [
                     "id"
@@ -46,14 +111,31 @@
                 "type": "object",
                 "properties": {
                     "id": {
-                        "$ref": "#\/components\/schemas\/UserIdentifier-get"
+                        "$ref": "#/components/schemas/UserIdentifier-get"
                     }
                 }
             },
             "User-post": {
-                "required": [],
+                "required": [
+                    "password",
+                    "phoneNumber"
+                ],
                 "type": "object",
-                "properties": {}
+                "properties": {
+                    "password": {
+                        "$ref": "#/components/schemas/StrongPassword-post"
+                    },
+                    "phoneNumber": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/DutchPhoneNumber-post"
+                            },
+                            {
+                                "$ref": "#/components/schemas/BritishPhoneNumber-post"
+                            }
+                        ]
+                    }
+                }
             },
             "UserIdentifier-get": {
                 "type": "string",

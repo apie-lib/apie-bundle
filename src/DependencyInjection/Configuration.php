@@ -15,6 +15,11 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('apie');
 
         $treeBuilder->getRootNode()->children()
+            ->arrayNode('rest_api')
+                ->children()
+                    ->scalarNode('base_url')->defaultValue('/api')->end()
+                ->end()
+            ->end()
             ->booleanNode('enable_rest_api')->defaultValue(class_exists(CreateObjectAction::class))->end()
             ->arrayNode('bounded_contexts')
                 ->useAttributeAsKey('name')
