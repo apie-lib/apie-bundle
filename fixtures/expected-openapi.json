@@ -36,14 +36,14 @@
                 }
             }
         },
-        "/__invoke/": {
+        "/ApplicationInfo/": {
             "get": {
                 "tags": [
                     "ApplicationInfo",
                     "methodCall"
                 ],
-                "description": "Calls method __invoke and returns return value.",
-                "operationId": "call-method-ApplicationInfo-__invoke",
+                "description": "Calls method ApplicationInfo and returns return value.",
+                "operationId": "call-method-ApplicationInfo",
                 "responses": {
                     "201": {
                         "description": "OK",
