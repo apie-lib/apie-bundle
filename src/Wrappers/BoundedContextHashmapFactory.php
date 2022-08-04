@@ -8,6 +8,9 @@ use Apie\Core\BoundedContext\BoundedContextId;
 
 class BoundedContextHashmapFactory
 {
+    /**
+     * @param array<string, mixed> $boundedContexts
+     */
     public function __construct(private array $boundedContexts)
     {
     }

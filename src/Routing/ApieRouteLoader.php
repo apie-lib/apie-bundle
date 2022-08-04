@@ -12,15 +12,18 @@ use Symfony\Component\Routing\RouteCollection;
 
 class ApieRouteLoader extends Loader
 {
-    private $loaded = false;
+    private bool $loaded = false;
 
     public function __construct(
         private readonly RouteDefinitionProviderInterface $routeProvider,
-        private readonly BoundedContextHashmap $boundedContextHashmap,
-        private readonly ContextBuilderFactory $contextBuilder
+        private readonly BoundedContextHashmap $boundedContextHashmap
     ) {
     }
 
+    /**
+     * @param mixed $resource
+     * @param mixed $type
+     */
     public function load($resource, $type = null): RouteCollection
     {
         if (true === $this->loaded) {
@@ -47,6 +50,10 @@ class ApieRouteLoader extends Loader
         return $routes;
     }
 
+    /**
+     * @param mixed $resource
+     * @param mixed $type
+     */
     public function supports($resource, $type = null): bool
     {
         return 'apie' === $type;

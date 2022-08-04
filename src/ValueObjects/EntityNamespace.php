@@ -24,6 +24,9 @@ class EntityNamespace implements StringValueObjectInterface, HasRegexValueObject
         return str_ends_with($input, '\\') ? $input : ($input . '\\');
     }
 
+    /**
+     * @return ReflectionClass<object>
+     */
     public function toClass(string $className): ReflectionClass
     {
         return new ReflectionClass($this->internal . $className);

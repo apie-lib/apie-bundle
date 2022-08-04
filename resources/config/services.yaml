@@ -31,5 +31,4 @@ services:
     arguments:
       - "@apie.route_definitions.provider"
       - "@apie.bounded_context.hashmap"
-      - "@apie.context.factory"
     tags: [routing.loader]
