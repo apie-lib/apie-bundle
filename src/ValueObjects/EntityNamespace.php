@@ -32,11 +32,6 @@ class EntityNamespace implements StringValueObjectInterface, HasRegexValueObject
         return new ReflectionClass($this->internal . $className);
     }
 
-    public function toMethod(string $className): ReflectionMethod
-    {
-        return new ReflectionMethod($this->internal . $className, '__invoke');
-    }
-
     public function getClasses(string $path): ReflectionClassList
     {
         $classes = [];
@@ -56,7 +51,12 @@ class EntityNamespace implements StringValueObjectInterface, HasRegexValueObject
             return new ReflectionMethodList([]);
         }
         foreach (Finder::create()->in($path)->files()->name('*.php')->depth('== 0') as $file) {
-            $methods[] = $this->toMethod($file->getBasename('.php'));
+            $class = $this->toClass($file->getBasename('.php'));
+            foreach ($class->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
+                if (strpos($method->name, '__') !== 0 || $method->name === '__invoke') {
+                    $methods[] = $method;
+                }
+            }
         }
         return new ReflectionMethodList($methods);
     }

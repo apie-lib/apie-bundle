@@ -57,6 +57,45 @@
                     }
                 }
             }
+        },
+        "/ApplicationInfo/powerOf2": {
+            "post": {
+                "tags": [
+                    "ApplicationInfo",
+                    "methodCall"
+                ],
+                "description": "Calls method powerOf2 and returns return value.",
+                "operationId": "call-method-ApplicationInfo-powerOf2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "input"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "input": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "servers": [

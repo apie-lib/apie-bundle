@@ -9,4 +9,9 @@ final class ApplicationInfo
     {
         return new DtosApplicationInfo();
     }
+
+    public function powerOf2(int $input): int
+    {
+        return $input * $input;
+    }
 }
