@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1659623944">
+  <project timestamp="1659623944">
+    <file name="/home/runner/work/apie-bundle/apie-bundle/src/ApieBundle.php">
+      <class name="Apie\ApieBundle\ApieBundle" namespace="global">
+        <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </class>
+      <metrics loc="9" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/home/runner/work/apie-bundle/apie-bundle/src/DependencyInjection/ApieExtension.php">
+      <class name="Apie\ApieBundle\DependencyInjection\ApieExtension" namespace="global">
+        <metrics complexity="5" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="15" coveredelements="15"/>
+      </class>
+      <line num="19" type="method" name="load" visibility="public" complexity="5" crap="5" count="2"/>
+      <line num="21" type="stmt" count="2"/>
+      <line num="22" type="stmt" count="2"/>
+      <line num="23" type="stmt" count="2"/>
+      <line num="24" type="stmt" count="2"/>
+      <line num="25" type="stmt" count="2"/>
+      <line num="26" type="stmt" count="2"/>
+      <line num="27" type="stmt" count="2"/>
+      <line num="28" type="stmt" count="2"/>
+      <line num="29" type="stmt" count="2"/>
+      <line num="30" type="stmt" count="2"/>
+      <line num="31" type="stmt" count="2"/>
+      <line num="32" type="stmt" count="2"/>
+      <line num="33" type="stmt" count="2"/>
+      <line num="34" type="stmt" count="2"/>
+      <metrics loc="41" ncloc="41" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="14" coveredstatements="14" elements="15" coveredelements="15"/>
+    </file>
+    <file name="/home/runner/work/apie-bundle/apie-bundle/src/DependencyInjection/Configuration.php">
+      <class name="Apie\ApieBundle\DependencyInjection\Configuration" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="21" coveredelements="21"/>
+      </class>
+      <line num="13" type="method" name="getConfigTreeBuilder" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="15" type="stmt" count="2"/>
+      <line num="17" type="stmt" count="2"/>
+      <line num="18" type="stmt" count="2"/>
+      <line num="19" type="stmt" count="2"/>
+      <line num="20" type="stmt" count="2"/>
+      <line num="21" type="stmt" count="2"/>
+      <line num="22" type="stmt" count="2"/>
+      <line num="23" type="stmt" count="2"/>
+      <line num="24" type="stmt" count="2"/>
+      <line num="25" type="stmt" count="2"/>
+      <line num="26" type="stmt" count="2"/>
+      <line num="27" type="stmt" count="2"/>
+      <line num="28" type="stmt" count="2"/>
+      <line num="29" type="stmt" count="2"/>
+      <line num="30" type="stmt" count="2"/>
+      <line num="31" type="stmt" count="2"/>
+      <line num="32" type="stmt" count="2"/>
+      <line num="33" type="stmt" count="2"/>
+      <line num="34" type="stmt" count="2"/>
+      <line num="36" type="stmt" count="2"/>
+      <metrics loc="39" ncloc="36" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="21" coveredelements="21"/>
+    </file>
+    <file name="/home/runner/work/apie-bundle/apie-bundle/src/Routing/ApieRouteLoader.php">
+      <class name="Apie\ApieBundle\Routing\ApieRouteLoader" namespace="global">
+        <metrics complexity="6" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="14" elements="18" coveredelements="16"/>
+      </class>
+      <line num="17" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="24" type="method" name="load" visibility="public" complexity="4" crap="4.01" count="2"/>
+      <line num="26" type="stmt" count="2"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="2"/>
+      <line num="31" type="stmt" count="2"/>
+      <line num="32" type="stmt" count="2"/>
+      <line num="33" type="stmt" count="2"/>
+      <line num="35" type="stmt" count="2"/>
+      <line num="36" type="stmt" count="2"/>
+      <line num="37" type="stmt" count="2"/>
+      <line num="39" type="stmt" count="2"/>
+      <line num="40" type="stmt" count="2"/>
+      <line num="41" type="stmt" count="2"/>
+      <line num="47" type="stmt" count="2"/>
+      <line num="50" type="method" name="supports" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="52" type="stmt" count="2"/>
+      <metrics loc="55" ncloc="54" classes="1" methods="3" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="14" elements="18" coveredelements="16"/>
+    </file>
+    <file name="/home/runner/work/apie-bundle/apie-bundle/src/ValueObjects/EntityNamespace.php">
+      <class name="Apie\ApieBundle\ValueObjects\EntityNamespace" namespace="global">
+        <metrics complexity="13" methods="6" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="14" elements="22" coveredelements="18"/>
+      </class>
+      <line num="17" type="method" name="getRegularExpression" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="19" type="stmt" count="2"/>
+      <line num="22" type="method" name="convert" visibility="protected" complexity="2" crap="2" count="2"/>
+      <line num="24" type="stmt" count="2"/>
+      <line num="27" type="method" name="toClass" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="29" type="stmt" count="2"/>
+      <line num="32" type="method" name="toMethod" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="34" type="stmt" count="2"/>
+      <line num="37" type="method" name="getClasses" visibility="public" complexity="4" crap="4.07" count="2"/>
+      <line num="39" type="stmt" count="2"/>
+      <line num="40" type="stmt" count="2"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="2"/>
+      <line num="44" type="stmt" count="2"/>
+      <line num="46" type="stmt" count="2"/>
+      <line num="49" type="method" name="getMethods" visibility="public" complexity="4" crap="4.07" count="2"/>
+      <line num="51" type="stmt" count="2"/>
+      <line num="52" type="stmt" count="2"/>
+      <line num="53" type="stmt" count="0"/>
+      <line num="55" type="stmt" count="2"/>
+      <line num="56" type="stmt" count="2"/>
+      <line num="58" type="stmt" count="2"/>
+      <metrics loc="61" ncloc="61" classes="1" methods="6" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="14" elements="22" coveredelements="18"/>
+    </file>
+    <file name="/home/runner/work/apie-bundle/apie-bundle/src/Wrappers/BoundedContextHashmapFactory.php">
+      <class name="Apie\ApieBundle\Wrappers\BoundedContextHashmapFactory" namespace="global">
+        <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
+      </class>
+      <line num="11" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="15" type="method" name="create" visibility="public" complexity="2" crap="2" count="2"/>
+      <line num="17" type="stmt" count="2"/>
+      <line num="18" type="stmt" count="2"/>
+      <line num="19" type="stmt" count="2"/>
+      <line num="20" type="stmt" count="2"/>
+      <line num="21" type="stmt" count="2"/>
+      <line num="22" type="stmt" count="2"/>
+      <line num="23" type="stmt" count="2"/>
+      <line num="24" type="stmt" count="2"/>
+      <line num="30" type="stmt" count="2"/>
+      <metrics loc="33" ncloc="33" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="10" elements="12" coveredelements="12"/>
+    </file>
+    <file name="/home/runner/work/apie-bundle/apie-bundle/src/Wrappers/GeneralServiceFactory.php">
+      <class name="Apie\ApieBundle\Wrappers\GeneralServiceFactory" namespace="global">
+        <metrics complexity="3" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+      </class>
+      <line num="16" type="method" name="createContextBuilderFactory" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="18" type="stmt" count="2"/>
+      <line num="21" type="method" name="createRoutedDefinitionProvider" visibility="public" complexity="1" crap="1" count="2"/>
+      <line num="23" type="stmt" count="2"/>
+      <metrics loc="26" ncloc="23" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="2" elements="4" coveredelements="4"/>
+    </file>
+    <metrics files="7" loc="264" ncloc="257" classes="6" methods="15" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="77" coveredstatements="74" elements="92" coveredelements="86"/>
+  </project>
+</coverage>
