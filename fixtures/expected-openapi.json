@@ -36,7 +36,7 @@
                 }
             }
         },
-        "/ApplicationInfo/": {
+        "/ApplicationInfo": {
             "get": {
                 "tags": [
                     "ApplicationInfo",

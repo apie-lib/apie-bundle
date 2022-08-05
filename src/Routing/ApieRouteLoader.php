@@ -4,7 +4,6 @@ namespace Apie\ApieBundle\Routing;
 use Apie\Core\Actions\HasRouteDefinition;
 use Apie\Core\BoundedContext\BoundedContextHashmap;
 use Apie\Core\Context\ApieContext;
-use Apie\Core\ContextBuilders\ContextBuilderFactory;
 use Apie\Core\RouteDefinitions\RouteDefinitionProviderInterface;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Routing\Route;
