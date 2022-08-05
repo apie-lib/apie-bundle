@@ -18,23 +18,20 @@ services:
       - '@Apie\RestApi\OpenApi\OpenApiGenerator'
     tags: ['controller.service_arguments']
   
-  Apie\RestApi\Controllers\CreateResourceController:
+  Apie\RestApi\Controllers\RestApiController:
     arguments:
       - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
       - '@Apie\Core\BoundedContext\BoundedContextHashmap'
-      - '@Apie\RestApi\Actions\CreateObjectAction'
+      - '@Apie\RestApi\ActionProvider'
       - '@Apie\Serializer\EncoderHashmap'
       - '@Apie\Serializer\DecoderHashmap'
     tags: ['controller.service_arguments']
 
-  Apie\RestApi\Controllers\RunGlobalMethodController:
+  Apie\RestApi\ActionProvider:
     arguments:
-      - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
+      - '@apie.route_definitions.provider'
       - '@Apie\Core\BoundedContext\BoundedContextHashmap'
-      - '@Apie\RestApi\Actions\RunAction'
-      - '@Apie\Serializer\EncoderHashmap'
-      - '@Apie\Serializer\DecoderHashmap'
-    tags: ['controller.service_arguments']
+      - '@Apie\Serializer\Serializer'
 
   Apie\RestApi\Actions\CreateObjectAction:
     arguments:

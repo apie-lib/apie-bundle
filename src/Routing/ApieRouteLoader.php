@@ -36,7 +36,10 @@ class ApieRouteLoader extends Loader
                 /** @var HasRouteDefinition $routeDefinition */
                 $path = '/api/' . $boundedContextId . '/' . ltrim($routeDefinition->getUrl(), '/');
                 $method = $routeDefinition->getMethod();
-                $defaults = $routeDefinition->getRouteAttributes() + ['_controller' => $routeDefinition->getController()];
+                $defaults = $routeDefinition->getRouteAttributes()
+                    + [
+                        '_controller' => $routeDefinition->getController(),
+                    ];
 
                 $route = (new Route($path, $defaults, []))->setMethods([$method->value]);
                 $routes->add(
