@@ -16,7 +16,10 @@ class ApieExtension extends Extension
             'rest_api.yaml',
             'schema_generator.yaml',
             'serializer.yaml',
-        ]
+        ],
+        'enable_faker' => [
+            'faker.yaml',
+        ],
     ];
 
     /**
