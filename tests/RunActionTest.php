@@ -6,7 +6,7 @@ use Apie\Tests\ApieBundle\Concerns\ItValidatesOpenapi;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-class RunActiontest extends TestCase
+class RunActionTest extends TestCase
 {
     use ItCreatesASymfonyApplication;
     use ItValidatesOpenapi;
