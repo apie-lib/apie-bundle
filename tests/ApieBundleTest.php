@@ -32,10 +32,17 @@ class ApieBundleTest extends TestCase
         $request = Request::create('/api/default/openapi.json');
         $response = $testItem->handle($request, HttpKernelInterface::MAIN_REQUEST, false);
         $actual = $response->getContent();
+        $this->assertEquals(200, $response->getStatusCode());
         $file = __DIR__ . '/../fixtures/expected-openapi.json';
         file_put_contents($file, $actual);
 
         $this->assertEquals(file_get_contents($file), $actual);
+
+        $request = Request::create('/api/default/');
+        $response = $testItem->handle($request, HttpKernelInterface::MAIN_REQUEST, false);
+        $actual = $response->getContent();
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertStringContainsString('default/openapi.yaml', $actual);
     }
 
     /**

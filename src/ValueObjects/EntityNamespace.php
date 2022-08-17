@@ -10,7 +10,14 @@ use ReflectionClass;
 use ReflectionMethod;
 use Symfony\Component\Finder\Finder;
 
-class EntityNamespace implements StringValueObjectInterface, HasRegexValueObjectInterface
+/**
+ * Value object that represents a PHP class namespace.
+ *
+ * Example values:
+ * "Apie\Common\"
+ * "Symfony\Component\"
+ */
+final class EntityNamespace implements StringValueObjectInterface, HasRegexValueObjectInterface
 {
     use IsStringWithRegexValueObject;
 
@@ -32,6 +39,9 @@ class EntityNamespace implements StringValueObjectInterface, HasRegexValueObject
         return new ReflectionClass($this->internal . $className);
     }
 
+    /**
+     * Returns all classes found in $path assuming the namespace of this value object.
+     */
     public function getClasses(string $path): ReflectionClassList
     {
         $classes = [];
@@ -44,6 +54,9 @@ class EntityNamespace implements StringValueObjectInterface, HasRegexValueObject
         return new ReflectionClassList($classes);
     }
 
+    /**
+     * Returns all non-magic methods found in $path assuming the namespace of this value object.
+     */
     public function getMethods(string $path): ReflectionMethodList
     {
         $methods = [];

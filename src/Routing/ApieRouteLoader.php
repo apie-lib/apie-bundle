@@ -9,7 +9,10 @@ use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
-class ApieRouteLoader extends Loader
+/**
+ * Loads the Apie routing into the symfony loader system.
+ */
+final class ApieRouteLoader extends Loader
 {
     private bool $loaded = false;
 
@@ -39,6 +42,7 @@ class ApieRouteLoader extends Loader
                 $defaults = $routeDefinition->getRouteAttributes()
                     + [
                         '_controller' => $routeDefinition->getController(),
+                        '_is_apie' => true,
                     ];
 
                 $route = (new Route($path, $defaults, []))->setMethods([$method->value]);

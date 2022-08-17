@@ -22,21 +22,12 @@ services:
     arguments:
       - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
       - '@Apie\Core\BoundedContext\BoundedContextHashmap'
-      - '@Apie\RestApi\ActionProvider'
+      - '@Apie\Common\ApieFacade'
       - '@Apie\Serializer\EncoderHashmap'
       - '@Apie\Serializer\DecoderHashmap'
     tags: ['controller.service_arguments']
 
-  Apie\RestApi\ActionProvider:
+  Apie\RestApi\Controllers\SwaggerUIController:
     arguments:
-      - '@apie.route_definitions.provider'
-      - '@Apie\Core\BoundedContext\BoundedContextHashmap'
-      - '@Apie\Serializer\Serializer'
-
-  Apie\RestApi\Actions\CreateObjectAction:
-    arguments:
-      - '@Apie\Serializer\Serializer'
-
-  Apie\RestApi\Actions\RunAction:
-    arguments:
-      - '@Apie\Serializer\Serializer'
+      - '%apie.rest_api.base_url%'
+    tags: ['controller.service_arguments']

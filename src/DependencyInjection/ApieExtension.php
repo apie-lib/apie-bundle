@@ -6,13 +6,20 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-class ApieExtension extends Extension
+/**
+ * Loads all services into symfony. Which services depend on the apie configuration set up.
+ */
+final class ApieExtension extends Extension
 {
     /**
      * @var array<string, array<int, string>>
      */
     private array $dependencies = [
+        'enable_core' => [
+            'core.yaml',
+        ],
         'enable_rest_api' => [
+            'common.yaml',
             'rest_api.yaml',
             'schema_generator.yaml',
             'serializer.yaml',

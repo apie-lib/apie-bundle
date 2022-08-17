@@ -3,6 +3,6 @@ namespace Apie\ApieBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class ApieBundle extends Bundle
+final class ApieBundle extends Bundle
 {
 }

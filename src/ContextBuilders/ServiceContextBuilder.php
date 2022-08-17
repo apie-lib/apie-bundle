@@ -7,10 +7,12 @@ use Symfony\Component\DependencyInjection\ServiceLocator;
 
 /**
  * @TODO lazy initialization
+ *
+ * Adds services from Symfony in the ApieContext. Services with the tag 'apie.context' will be added
  */
-class ServiceContextBuilder implements ContextBuilderInterface
+final class ServiceContextBuilder implements ContextBuilderInterface
 {
-    public function __construct(private ServiceLocator $serviceLocator)
+    public function __construct(private readonly ServiceLocator $serviceLocator)
     {
     }
     public function process(ApieContext $context): ApieContext
