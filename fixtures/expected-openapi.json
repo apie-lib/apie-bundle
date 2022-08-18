@@ -104,7 +104,7 @@
                         "description": "id of instance of User",
                         "required": true,
                         "schema": {
-                            "$ref": "#/components/schemas/UserIdentifier-post"
+                            "$ref": "#/components/schemas/UserIdentifier-get"
                         }
                     }
                 ],
@@ -225,7 +225,7 @@
                 "format": "dutchphonenumber"
             },
             "StrongPassword-post": {
-                "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,}).{6,42}$",
+                "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
                 "type": "string",
                 "format": "password"
             },
@@ -263,11 +263,6 @@
                 }
             },
             "UserIdentifier-get": {
-                "type": "string",
-                "format": "useridentifier",
-                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$"
-            },
-            "UserIdentifier-post": {
                 "type": "string",
                 "format": "useridentifier",
                 "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$"
