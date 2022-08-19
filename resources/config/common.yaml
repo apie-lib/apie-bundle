@@ -4,7 +4,7 @@ services:
       - '@apie.route_definitions.provider'
       - '@Apie\Core\BoundedContext\BoundedContextHashmap'
       - '@Apie\Serializer\Serializer'
-      - '@Apie\Core\Repositories\ApieRepository'
+      - '@Apie\Core\Datalayers\ApieDatalayer'
   
   apie:
     alias: Apie\Common\ApieFacade

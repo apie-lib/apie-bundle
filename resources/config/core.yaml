@@ -16,5 +16,5 @@ services:
     alias: Apie\Core\ContextBuilders\ContextBuilderFactory
     public: true
 
-  Apie\Core\Repositories\ApieRepository:
+  Apie\Core\Datalayers\ApieDatalayer:
     alias: Apie\ApieBundle\Wrappers\RequestAwareInMemoryDatalayer
