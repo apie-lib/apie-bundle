@@ -17,4 +17,4 @@ services:
     public: true
 
   Apie\Core\Repositories\ApieRepository:
-    alias: Apie\ApieBundle\Wrappers\RequestAwareInMemoryRepository
+    alias: Apie\ApieBundle\Wrappers\RequestAwareInMemoryDatalayer

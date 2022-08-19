@@ -14,7 +14,7 @@ class GetResourceTest extends TestCase
     /**
      * @test
      */
-    public function it_can_create_a_resource(): void
+    public function it_can_retrieve_resources(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();
         $request = Request::create(

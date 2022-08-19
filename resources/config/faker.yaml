@@ -4,6 +4,10 @@ services:
     arguments:
       - !tagged apie.faker
   
+  Apie\Faker\Datalayers\FakerDatalayer:
+    arguments:
+      - '@Faker\Generator'
+
   apie.faker:
     public: true
     alias: Faker\Generator

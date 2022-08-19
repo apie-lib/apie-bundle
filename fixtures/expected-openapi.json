@@ -104,7 +104,7 @@
                         "description": "id of instance of User",
                         "required": true,
                         "schema": {
-                            "$ref": "#/components/schemas/UserIdentifier-get"
+                            "$ref": "#/components/schemas/UserIdentifier-post"
                         }
                     }
                 ],
@@ -263,6 +263,11 @@
                 }
             },
             "UserIdentifier-get": {
+                "type": "string",
+                "format": "useridentifier",
+                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$"
+            },
+            "UserIdentifier-post": {
                 "type": "string",
                 "format": "useridentifier",
                 "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$"
