@@ -27,6 +27,6 @@ class RunActionTest extends TestCase
         );
         $response = $testItem->handle($request);
         $this->validateResponse($request, $response);
-        $this->assertEquals(201, $response->getStatusCode());
+        $this->assertEquals(200, $response->getStatusCode());
     }
 }

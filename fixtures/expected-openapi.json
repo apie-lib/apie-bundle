@@ -24,11 +24,51 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "OK",
+                        "description": "Resource was created",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/User-get"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
                                 }
                             }
                         }
@@ -43,7 +83,7 @@
                 "description": "Gets a list of resource that are an instance of User",
                 "operationId": "get-all-User",
                 "responses": {
-                    "201": {
+                    "200": {
                         "description": "OK",
                         "content": {
                             "application/json": {
@@ -109,12 +149,22 @@
                     }
                 ],
                 "responses": {
-                    "201": {
+                    "200": {
                         "description": "OK",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/User-get"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
                                 }
                             }
                         }
@@ -131,7 +181,7 @@
                 "description": "Calls method ApplicationInfo and returns return value.",
                 "operationId": "call-method-ApplicationInfo",
                 "responses": {
-                    "201": {
+                    "200": {
                         "description": "OK",
                         "content": {
                             "application/json": {
@@ -170,7 +220,37 @@
                     }
                 },
                 "responses": {
-                    "201": {
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
                         "description": "OK",
                         "content": {
                             "application/json": {
@@ -228,6 +308,24 @@
                 "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
                 "type": "string",
                 "format": "password"
+            },
+            "Throwable-get": {
+                "required": [
+                    "message",
+                    "trace"
+                ],
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "trace": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "$ref": "#/components/schemas/mixed"
+                        }
+                    }
+                }
             },
             "User-get": {
                 "required": [
