@@ -18,6 +18,10 @@ final class ApieExtension extends Extension
         'enable_core' => [
             'core.yaml',
         ],
+        'enable_console' => [
+            'common.yaml',
+            'console.yaml',
+        ],
         'enable_rest_api' => [
             'common.yaml',
             'rest_api.yaml',

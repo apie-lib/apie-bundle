@@ -1,6 +1,7 @@
 <?php
 namespace Apie\ApieBundle\DependencyInjection;
 
+use Apie\Console\ConsoleCommandFactory;
 use Apie\Faker\ApieObjectFaker;
 use Apie\RestApi\OpenApi\OpenApiGenerator;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -24,6 +25,7 @@ final class Configuration implements ConfigurationInterface
             ->booleanNode('enable_core')->defaultValue(true)->end()
             ->booleanNode('enable_faker')->defaultValue(class_exists(ApieObjectFaker::class))->end()
             ->booleanNode('enable_rest_api')->defaultValue(class_exists(OpenApiGenerator::class))->end()
+            ->booleanNode('enable_console')->defaultValue(class_exists(ConsoleCommandFactory::class))->end()
             ->arrayNode('bounded_contexts')
                 ->useAttributeAsKey('name')
                 ->arrayPrototype()
