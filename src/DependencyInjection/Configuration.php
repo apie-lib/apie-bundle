@@ -1,6 +1,7 @@
 <?php
 namespace Apie\ApieBundle\DependencyInjection;
 
+use Apie\Cms\RouteDefinitions\CmsRouteDefinitionProvider;
 use Apie\Console\ConsoleCommandFactory;
 use Apie\Faker\ApieObjectFaker;
 use Apie\RestApi\OpenApi\OpenApiGenerator;
@@ -17,12 +18,19 @@ final class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('apie');
 
         $treeBuilder->getRootNode()->children()
+            ->arrayNode('cms')
+                ->children()
+                    ->scalarNode('base_url')->defaultValue('/cms')->end()
+                    ->scalarNode('dashboard_template')->defaultValue('@ApieBundle/dashboard.html.twig')->end()
+                ->end()
+            ->end()
             ->arrayNode('rest_api')
                 ->children()
                     ->scalarNode('base_url')->defaultValue('/api')->end()
                 ->end()
             ->end()
             ->booleanNode('enable_core')->defaultValue(true)->end()
+            ->booleanNode('enable_cms')->defaultValue(class_exists(CmsRouteDefinitionProvider::class))->end()
             ->booleanNode('enable_faker')->defaultValue(class_exists(ApieObjectFaker::class))->end()
             ->booleanNode('enable_rest_api')->defaultValue(class_exists(OpenApiGenerator::class))->end()
             ->booleanNode('enable_console')->defaultValue(class_exists(ConsoleCommandFactory::class))->end()

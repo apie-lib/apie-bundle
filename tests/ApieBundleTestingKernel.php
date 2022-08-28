@@ -6,10 +6,11 @@ use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Bundle\TwigBundle\TwigBundle;
 
 class ApieBundleTestingKernel extends Kernel
 {
-    public function __construct(private readonly array $apieConfig = [])
+    public function __construct(private readonly array $apieConfig = [], private readonly bool $includeTwigBundle = false)
     {
         parent::__construct('test', true);
     }
@@ -26,10 +27,14 @@ class ApieBundleTestingKernel extends Kernel
     
     public function registerBundles(): iterable
     {
-        return [
+        $res = [
             new FrameworkBundle(), // this is needed to have a functional http_kernel service.
             new ApieBundle()
         ];
+        if ($this->includeTwigBundle) {
+            $res[] = new TwigBundle();
+        }
+        return $res;
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)
@@ -37,7 +42,22 @@ class ApieBundleTestingKernel extends Kernel
         $loader->load(__DIR__ . '/../fixtures/services.yaml');
         $loader->load(function (ContainerBuilder $container) {
             $container->loadFromExtension('apie', $this->apieConfig);
-            $container->loadFromExtension('framework', ['http_method_override' => false, 'router' => ['resource' => '.', 'type' => 'apie']]);
+            $container->loadFromExtension(
+                'framework',
+                [
+                    'http_method_override' => false,
+                    'secret' => '123456',
+                    'router' => ['resource' => '.', 'type' => 'apie']
+                ]
+            );
+            if ($this->includeTwigBundle) {
+                $container->loadFromExtension(
+                    'twig',
+                    [
+                        'paths' => [__DIR__ . '/../Resources/views' => 'ApieBundle'],
+                    ]
+                );
+            }
         });
     }
 }

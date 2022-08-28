@@ -18,7 +18,9 @@ final class ApieRouteLoader extends Loader
 
     public function __construct(
         private readonly RouteDefinitionProviderInterface $routeProvider,
-        private readonly BoundedContextHashmap $boundedContextHashmap
+        private readonly BoundedContextHashmap $boundedContextHashmap,
+        private readonly string $cmsPath,
+        private readonly string $apiPath
     ) {
     }
 
@@ -37,7 +39,11 @@ final class ApieRouteLoader extends Loader
         foreach ($this->boundedContextHashmap as $boundedContextId => $boundedContext) {
             foreach ($this->routeProvider->getActionsForBoundedContext($boundedContext, $apieContext) as $routeDefinition) {
                 /** @var HasRouteDefinition $routeDefinition */
-                $path = '/api/' . $boundedContextId . '/' . ltrim($routeDefinition->getUrl(), '/');
+                $prefix = $this->cmsPath . '/';
+                if (str_starts_with(get_class($routeDefinition), 'Apie\RestApi\\')) {
+                    $prefix = $this->apiPath . '/';
+                }
+                $path = $prefix . $boundedContextId . '/' . ltrim($routeDefinition->getUrl(), '/');
                 $method = $routeDefinition->getMethod();
                 $defaults = $routeDefinition->getRouteAttributes()
                     + [

@@ -15,12 +15,19 @@ final class ApieExtension extends Extension
      * @var array<string, array<int, string>>
      */
     private array $dependencies = [
+        'enable_cms' => [
+            'common.yaml',
+            'cms.yaml',
+            'html_builders.yaml',
+            'serializer.yaml',
+        ],
         'enable_core' => [
             'core.yaml',
         ],
         'enable_console' => [
             'common.yaml',
             'console.yaml',
+            'serializer.yaml',
         ],
         'enable_rest_api' => [
             'common.yaml',
@@ -38,13 +45,15 @@ final class ApieExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../../resources/config'));
+        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../../Resources/config'));
         $loader->load('services.yaml');
         $loader->load('psr7.yaml');
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('apie.bounded_contexts', $config['bounded_contexts']);
         $container->setParameter('apie.rest_api.base_url', rtrim($config['rest_api']['base_url'] ?? '/api', '/'));
+        $container->setParameter('apie.cms.dashboard_template', $config['cms']['dashboard_template'] ?? '@ApieBundle/dashboard.html.twig');
+        $container->setParameter('apie.cms.base_url', rtrim($config['cms']['base_url'] ?? '/cms', '/'));
         $loaded = [];
         foreach ($this->dependencies as $configName => $dependencyList) {
             if ($config[$configName]) {

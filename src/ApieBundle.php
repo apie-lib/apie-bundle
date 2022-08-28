@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class ApieBundle extends Bundle
 {
-    public function registerCommands(Application $application)
+    public function registerCommands(Application $application): void
     {
         if ($this->container->has('apie.console.factory')) {
             /** @var ConsoleCommandFactory $factory */

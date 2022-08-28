@@ -5,7 +5,7 @@ use Apie\Tests\ApieBundle\ApieBundleTestingKernel;
 
 trait ItCreatesASymfonyApplication
 {
-    public function given_a_symfony_application_with_apie(): ApieBundleTestingKernel
+    public function given_a_symfony_application_with_apie(bool $includeTwig = false): ApieBundleTestingKernel
     {
         $boundedContexts = [
             'default' => [
@@ -18,7 +18,8 @@ trait ItCreatesASymfonyApplication
         $testItem = new ApieBundleTestingKernel(
             [
                 'bounded_contexts' => $boundedContexts
-            ]
+            ],
+            $includeTwig
         );
         $testItem->boot();
 

@@ -1,0 +1,31 @@
+services:
+  Apie\Cms\RouteDefinitions\CmsRouteDefinitionProvider:
+    tags: 
+      - name: apie.core.route_definition
+  Apie\Cms\Controllers\DashboardController:
+    arguments:
+      - '@Apie\HtmlBuilders\Factories\ComponentFactory'
+      - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
+      - '@Apie\HtmlBuilders\Interfaces\ComponentRendererInterface'
+      - '@Apie\ApieBundle\Wrappers\DashboardContents'
+    tags: ['controller.service_arguments']
+
+  Apie\HtmlBuilders\Interfaces\ComponentRendererInterface:
+    alias: cms.layout.graphite_design_system
+
+  cms.layout.graphite_design_system:
+    class: Apie\CmsLayoutGraphite\TwigRenderer
+    factory:
+      -  Apie\CmsLayoutGraphite\GraphiteDesignSystemLayout
+      - 'createRenderer'
+
+  Apie\ApieBundle\Twig\ComponentExtension:
+    arguments:
+      - '@Apie\HtmlBuilders\Interfaces\ComponentRendererInterface'
+    tags:
+      - { name: twig.extension }
+
+  Apie\ApieBundle\Wrappers\DashboardContents:
+    arguments:
+      - '@?Twig\Environment'
+      - '%apie.cms.dashboard_template%'
