@@ -50,14 +50,6 @@ class ApieBundleTestingKernel extends Kernel
                     'router' => ['resource' => '.', 'type' => 'apie']
                 ]
             );
-            if ($this->includeTwigBundle) {
-                $container->loadFromExtension(
-                    'twig',
-                    [
-                        'paths' => [__DIR__ . '/../Resources/views' => 'ApieBundle'],
-                    ]
-                );
-            }
         });
     }
 }

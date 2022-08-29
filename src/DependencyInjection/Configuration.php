@@ -21,7 +21,7 @@ final class Configuration implements ConfigurationInterface
             ->arrayNode('cms')
                 ->children()
                     ->scalarNode('base_url')->defaultValue('/cms')->end()
-                    ->scalarNode('dashboard_template')->defaultValue('@ApieBundle/dashboard.html.twig')->end()
+                    ->scalarNode('dashboard_template')->defaultValue('@Apie/dashboard.html.twig')->end()
                 ->end()
             ->end()
             ->arrayNode('rest_api')
