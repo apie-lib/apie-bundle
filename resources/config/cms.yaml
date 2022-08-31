@@ -9,6 +9,15 @@ services:
       - '@Apie\HtmlBuilders\Interfaces\ComponentRendererInterface'
       - '@Apie\ApieBundle\Wrappers\DashboardContents'
     tags: ['controller.service_arguments']
+  
+  Apie\Cms\Controllers\GetResourceListController:
+    arguments:
+      - '@Apie\Common\ApieFacade'
+      - '@Apie\HtmlBuilders\Factories\ComponentFactory'
+      - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
+      - '@Apie\HtmlBuilders\Interfaces\ComponentRendererInterface'
+      - '@Apie\Core\BoundedContext\BoundedContextHashmap'
+    tags: ['controller.service_arguments']
 
   Apie\HtmlBuilders\Interfaces\ComponentRendererInterface:
     alias: cms.layout.graphite_design_system
