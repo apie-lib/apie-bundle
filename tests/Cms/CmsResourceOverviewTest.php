@@ -1,7 +1,6 @@
 <?php
 namespace Apie\Tests\ApieBundle\Cms;
 
-use Apie\ApieBundle\Wrappers\DashboardContents;
 use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;

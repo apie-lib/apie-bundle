@@ -21,10 +21,8 @@ services:
   Apie\RestApi\Controllers\RestApiController:
     arguments:
       - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
-      - '@Apie\Core\BoundedContext\BoundedContextHashmap'
       - '@Apie\Common\ApieFacade'
       - '@Apie\Serializer\EncoderHashmap'
-      - '@Apie\Serializer\DecoderHashmap'
     tags: ['controller.service_arguments']
 
   Apie\RestApi\Controllers\SwaggerUIController:

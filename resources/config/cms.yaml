@@ -16,11 +16,14 @@ services:
       - '@Apie\HtmlBuilders\Factories\ComponentFactory'
       - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
       - '@Apie\HtmlBuilders\Interfaces\ComponentRendererInterface'
-      - '@Apie\Core\BoundedContext\BoundedContextHashmap'
     tags: ['controller.service_arguments']
 
   Apie\HtmlBuilders\Interfaces\ComponentRendererInterface:
-    alias: cms.layout.graphite_design_system
+    factory:
+      - 'Apie\ApieBundle\Wrappers\CmsRendererFactory'
+      - createRenderer
+    arguments:
+      - '@?Apie\HtmlBuilders\Assets\AssetManager'
 
   cms.layout.graphite_design_system:
     class: Apie\CmsLayoutGraphite\TwigRenderer

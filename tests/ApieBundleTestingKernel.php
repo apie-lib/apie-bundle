@@ -3,10 +3,10 @@ namespace Apie\Tests\ApieBundle;
 
 use Apie\ApieBundle\ApieBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Bundle\TwigBundle\TwigBundle;
 
 class ApieBundleTestingKernel extends Kernel
 {

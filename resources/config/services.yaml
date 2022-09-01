@@ -5,11 +5,6 @@ services:
       arguments:
         - "%apie.bounded_contexts%"
 
-  Apie\Core\ContextBuilders\ContextBuilderFactory:
-    factory: ['Apie\ApieBundle\Wrappers\GeneralServiceFactory', 'createContextBuilderFactory']
-    arguments:
-      - !tagged apie.core.context_builder
-
   Apie\ApieBundle\Routing\ApieRouteLoader:
     arguments:
       - "@apie.route_definitions.provider"
