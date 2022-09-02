@@ -3,6 +3,7 @@ namespace Apie\Tests\ApieBundle\Cms;
 
 use Apie\ApieBundle\Wrappers\DashboardContents;
 use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
+use Apie\Tests\ApieBundle\HtmlOutput;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,6 +24,7 @@ class CmsDashboardTest extends TestCase
         $response = $testItem->handle($request);
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertStringContainsString(DashboardContents::NO_TWIG_MESSAGE, $response->getContent());
+        HtmlOutput::writeHtml(__METHOD__, $response->getContent());
     }
 
     /**
@@ -40,5 +42,6 @@ class CmsDashboardTest extends TestCase
         $this->assertStringNotContainsString(DashboardContents::NO_TWIG_MESSAGE, $response->getContent());
         // see dashboard.html.twig
         $this->assertStringContainsString('default dashboard', $response->getContent());
+        HtmlOutput::writeHtml(__METHOD__, $response->getContent());
     }
 }

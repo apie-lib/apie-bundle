@@ -5,6 +5,130 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/ManyColumns": {
+            "post": {
+                "tags": [
+                    "ManyColumns",
+                    "resource"
+                ],
+                "description": "Creates an instance of ManyColumns",
+                "operationId": "post-ManyColumns",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ManyColumns-post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Resource was created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ManyColumns-get"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "ManyColumns",
+                    "resource"
+                ],
+                "description": "Gets a list of resource that are an instance of ManyColumns",
+                "operationId": "get-all-ManyColumns",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "totalCount",
+                                        "first",
+                                        "last",
+                                        "list"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "totalCount": {
+                                            "type": "integer"
+                                        },
+                                        "first": {
+                                            "type": "string",
+                                            "format": "uri"
+                                        },
+                                        "last": {
+                                            "type": "string",
+                                            "format": "uri"
+                                        },
+                                        "prev": {
+                                            "type": "string",
+                                            "format": "uri"
+                                        },
+                                        "next": {
+                                            "type": "string",
+                                            "format": "uri"
+                                        },
+                                        "list": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ManyColumns-get"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/User": {
             "post": {
                 "tags": [
@@ -122,6 +246,49 @@
                                             }
                                         }
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ManyColumns/{id}": {
+            "get": {
+                "tags": [
+                    "ManyColumns",
+                    "resource"
+                ],
+                "description": "Gets a resource of ManyColumns with a specific id",
+                "operationId": "get-single-ManyColumns",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of instance of ManyColumns",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ManyColumnsIdentifier-post"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ManyColumns-get"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
                                 }
                             }
                         }
@@ -303,6 +470,34 @@
             "DutchPhoneNumber-post": {
                 "type": "string",
                 "format": "dutchphonenumber"
+            },
+            "ManyColumns-get": {
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/ManyColumnsIdentifier-get"
+                    }
+                }
+            },
+            "ManyColumns-post": {
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/ManyColumnsIdentifier-post"
+                    }
+                }
+            },
+            "ManyColumnsIdentifier-get": {
+                "type": "integer"
+            },
+            "ManyColumnsIdentifier-post": {
+                "type": "integer"
             },
             "StrongPassword-post": {
                 "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
