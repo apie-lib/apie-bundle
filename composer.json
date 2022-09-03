@@ -34,6 +34,7 @@
     "phpunit/phpunit": "^9.5",
     "phpspec/prophecy-phpunit": "^2.0",
     "apie/cms": "self.version",
+    "apie/cms-layout-graphite": "self.version",
     "apie/console": "self.version",
     "apie/country-and-phone-number": "self.version",
     "apie/faker": "self.version",
