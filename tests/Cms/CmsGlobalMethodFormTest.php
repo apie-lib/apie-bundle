@@ -17,7 +17,7 @@ class CmsGlobalMethodFormTest extends TestCase
     {
         $testItem = $this->given_a_symfony_application_with_apie();
         $request = Request::create(
-            '/cms/default/action/ApplicationInfo/powerOf2',
+            '/cms/default/action/ApplicationInfo/manyArguments',
             'GET'
         );
         $response = $testItem->handle($request);
