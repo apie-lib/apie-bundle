@@ -17,8 +17,8 @@ final class ApplicationInfo
         return $input * $input;
     }
 
-    public function manyArguments(int $input, ApplicationInfo $applicationInfo, string $string, DateTime $dateTime, ColorEnum $color)
+    public function manyArguments(int $input,  DtosApplicationInfo $applicationInfo, string $string, DateTime $dateTime, ColorEnum $color): string
     {
-        return new DtosApplicationInfo();
+        return 'string';
     }
 }
