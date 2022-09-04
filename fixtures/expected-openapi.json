@@ -447,7 +447,8 @@
                                     "applicationInfo",
                                     "string",
                                     "dateTime",
-                                    "color"
+                                    "colorOrGender",
+                                    "unionTypehint"
                                 ],
                                 "type": "object",
                                 "properties": {
@@ -463,8 +464,28 @@
                                     "dateTime": {
                                         "$ref": "#/components/schemas/DateTime-post"
                                     },
-                                    "color": {
-                                        "$ref": "#/components/schemas/ColorEnum-post"
+                                    "colorOrGender": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "#/components/schemas/ColorEnum-post"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/Gender-post"
+                                            }
+                                        ]
+                                    },
+                                    "unionTypehint": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "#/components/schemas/NoValueEnum-post"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/IntEnum-post"
+                                            },
+                                            {
+                                                "$ref": "#/components/schemas/ColorEnum-post"
+                                            }
+                                        ]
                                     }
                                 }
                             }
@@ -591,6 +612,21 @@
                 "type": "string",
                 "format": "dutchphonenumber"
             },
+            "Gender-post": {
+                "enum": [
+                    "M",
+                    "F"
+                ],
+                "type": "string"
+            },
+            "IntEnum-post": {
+                "enum": [
+                    0,
+                    1,
+                    2
+                ],
+                "type": "integer"
+            },
             "ManyColumns-get": {
                 "required": [
                     "id"
@@ -618,6 +654,14 @@
             },
             "ManyColumnsIdentifier-post": {
                 "type": "integer"
+            },
+            "NoValueEnum-post": {
+                "enum": [
+                    "RED",
+                    "GREEN",
+                    "BLUE"
+                ],
+                "type": "string"
             },
             "StrongPassword-post": {
                 "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
