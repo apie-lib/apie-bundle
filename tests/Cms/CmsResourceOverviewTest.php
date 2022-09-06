@@ -54,6 +54,23 @@ class CmsResourceOverviewTest extends TestCase
     /**
      * @test
      */
+    public function it_has_no_pagination_with_few_records(): void
+    {
+        $testItem = $this->given_a_symfony_application_with_apie();
+        $request = Request::create(
+            '/cms/default/resource/ManyColumns',
+            'GET'
+        );
+        $response = $testItem->handle($request);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertStringContainsString('ManyColumns overview', $response->getContent());
+        $this->assertStringNotContainsString('Shown', $response->getContent());
+        HtmlOutput::writeHtml(__METHOD__, $response->getContent());
+    }
+
+    /**
+     * @test
+     */
     public function it_supports_pagination(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();
