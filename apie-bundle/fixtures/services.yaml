@@ -1,3 +1,0 @@
-services:
-    Apie\Tests\ApieBundle\BoundedContext\Actions\ApplicationInfo:
-      tags: [apie.context]
