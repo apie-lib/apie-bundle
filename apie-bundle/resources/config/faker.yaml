@@ -1,0 +1,13 @@
+services:
+  Faker\Generator:
+    factory: Apie\ApieBundle\Wrappers\GeneralServiceFactory::createFaker
+    arguments:
+      - !tagged apie.faker
+  
+  Apie\Faker\Datalayers\FakerDatalayer:
+    arguments:
+      - '@Faker\Generator'
+
+  apie.faker:
+    public: true
+    alias: Faker\Generator
