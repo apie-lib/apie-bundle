@@ -2,6 +2,7 @@
 namespace Apie\ApieBundle\Wrappers;
 
 use Apie\Common\ContextBuilderFactory as CommonContextBuilderFactory;
+use Apie\Common\ContextBuilders\BoundedContextProviderContextBuilder;
 use Apie\Common\Interfaces\RouteDefinitionProviderInterface;
 use Apie\Common\RouteDefinitions\ChainedRouteDefinitionsProvider;
 use Apie\Core\BoundedContext\BoundedContextHashmap;
@@ -27,10 +28,15 @@ final class GeneralServiceFactory
      */
     public static function createContextBuilderFactory(
         BoundedContextHashmap $boundedContextHashmap,
-        DecoderHashmap $decoderHashmap,
+        ?DecoderHashmap $decoderHashmap,
         iterable $contextBuilders
     ): ContextBuilderFactory {
-        return CommonContextBuilderFactory::create($boundedContextHashmap, $decoderHashmap, ...$contextBuilders);
+        if ($decoderHashmap) {
+            return CommonContextBuilderFactory::create($boundedContextHashmap, $decoderHashmap, ...$contextBuilders);
+        }
+        return new ContextBuilderFactory(
+            new BoundedContextProviderContextBuilder($boundedContextHashmap)
+        );
     }
 
     /**
