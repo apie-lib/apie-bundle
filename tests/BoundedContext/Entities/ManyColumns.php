@@ -2,6 +2,7 @@
 namespace Apie\Tests\ApieBundle\BoundedContext\Entities;
 
 use Apie\Core\Entities\EntityInterface;
+use Apie\Core\Lists\StringList;
 use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\ManyColumnsIdentifier;
 
 class ManyColumns implements EntityInterface
@@ -22,8 +23,13 @@ class ManyColumns implements EntityInterface
 
     public ?float $nullableFloatValue = null;
 
+    public StringList $stringList;
+
+    public ?StringList $nullableStringList = null;
+
     public function __construct(private ManyColumnsIdentifier $id)
     {
+        $this->stringList = new StringList([]);
     }
 
     public function getId(): ManyColumnsIdentifier
