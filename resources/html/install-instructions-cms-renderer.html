@@ -16,6 +16,9 @@
             install apie/html-builders with composer.
 
             Then in services.yaml you make an alias for Apie\HtmlBuilders\Interfaces\ComponentRendererInterface linking your class.
+            <blockquote><pre>services:
+    Apie\HtmlBuilders\Interfaces\ComponentRendererInterface:
+        alias: MyClassRenderer</pre></blockquote>
         </p>
     </body>
 </html>

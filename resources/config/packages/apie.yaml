@@ -1,7 +1,7 @@
 apie:
   bounded_contexts:
     default:
-      entities_folder: "%kernel.root_dir%/src/Apie/Entities/"
-      entities_namespace: 'App\Apie\Entities'
-      actions_folder: "%kernel.root_dir%/src/Apie/Actions/"
+      entities_folder: "%kernel.project_dir%/src/Apie/Resources/"
+      entities_namespace: 'App\Apie\Resources'
+      actions_folder: "%kernel.project_dir%/src/Apie/Actions/"
       actions_namespace: 'App\Apie\Actions'
