@@ -29,6 +29,11 @@ final class ApieExtension extends Extension
             'console.yaml',
             'serializer.yaml',
         ],
+        'enable_security' => [
+            'common.yaml',
+            'serializer.yaml',
+            'security.yaml',
+        ],
         'enable_rest_api' => [
             'common.yaml',
             'rest_api.yaml',

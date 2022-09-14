@@ -1,0 +1,17 @@
+services:
+    Apie\ApieBundle\Security\ContextBuilders\UserAuthenticationContextBuilder:
+        arguments:
+            - '@Symfony\Component\Security\Core\Security'
+        tags:
+            - apie.core.context_builder
+
+    Apie\ApieBundle\Security\ApieUserAuthenticator:
+        arguments:
+            - '@apie'
+            - '@Symfony\Bridge\PsrHttpMessage\HttpMessageFactoryInterface'
+            - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
+            - '@Apie\Common\RequestBodyDecoder'
+
+    Apie\ApieBundle\Security\ApieUserProvider:
+        arguments:
+            - '@apie'

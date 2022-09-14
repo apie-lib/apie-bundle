@@ -3,6 +3,7 @@ namespace Apie\Tests\ApieBundle;
 
 use Apie\ApieBundle\ApieBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -10,8 +11,17 @@ use Symfony\Component\HttpKernel\Kernel;
 
 class ApieBundleTestingKernel extends Kernel
 {
-    public function __construct(private readonly array $apieConfig = [], private readonly bool $includeTwigBundle = false)
-    {
+    private readonly array $apieConfig;
+
+    public function __construct(
+        array $apieConfig = [],
+        private readonly bool $includeTwigBundle = false,
+        private readonly bool $includeSecurityBundle = false
+    ) {
+        if (!$this->includeSecurityBundle) {
+            $apieConfig['enable_security'] = false;
+        }
+        $this->apieConfig = $apieConfig;
         parent::__construct('test', true);
     }
 
@@ -33,6 +43,9 @@ class ApieBundleTestingKernel extends Kernel
         ];
         if ($this->includeTwigBundle) {
             $res[] = new TwigBundle();
+        }
+        if ($this->includeSecurityBundle) {
+            $res[] = new SecurityBundle();
         }
         return $res;
     }

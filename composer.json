@@ -43,6 +43,7 @@
     "apie/rest-api": "self.version",
     "league/openapi-psr7-validator": "0.18",
     "symfony/framework-bundle": "6.*",
+    "symfony/security-bundle": "6.*",
     "symfony/twig-bundle": "6.*"
   },
   "minimum-stability": "dev",
