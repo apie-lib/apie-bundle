@@ -17,7 +17,7 @@ trait ItCreatesASymfonyApplication
         ];
         $testItem = new ApieBundleTestingKernel(
             [
-                'bounded_contexts' => $boundedContexts
+                'bounded_contexts' => $boundedContexts,
             ],
             $includeTwig
         );

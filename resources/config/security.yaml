@@ -1,7 +1,7 @@
 services:
     Apie\ApieBundle\Security\ContextBuilders\UserAuthenticationContextBuilder:
         arguments:
-            - '@Symfony\Component\Security\Core\Security'
+            - '@security.helper'
         tags:
             - apie.core.context_builder
 

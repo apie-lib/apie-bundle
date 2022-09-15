@@ -2,6 +2,7 @@
 namespace Apie\Tests\ApieBundle;
 
 use Apie\ApieBundle\ApieBundle;
+use Apie\ApieBundle\Security\ApieUserProvider;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
@@ -16,7 +17,7 @@ class ApieBundleTestingKernel extends Kernel
     public function __construct(
         array $apieConfig = [],
         private readonly bool $includeTwigBundle = false,
-        private readonly bool $includeSecurityBundle = false
+        private readonly bool $includeSecurityBundle = true
     ) {
         if (!$this->includeSecurityBundle) {
             $apieConfig['enable_security'] = false;
@@ -63,6 +64,22 @@ class ApieBundleTestingKernel extends Kernel
                     'router' => ['resource' => '.', 'type' => 'apie']
                 ]
             );
+            if ($this->includeSecurityBundle) {
+                $container->loadFromExtension(
+                    'security',
+                    [
+                        'providers' => [
+                            'apie_user' => [
+                                'id' => ApieUserProvider::class
+                            ]
+                        ],
+                        'firewalls' => [
+                            'dev' => ['pattern' =>  '^/(_(profiler|wdt)|css|images|js)/'],
+                            'main' => ['lazy' => true, 'provider' => 'apie_user'],
+                        ]
+                    ]
+                );
+            }
         });
     }
 }
