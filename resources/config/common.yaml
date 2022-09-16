@@ -6,6 +6,10 @@ services:
       - '@Apie\Serializer\Serializer'
       - '@Apie\Core\Datalayers\ApieDatalayer'
   
+  Apie\Common\RequestBodyDecoder:
+    arguments:
+      - '@Apie\Serializer\DecoderHashmap'
+
   apie:
     alias: Apie\Common\ApieFacade
     public: true
