@@ -44,6 +44,7 @@ final class ApieRouteLoader extends Loader
                     $prefix = $this->apiPath . '/';
                 }
                 $path = $prefix . $boundedContextId . '/' . ltrim($routeDefinition->getUrl(), '/');
+
                 $method = $routeDefinition->getMethod();
                 $defaults = $routeDefinition->getRouteAttributes()
                     + [

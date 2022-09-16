@@ -1,6 +1,7 @@
 <?php
 namespace Apie\Tests\ApieBundle\BoundedContext\Entities;
 
+use Apie\Core\Attributes\Internal;
 use Apie\Core\Entities\EntityInterface;
 use Apie\CountryAndPhoneNumber\BritishPhoneNumber;
 use Apie\CountryAndPhoneNumber\DutchPhoneNumber;
@@ -17,6 +18,12 @@ class User implements EntityInterface
     {
         $this->id = UserIdentifier::createRandom();
         $this->encryptedPassword = EncryptedPassword::fromUnencryptedPassword($password);
+    }
+
+    #[Internal()]
+    public function verifyAuthentication(string $password)
+    {
+        return $this->encryptedPassword->verifyUnencryptedPassword($password);
     }
 
     public function getId(): UserIdentifier
