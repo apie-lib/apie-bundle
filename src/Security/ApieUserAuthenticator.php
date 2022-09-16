@@ -2,12 +2,13 @@
 
 namespace Apie\ApieBundle\Security;
 
+use Apie\Core\Actions\ActionInterface;
 use Apie\Common\ApieFacade;
-use Apie\Common\ApieFacadeAction;
 use Apie\Common\ContextConstants;
 use Apie\Common\RequestBodyDecoder;
 use Apie\Core\ContextBuilders\ContextBuilderFactory;
 use Apie\Core\Entities\EntityInterface;
+use Apie\Core\ValueObjects\Utils;
 use Exception;
 use Symfony\Bridge\PsrHttpMessage\HttpMessageFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,21 +46,23 @@ class ApieUserAuthenticator extends AbstractAuthenticator
             $psrRequest = $this->httpMessageFactory->createRequest($request)
                 ->withHeader('Accept', 'application/json');
             $actionClass = $psrRequest->getAttribute(ContextConstants::APIE_ACTION);
-            /** @var ApieFacadeAction $action */
+            /** @var ActionInterface $action */
             $action = new $actionClass($this->apieFacade);
             $context = $this->contextBuilderFactory->createFromRequest($psrRequest, $psrRequest->getAttributes());
             $actionResponse = $action($context, $this->decoder->decodeBody($psrRequest));
 
             if ($actionResponse->result instanceof EntityInterface) {
-                $userIdentifier = get_class($actionResponse->result) . '/' . $psrRequest->getAttribute(ContextConstants::BOUNDED_CONTEXT_ID) . '/' . $actionResponse->result->getId();
-                if ($userIdentifier) {
-                    return new SelfValidatingPassport(
-                        new UserBadge($userIdentifier),
-                        [
-                            new RememberMeBadge()
-                        ]
-                    );
-                }
+                $userIdentifier = get_class($actionResponse->result)
+                    . '/'
+                    . $psrRequest->getAttribute(ContextConstants::BOUNDED_CONTEXT_ID)
+                    . '/'
+                    . Utils::toString($actionResponse->result->getId());
+                return new SelfValidatingPassport(
+                    new UserBadge($userIdentifier),
+                    [
+                        new RememberMeBadge()
+                    ]
+                );
             }
         } catch (Exception $error) {
             throw new CustomUserMessageAuthenticationException('Could not authenticate user!', [], 0, $error);

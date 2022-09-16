@@ -34,6 +34,9 @@ final class ApieUserDecoratorIdentifier implements StringValueObjectInterface
 
     use IsStringValueObject;
 
+    /**
+     * @return array<string, mixed>
+     */
     public function __serialize(): array
     {
         return [
@@ -45,7 +48,10 @@ final class ApieUserDecoratorIdentifier implements StringValueObjectInterface
         ];
     }
 
-    public function __unserialize(array $data)
+    /**
+     * @param array<string, mixed> $data
+     */
+    public function __unserialize(array $data): void
     {
         $this->class = new ReflectionClass($data['class']);
         $this->boundedContextId = new BoundedContextId($data['boundedContextId']);

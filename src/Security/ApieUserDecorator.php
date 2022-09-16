@@ -9,13 +9,22 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Decorator around an Apie entity to tell Symfony we are logged in.
+ * 
+ * @template T of EntityInterface
  */
 class ApieUserDecorator implements UserInterface
 {
+    /**
+     * @param ApieUserDecoratorIdentifier<T> $id
+     * @param T $entity
+     */
     public function __construct(private readonly ApieUserDecoratorIdentifier $id, private readonly EntityInterface $entity)
     {
     }
 
+    /**
+     * @return T
+     */
     public function getEntity(): EntityInterface
     {
         return $this->entity;
@@ -29,7 +38,7 @@ class ApieUserDecorator implements UserInterface
         return [];
     }
 
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
     }
 

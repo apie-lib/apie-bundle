@@ -5,6 +5,8 @@ namespace Apie\ApieBundle\Security;
 use Apie\ApieBundle\Security\Interfaces\CheckLoginStatusInterface;
 use Apie\ApieBundle\Security\ValueObjects\ApieUserDecoratorIdentifier;
 use Apie\Common\ApieFacade;
+use Apie\Core\Entities\EntityInterface;
+use Apie\Core\ValueObjects\Utils;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -15,6 +17,11 @@ class ApieUserProvider implements UserProviderInterface
     {
     }
 
+    /**
+     * @template T of EntityInterface
+     * @param ApieUserDecorator<T> $user
+     * @return ApieUserDecorator<T>
+     */
     public function refreshUser(UserInterface $user): ApieUserDecorator
     {
         if (!$user instanceof ApieUserDecorator) {
@@ -23,7 +30,7 @@ class ApieUserProvider implements UserProviderInterface
         $entity = $user->getEntity();
         if ($entity instanceof CheckLoginStatusInterface) {
             if ($entity->isDisabled()) {
-                throw new UnsupportedUserException('User ' . $entity->getId() . ' is disabled, logging out');
+                throw new UnsupportedUserException('User ' . Utils::toString($entity->getId()) . ' is disabled, logging out');
             }
         }
         return $user;
@@ -34,6 +41,9 @@ class ApieUserProvider implements UserProviderInterface
         return $class === ApieUserDecorator::class;
     }
 
+    /**
+     * @return ApieUserDecorator<EntityInterface>
+     */
     public function loadUserByIdentifier(string $identifier): ApieUserDecorator
     {
         $identifier = new ApieUserDecoratorIdentifier($identifier);

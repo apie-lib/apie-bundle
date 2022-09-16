@@ -2,7 +2,9 @@
 namespace Apie\ApieBundle\DependencyInjection\Compiler;
 
 use Apie\ApieBundle\Wrappers\BoundedContextHashmapFactory;
+use Apie\Core\Exceptions\InvalidTypeException;
 use ReflectionClass;
+use ReflectionNamedType;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -16,7 +18,7 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class AutoTagActionsCompilerPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $boundedContextConfig = $container->getParameter('apie.bounded_contexts');
         $factory = new BoundedContextHashmapFactory($boundedContextConfig);
@@ -42,14 +44,21 @@ class AutoTagActionsCompilerPass implements CompilerPassInterface
         }
     }
 
+    /**
+     * @param ReflectionClass<object> $refl
+     */
     private function createDefinition(ReflectionClass $refl): Definition
     {
         $arguments = [];
         $constructor = $refl->getConstructor();
         if ($constructor) {
             foreach ($constructor->getParameters() as $parameter) {
-                // TODO: how to handle union/intersection types
-                $arguments[] = new Reference($parameter->getType()->getName());
+                $type = $parameter->getType();
+                if ($type instanceof ReflectionNamedType) {
+                    $arguments[] = new Reference($type->getName());
+                } else {
+                    throw new InvalidTypeException($type, 'ReflectionNamedType');
+                }
             }
         }
         return new Definition($refl->name, $arguments);
