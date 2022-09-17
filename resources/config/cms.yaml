@@ -38,6 +38,8 @@ services:
     arguments:
       - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
       - '@Apie\Common\ApieFacade'
+      - '@Apie\HtmlBuilders\Configuration\ApplicationConfiguration'
+      - '@Apie\Core\BoundedContext\BoundedContextHashmap'
     tags: ['controller.service_arguments']
 
   Apie\HtmlBuilders\Interfaces\ComponentRendererInterface:
