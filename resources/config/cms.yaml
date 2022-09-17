@@ -34,6 +34,12 @@ services:
       - '@Apie\HtmlBuilders\Interfaces\ComponentRendererInterface'
     tags: ['controller.service_arguments']
 
+  Apie\Cms\Controllers\FormCommitController:
+    arguments:
+      - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
+      - '@Apie\Common\ApieFacade'
+    tags: ['controller.service_arguments']
+
   Apie\HtmlBuilders\Interfaces\ComponentRendererInterface:
     factory:
       - 'Apie\ApieBundle\Wrappers\CmsRendererFactory'
