@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Decorator around an Apie entity to tell Symfony we are logged in.
- * 
+ *
  * @template T of EntityInterface
  */
 class ApieUserDecorator implements UserInterface

@@ -2,10 +2,10 @@
 
 namespace Apie\ApieBundle\Security;
 
-use Apie\Core\Actions\ActionInterface;
 use Apie\Common\ApieFacade;
 use Apie\Common\ContextConstants;
 use Apie\Common\RequestBodyDecoder;
+use Apie\Core\Actions\ActionInterface;
 use Apie\Core\ContextBuilders\ContextBuilderFactory;
 use Apie\Core\Entities\EntityInterface;
 use Apie\Core\ValueObjects\Utils;

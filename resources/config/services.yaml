@@ -21,6 +21,8 @@ services:
   Apie\ApieBundle\Wrappers\RequestAwareInMemoryDatalayer:
     arguments:
       - '@Apie\ApieBundle\Wrappers\BoundedContextSelected'
+    tags:
+      - apie.datalayer
 
   Apie\ApieBundle\Wrappers\BoundedContextSelected:
     arguments:

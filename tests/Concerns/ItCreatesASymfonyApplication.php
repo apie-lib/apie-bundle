@@ -1,6 +1,7 @@
 <?php
 namespace Apie\Tests\ApieBundle\Concerns;
 
+use Apie\ApieBundle\Wrappers\RequestAwareInMemoryDatalayer;
 use Apie\Tests\ApieBundle\ApieBundleTestingKernel;
 
 trait ItCreatesASymfonyApplication
@@ -18,6 +19,11 @@ trait ItCreatesASymfonyApplication
         $testItem = new ApieBundleTestingKernel(
             [
                 'bounded_contexts' => $boundedContexts,
+                'datalayers' => [
+                    'default' => [
+                        'default_datalayer' => RequestAwareInMemoryDatalayer::class,
+                    ]
+                ]
             ],
             $includeTwig
         );

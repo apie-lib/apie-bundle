@@ -24,4 +24,17 @@ services:
     public: true
 
   Apie\Core\Datalayers\ApieDatalayer:
-    alias: Apie\ApieBundle\Wrappers\RequestAwareInMemoryDatalayer
+    alias: Apie\Core\Datalayers\GroupedDataLayer
+
+  Apie\Core\Datalayers\GroupedDataLayer:
+    arguments:
+      - '@Apie\Core\Datalayers\Grouped\DataLayerByBoundedContext'
+
+  apie.datalayer:
+    alias: Apie\Core\Datalayers\ApieDatalayer
+
+  Apie\Core\Datalayers\Grouped\DataLayerByBoundedContext:
+    factory: ['Apie\ApieBundle\Wrappers\GeneralServiceFactory', 'createDataLayerMap']
+    arguments:
+      - '%apie.datalayers%'
+      - !tagged_locator apie.datalayer

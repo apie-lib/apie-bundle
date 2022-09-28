@@ -6,9 +6,9 @@ use Apie\Core\BoundedContext\BoundedContextId;
 use Apie\Tests\ApieBundle\BoundedContext\Entities\User;
 use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\UserIdentifier;
 use Exception;
-use LogicException;
 
-final class Login {
+final class Login
+{
     public function __construct(private readonly ApieFacade $apieFacade)
     {
     }

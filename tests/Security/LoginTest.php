@@ -42,6 +42,5 @@ class LoginTest extends TestCase
         $response = $kernel->handle($request);
         $this->validateResponse($request, $response);
         $this->assertEquals(200, $response->getStatusCode());
-
     }
 }

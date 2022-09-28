@@ -2,7 +2,6 @@
 namespace Apie\Tests\ApieBundle\Cms;
 
 use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
-use Apie\Tests\ApieBundle\HtmlOutput;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 

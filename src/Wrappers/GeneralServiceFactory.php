@@ -6,13 +6,17 @@ use Apie\Common\ContextBuilders\BoundedContextProviderContextBuilder;
 use Apie\Common\Interfaces\RouteDefinitionProviderInterface;
 use Apie\Common\RouteDefinitions\ChainedRouteDefinitionsProvider;
 use Apie\Core\BoundedContext\BoundedContextHashmap;
+use Apie\Core\BoundedContext\BoundedContextId;
 use Apie\Core\ContextBuilders\ContextBuilderFactory;
 use Apie\Core\ContextBuilders\ContextBuilderInterface;
+use Apie\Core\Datalayers\Grouped\DataLayerByBoundedContext;
+use Apie\Core\Datalayers\InMemory\InMemoryDatalayer;
 use Apie\Faker\ApieObjectFaker;
 use Apie\Faker\Interfaces\ApieClassFaker;
 use Apie\Serializer\DecoderHashmap;
 use Faker\Factory;
 use Faker\Generator;
+use Symfony\Component\DependencyInjection\Argument\ServiceLocator;
 
 /**
  * This is basically a work around around !tagged_iterators support with variadic arguments.
@@ -45,6 +49,17 @@ final class GeneralServiceFactory
     public static function createRoutedDefinitionProvider(iterable $routeDefinitionProviders): RouteDefinitionProviderInterface
     {
         return new ChainedRouteDefinitionsProvider(...$routeDefinitionProviders);
+    }
+
+    public static function createDataLayerMap(
+        array $dataLayerConfig,
+        ServiceLocator $serviceLocator
+    ): DataLayerByBoundedContext {
+        $hashmap = new DataLayerByBoundedContext([]);
+        $hashmap->setDefaultDataLayer(
+            $serviceLocator->get($dataLayerConfig['default_datalayer'] ?? RequestAwareInMemoryDatalayer::class)
+        );
+        return $hashmap;
     }
 
     /**

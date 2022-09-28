@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * Actions ony work properly in a Symfony application if they are services with the
  * tag 'apie.context'.
- * 
+ *
  * This compiler pass makes sure they exist as service definition and contain the tag.
  */
 class AutoTagActionsCompilerPass implements CompilerPassInterface
