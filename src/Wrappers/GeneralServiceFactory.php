@@ -50,6 +50,9 @@ final class GeneralServiceFactory
         return new ChainedRouteDefinitionsProvider(...$routeDefinitionProviders);
     }
 
+    /**
+     * @param array<string, mixed> $dataLayerConfig
+     */
     public static function createDataLayerMap(
         array $dataLayerConfig,
         ServiceLocator $serviceLocator
