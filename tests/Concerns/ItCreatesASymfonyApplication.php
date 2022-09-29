@@ -20,9 +20,7 @@ trait ItCreatesASymfonyApplication
             [
                 'bounded_contexts' => $boundedContexts,
                 'datalayers' => [
-                    'default' => [
-                        'default_datalayer' => RequestAwareInMemoryDatalayer::class,
-                    ]
+                    'default_datalayer' => RequestAwareInMemoryDatalayer::class,
                 ]
             ],
             $includeTwig

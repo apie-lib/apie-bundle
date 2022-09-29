@@ -10,6 +10,7 @@ use Apie\Core\BoundedContext\BoundedContextId;
 use Apie\Core\ContextBuilders\ContextBuilderFactory;
 use Apie\Core\ContextBuilders\ContextBuilderInterface;
 use Apie\Core\Datalayers\Grouped\DataLayerByBoundedContext;
+use Apie\Core\Datalayers\Grouped\DataLayerByClass;
 use Apie\Core\Datalayers\InMemory\InMemoryDatalayer;
 use Apie\Faker\ApieObjectFaker;
 use Apie\Faker\Interfaces\ApieClassFaker;
@@ -56,6 +57,17 @@ final class GeneralServiceFactory
         ServiceLocator $serviceLocator
     ): DataLayerByBoundedContext {
         $hashmap = new DataLayerByBoundedContext([]);
+        foreach (($dataLayerConfig['context_mapping'] ?? []) as $boundedContextId => $config) {
+            $map = new DataLayerByClass();
+            foreach (($config['entity_mapping'] ?? []) as $entityClass => $serviceId) {
+                $map[$entityClass] = $serviceLocator->get($serviceId);
+            }
+            $defaultServiceId = $config['default_datalayer'] ?? $dataLayerConfig['default_datalayer'] ?? RequestAwareInMemoryDatalayer::class;
+            $map->setDefaultDataLayer(
+                $serviceLocator->get($defaultServiceId)
+            );
+            $hashmap[$boundedContextId] = $map;
+        }
         $hashmap->setDefaultDataLayer(
             $serviceLocator->get($dataLayerConfig['default_datalayer'] ?? RequestAwareInMemoryDatalayer::class)
         );
