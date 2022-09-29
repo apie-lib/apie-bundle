@@ -4,6 +4,7 @@ namespace Apie\Tests\ApieBundle\Cms;
 use Apie\Core\BoundedContext\BoundedContextId;
 use Apie\Tests\ApieBundle\ApieBundleTestingKernel;
 use Apie\Tests\ApieBundle\BoundedContext\Entities\ManyColumns;
+use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\CompositeObjectExample;
 use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\ManyColumnsIdentifier;
 use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
 use Apie\Tests\ApieBundle\HtmlOutput;
@@ -30,6 +31,20 @@ class CmsResourceOverviewTest extends TestCase
                 $object->nullableBooleanValue = ($i & 1) ? true : false;
                 $object->nullableFloatValue = 1 / (2 + $i);
             }
+            $object->compositeObject = CompositeObjectExample::fromNative(
+                [
+                    'value1' => '1',
+                    'value2' => '2',
+                    'value3' => '12',
+                ]
+            );
+            $object->nullableCompositeObject = CompositeObjectExample::fromNative(
+                [
+                    'value1' => 'fwqwqfwq1',
+                    'value2' => '2fwqfwq',
+                    'value3' => $i * $i * $i,
+                ]
+            );
             $facade->persistNew($object, new BoundedContextId('default'));
         }
     }

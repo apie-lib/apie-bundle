@@ -5,6 +5,7 @@ use Apie\Core\Entities\EntityInterface;
 use Apie\Core\Lists\StringList;
 use Apie\Tests\ApieBundle\BoundedContext\Lists\AnimalList;
 use Apie\Tests\ApieBundle\BoundedContext\Lists\StringListHashmap;
+use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\CompositeObjectExample;
 use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\ManyColumnsIdentifier;
 
 class ManyColumns implements EntityInterface
@@ -36,6 +37,10 @@ class ManyColumns implements EntityInterface
     public AnimalList $animalList;
 
     public ?AnimalList $nullableAnimalList = null;
+
+    public CompositeObjectExample $compositeObject;
+
+    public ?CompositeObjectExample $nullableCompositeObject;
 
     public function __construct(private ManyColumnsIdentifier $id)
     {
