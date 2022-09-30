@@ -12,3 +12,9 @@ services:
     arguments:
       -
         base_url: '%apie.cms.base_url%'
+
+  Apie\HtmlBuilders\Assets\AssetManager:
+    factory: ['Apie\HtmlBuilders\Assets\AssetManager', 'create']
+    arguments:
+      - '%apie.cms.asset_folders%'
+

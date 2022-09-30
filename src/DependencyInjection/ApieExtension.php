@@ -56,7 +56,8 @@ final class ApieExtension extends Extension
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('apie.bounded_contexts', $config['bounded_contexts']);
-        $container->setParameter('apie.datalayers', $config['datalayers']);
+        $container->setParameter('apie.datalayers', $config['datalayers'] ?? []);
+        $container->setParameter('apie.cms.asset_folders', $config['cms']['asset_folders'] ?? []);
         $container->setParameter('apie.rest_api.base_url', rtrim($config['rest_api']['base_url'] ?? '/api', '/'));
         $container->setParameter('apie.cms.dashboard_template', $config['cms']['dashboard_template'] ?? '@Apie/dashboard.html.twig');
         $container->setParameter('apie.cms.base_url', rtrim($config['cms']['base_url'] ?? '/cms', '/'));
