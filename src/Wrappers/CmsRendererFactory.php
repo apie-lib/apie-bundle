@@ -17,6 +17,7 @@ final class CmsRendererFactory
         if (class_exists(GraphiteDesignSystemLayout::class)) {
             return GraphiteDesignSystemLayout::createRenderer($assetManager);
         }
+        // fallback is just a message displaying you need to install a cms renderer package.
         $contents = file_get_contents(__DIR__ . '/../../resources/html/install-instructions-cms-renderer.html');
         return new class($contents) implements ComponentRendererInterface {
             public function __construct(private string $contents)
