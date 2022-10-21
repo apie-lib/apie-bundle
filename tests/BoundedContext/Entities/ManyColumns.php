@@ -42,7 +42,7 @@ class ManyColumns implements EntityInterface
 
     public ?CompositeObjectExample $nullableCompositeObject;
 
-    public function __construct(private ManyColumnsIdentifier $id)
+    public function __construct(private ?ManyColumnsIdentifier $id = null)
     {
         $this->stringList = new StringList();
         $this->stringListHashmap = new StringListHashmap();
