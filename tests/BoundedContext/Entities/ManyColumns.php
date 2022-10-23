@@ -49,6 +49,7 @@ class ManyColumns implements EntityInterface
 
     public function __construct(private ?ManyColumnsIdentifier $id = null)
     {
+        $this->id ??= new ManyColumnsIdentifier(null);
         $this->stringList = new StringList();
         $this->stringListHashmap = new StringListHashmap();
         $this->animalList = new AnimalList();
