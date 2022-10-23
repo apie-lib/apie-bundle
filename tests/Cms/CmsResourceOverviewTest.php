@@ -2,6 +2,7 @@
 namespace Apie\Tests\ApieBundle\Cms;
 
 use Apie\Core\BoundedContext\BoundedContextId;
+use Apie\CountryAndPhoneNumber\DutchPhoneNumber;
 use Apie\Tests\ApieBundle\ApieBundleTestingKernel;
 use Apie\Tests\ApieBundle\BoundedContext\Entities\ManyColumns;
 use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\CompositeObjectExample;
@@ -20,7 +21,7 @@ class CmsResourceOverviewTest extends TestCase
         /** @var ApieFacade $facade */
         $facade = $kernel->getContainer()->get('apie');
         for ($i = 0; $i < 100; $i++) {
-            $object = new ManyColumns(new ManyColumnsIdentifier($i));
+            $object = new ManyColumns(new DutchPhoneNumber('0611223344'), new ManyColumnsIdentifier($i));
             $object->stringValue = 'This is text ' . $i;
             $object->intValue = $i * $i;
             $object->booleanValue = ($i & 1) ? true : false;

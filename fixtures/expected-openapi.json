@@ -664,6 +664,10 @@
                     }
                 }
             },
+            "BelgianPhoneNumber-post": {
+                "type": "string",
+                "format": "belgianphonenumber"
+            },
             "BritishPhoneNumber-post": {
                 "type": "string",
                 "format": "britishphonenumber"
@@ -712,9 +716,21 @@
                 }
             },
             "ManyColumns-post": {
-                "required": [],
+                "required": [
+                    "phonenumber"
+                ],
                 "type": "object",
                 "properties": {
+                    "phonenumber": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/DutchPhoneNumber-post"
+                            },
+                            {
+                                "$ref": "#/components/schemas/BelgianPhoneNumber-post"
+                            }
+                        ]
+                    },
                     "id": {
                         "$ref": "#/components/schemas/ManyColumnsIdentifier-post"
                     }
