@@ -3,6 +3,8 @@ namespace Apie\Tests\ApieBundle\BoundedContext\Entities;
 
 use Apie\Core\Entities\EntityInterface;
 use Apie\Core\Lists\StringList;
+use Apie\CountryAndPhoneNumber\BelgianPhoneNumber;
+use Apie\CountryAndPhoneNumber\DutchPhoneNumber;
 use Apie\Fixtures\Lists\StrongPasswordList;
 use Apie\Tests\ApieBundle\BoundedContext\Lists\AnimalList;
 use Apie\Tests\ApieBundle\BoundedContext\Lists\StringListHashmap;
@@ -47,8 +49,10 @@ class ManyColumns implements EntityInterface
 
     public ?StrongPasswordList $nullablePasswordList = null;
 
-    public function __construct(private ?ManyColumnsIdentifier $id = null)
-    {
+    public function __construct(
+        public DutchPhoneNumber|BelgianPhoneNumber $phonenumber,
+        private ?ManyColumnsIdentifier $id = null
+    ) {
         $this->id ??= new ManyColumnsIdentifier(null);
         $this->stringList = new StringList();
         $this->stringListHashmap = new StringListHashmap();
