@@ -18,6 +18,16 @@ services:
       - !tagged_locator { tag: 'apie.context' }
     tags: [apie.core.context_builder]
 
+  Apie\ApieBundle\ContextBuilders\SessionContextBuilder:
+    arguments:
+      - '@request_stack'
+    tags: [apie.core.context_builder]
+
+  Apie\ApieBundle\ContextBuilders\CsrfTokenContextBuilder:
+    arguments:
+      - '@Symfony\Component\Security\Csrf\CsrfTokenManagerInterface'
+    tags: [apie.core.context_builder]
+
   Apie\ApieBundle\Wrappers\RequestAwareInMemoryDatalayer:
     arguments:
       - '@Apie\ApieBundle\Wrappers\BoundedContextSelected'

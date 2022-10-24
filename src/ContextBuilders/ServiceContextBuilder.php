@@ -15,6 +15,7 @@ final class ServiceContextBuilder implements ContextBuilderInterface
     public function __construct(private readonly ServiceLocator $serviceLocator)
     {
     }
+    
     public function process(ApieContext $context): ApieContext
     {
         foreach (array_keys($this->serviceLocator->getProvidedServices()) as $serviceId) {
