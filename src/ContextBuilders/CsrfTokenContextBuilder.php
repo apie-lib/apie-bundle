@@ -7,6 +7,7 @@ use Apie\Core\ContextBuilders\ContextBuilderInterface;
 use Apie\Core\Exceptions\InvalidCsrfTokenException;
 use Apie\Core\Session\CsrfTokenProvider;
 use Apie\Core\Session\FakeTokenProvider;
+use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class CsrfTokenContextBuilder implements ContextBuilderInterface, CsrfTokenProvider
@@ -40,10 +41,11 @@ class CsrfTokenContextBuilder implements ContextBuilderInterface, CsrfTokenProvi
     public function validateToken(string $token): void
     {
         if ($this->csrfTokenManager) {
-            $result = $this->csrfTokenManager->removeToken($token);
-            if (!$result) {
+            $csrfToken = new CsrfToken($this->tokenName, $token);
+            if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
                 throw new InvalidCsrfTokenException();
             }
+            $this->csrfTokenManager->removeToken($this->tokenName);
         } else {
             (new FakeTokenProvider())->validateToken($token);
         }
