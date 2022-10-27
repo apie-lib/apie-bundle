@@ -3,6 +3,7 @@ namespace Apie\ApieBundle\EventListeners;
 
 use Apie\ApieBundle\Wrappers\DashboardContents;
 use Apie\Common\ContextConstants;
+use Apie\Core\Context\ApieContext;
 use Apie\Core\Exceptions\HttpStatusCodeException;
 use Apie\HtmlBuilders\Factories\ComponentFactory;
 use Apie\HtmlBuilders\Interfaces\ComponentRendererInterface;
@@ -85,7 +86,12 @@ class RenderErrorListener implements EventSubscriberInterface
         $contents = new DashboardContents($this->environment, $this->errorTemplate, ['error' => $event->getThrowable()]);
         return new Response(
             $this->componentRenderer->render(
-                $this->componentFactory->createRawContents($contents)
+                $this->componentFactory->createWrapLayout(
+                    'Error',
+                    null,
+                    new ApieContext(),
+                    $this->componentFactory->createRawContents($contents)
+                )
             )
         );
     }
