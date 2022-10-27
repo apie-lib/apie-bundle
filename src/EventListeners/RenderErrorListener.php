@@ -3,6 +3,7 @@ namespace Apie\ApieBundle\EventListeners;
 
 use Apie\ApieBundle\Wrappers\DashboardContents;
 use Apie\Common\ContextConstants;
+use Apie\Core\BoundedContext\BoundedContextId;
 use Apie\Core\Context\ApieContext;
 use Apie\Core\Exceptions\HttpStatusCodeException;
 use Apie\HtmlBuilders\Factories\ComponentFactory;
@@ -46,6 +47,7 @@ class RenderErrorListener implements EventSubscriberInterface
             if ($request->attributes->has(ContextConstants::CMS)
                 && null !== $this->componentFactory
                 && null !== $this->componentRenderer
+                && !$event->hasResponse()
             ) {
                 $event->setResponse($this->createCmsResponse($event));
             } else {
@@ -57,6 +59,7 @@ class RenderErrorListener implements EventSubscriberInterface
             if (str_starts_with($request->getPathInfo(), $this->cmsBaseUrl)
                 && null !== $this->componentFactory
                 && null !== $this->componentRenderer
+                && !$event->hasResponse()
             ) {
                 $event->setResponse($this->createCmsResponse($event));
             }
@@ -84,11 +87,16 @@ class RenderErrorListener implements EventSubscriberInterface
     private function createCmsResponse(ExceptionEvent $event): Response
     {
         $contents = new DashboardContents($this->environment, $this->errorTemplate, ['error' => $event->getThrowable()]);
+        $boundedContextId = null;
+        $request = $event->getRequest();
+        if ($request->attributes->has(ContextConstants::BOUNDED_CONTEXT_ID)) {
+            $boundedContextId = new BoundedContextId($request->attributes->get(ContextConstants::BOUNDED_CONTEXT_ID));
+        }
         return new Response(
             $this->componentRenderer->render(
                 $this->componentFactory->createWrapLayout(
                     'Error',
-                    null,
+                    $boundedContextId,
                     new ApieContext(),
                     $this->componentFactory->createRawContents($contents)
                 )
