@@ -62,7 +62,8 @@ class ApieBundleTestingKernel extends Kernel
                     'http_method_override' => false,
                     'secret' => '123456',
                     'session' => ['storage_factory_id' => 'session.storage.factory.mock_file'],
-                    'router' => ['resource' => '.', 'type' => 'apie']
+                    'router' => ['resource' => '.', 'type' => 'apie'],
+                    'csrf_protection' => false,
                 ]
             );
             if ($this->includeSecurityBundle) {

@@ -5,6 +5,13 @@ services:
     arguments:
       - !tagged apie.core.route_definition
 
+  apie.csrf_token_provider:
+    alias: Apie\Core\Session\CsrfTokenProvider
+    public: true
+
+  Apie\Core\Session\CsrfTokenProvider:
+    alias: Apie\ApieBundle\ContextBuilders\CsrfTokenContextBuilder
+
   Apie\Core\BoundedContext\BoundedContextHashmap:
     factory: ["@apie.bounded_context.hashmap_factory", "create"]
 
@@ -13,6 +20,7 @@ services:
     arguments:
       - '@Apie\Core\BoundedContext\BoundedContextHashmap'
       - '@?Apie\Serializer\DecoderHashmap'
+      - '@?Apie\Core\Session\CsrfTokenProvider'
       - !tagged apie.core.context_builder
 
   apie.bounded_context.hashmap:

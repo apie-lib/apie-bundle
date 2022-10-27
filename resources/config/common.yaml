@@ -9,6 +9,7 @@ services:
   Apie\Common\RequestBodyDecoder:
     arguments:
       - '@Apie\Serializer\DecoderHashmap'
+      - '@Apie\Core\Session\CsrfTokenProvider'
 
   apie:
     alias: Apie\Common\ApieFacade

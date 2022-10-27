@@ -3,7 +3,6 @@ namespace Apie\ApieBundle\ContextBuilders;
 
 use Apie\Core\Context\ApieContext;
 use Apie\Core\ContextBuilders\ContextBuilderInterface;
-use Apie\Core\Session\CsrfTokenProvider;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 

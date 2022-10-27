@@ -60,6 +60,7 @@ final class ApieExtension extends Extension
         $container->setParameter('apie.cms.asset_folders', $config['cms']['asset_folders'] ?? []);
         $container->setParameter('apie.rest_api.base_url', rtrim($config['rest_api']['base_url'] ?? '/api', '/'));
         $container->setParameter('apie.cms.dashboard_template', $config['cms']['dashboard_template'] ?? '@Apie/dashboard.html.twig');
+        $container->setParameter('apie.cms.error_template', $config['cms']['error_template'] ?? '@Apie/error.html.twig');
         $container->setParameter('apie.cms.base_url', rtrim($config['cms']['base_url'] ?? '/cms', '/'));
         $loaded = [];
         foreach ($this->dependencies as $configName => $dependencyList) {

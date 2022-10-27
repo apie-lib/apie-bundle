@@ -23,6 +23,7 @@ final class Configuration implements ConfigurationInterface
                 ->children()
                     ->scalarNode('base_url')->defaultValue('/cms')->end()
                     ->scalarNode('dashboard_template')->defaultValue('@Apie/dashboard.html.twig')->end()
+                    ->scalarNode('error_template')->defaultValue('@Apie/error.html.twig')->end()
                     ->arrayNode('asset_folders')
                         ->scalarPrototype()
                         ->end()

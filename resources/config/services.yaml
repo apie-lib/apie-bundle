@@ -25,7 +25,7 @@ services:
 
   Apie\ApieBundle\ContextBuilders\CsrfTokenContextBuilder:
     arguments:
-      - '@Symfony\Component\Security\Csrf\CsrfTokenManagerInterface'
+      - '@?Symfony\Component\Security\Csrf\CsrfTokenManagerInterface'
     tags: [apie.core.context_builder]
 
   Apie\ApieBundle\Wrappers\RequestAwareInMemoryDatalayer:
@@ -39,3 +39,12 @@ services:
       - '@request_stack'
       - '@Apie\Core\BoundedContext\BoundedContextHashmap'
     tags: ['apie.context']
+
+  Apie\ApieBundle\EventListeners\RenderErrorListener:
+    arguments:
+      - '@?Apie\HtmlBuilders\Factories\ComponentFactory'
+      - '@?Apie\HtmlBuilders\Interfaces\ComponentRendererInterface'
+      - '@?Twig\Environment'
+      - '%apie.cms.base_url%'
+      - '%apie.cms.error_template%'
+    tags: ['kernel.event_subscriber']
