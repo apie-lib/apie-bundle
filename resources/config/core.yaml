@@ -20,7 +20,6 @@ services:
     arguments:
       - '@Apie\Core\BoundedContext\BoundedContextHashmap'
       - '@?Apie\Serializer\DecoderHashmap'
-      - '@?Apie\Core\Session\CsrfTokenProvider'
       - !tagged apie.core.context_builder
 
   apie.bounded_context.hashmap:

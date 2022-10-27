@@ -10,7 +10,6 @@ use Apie\Core\ContextBuilders\ContextBuilderFactory;
 use Apie\Core\ContextBuilders\ContextBuilderInterface;
 use Apie\Core\Datalayers\Grouped\DataLayerByBoundedContext;
 use Apie\Core\Datalayers\Grouped\DataLayerByClass;
-use Apie\Core\Session\CsrfTokenProvider;
 use Apie\Faker\ApieObjectFaker;
 use Apie\Faker\Interfaces\ApieClassFaker;
 use Apie\Serializer\DecoderHashmap;
@@ -33,14 +32,12 @@ final class GeneralServiceFactory
     public static function createContextBuilderFactory(
         BoundedContextHashmap $boundedContextHashmap,
         ?DecoderHashmap $decoderHashmap,
-        ?CsrfTokenProvider $csrfTokenProvider,
         iterable $contextBuilders
     ): ContextBuilderFactory {
-        if ($decoderHashmap && $csrfTokenProvider) {
+        if ($decoderHashmap) {
             return CommonContextBuilderFactory::create(
                 $boundedContextHashmap,
                 $decoderHashmap,
-                $csrfTokenProvider,
                 ...$contextBuilders
             );
         }

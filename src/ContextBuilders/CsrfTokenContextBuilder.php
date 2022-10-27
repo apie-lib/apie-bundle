@@ -7,6 +7,8 @@ use Apie\Core\ContextBuilders\ContextBuilderInterface;
 use Apie\Core\Exceptions\InvalidCsrfTokenException;
 use Apie\Core\Session\CsrfTokenProvider;
 use Apie\Core\Session\FakeTokenProvider;
+use Apie\Serializer\Encoders\FormSubmitDecoder;
+use Apie\Serializer\Interfaces\DecoderInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
@@ -20,9 +22,6 @@ class CsrfTokenContextBuilder implements ContextBuilderInterface, CsrfTokenProvi
 
     public function process(ApieContext $context): ApieContext
     {
-        if (null === $this->csrfTokenManager) {
-            return $context->withContext(CsrfTokenProvider::class, new FakeTokenProvider());
-        }
         $this->tokenName = $context->hasContext(ContextConstants::RESOURCE_NAME)
             ? $context->getContext(ContextConstants::RESOURCE_NAME)
             : 'apie';
@@ -30,6 +29,18 @@ class CsrfTokenContextBuilder implements ContextBuilderInterface, CsrfTokenProvi
         $this->tokenName .=  $context->hasContext(ContextConstants::APIE_ACTION)
             ? $context->getContext(ContextConstants::APIE_ACTION)
             : 'apie';
+
+        if ($context->hasContext(DecoderInterface::class)
+            && $context->hasContext(ContextConstants::RAW_CONTENTS)
+            && $context->getContext(DecoderInterface::class) instanceof FormSubmitDecoder) {
+            $csrf = $context->getContext(ContextConstants::RAW_CONTENTS)['_csrf'] ?? '';
+            $this->validateToken($csrf);
+        }
+
+        if (null === $this->csrfTokenManager) {
+            return $context->withContext(CsrfTokenProvider::class, new FakeTokenProvider());
+        }
+        
         return $context->withContext(CsrfTokenProvider::class, $this);
     }
 
