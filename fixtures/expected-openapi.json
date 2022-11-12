@@ -620,13 +620,58 @@
     ],
     "components": {
         "schemas": {
+            "Animal-post": {
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/Cow-post"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Elephant-post"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Fish-post"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "animalType",
+                    "mapping": {
+                        "cow": {
+                            "$ref": "#/components/schemas/Cow-post"
+                        },
+                        "elephant": {
+                            "$ref": "#/components/schemas/Elephant-post"
+                        },
+                        "fish": {
+                            "$ref": "#/components/schemas/Fish-post"
+                        }
+                    }
+                }
+            },
+            "AnimalIdentifier-post": {
+                "type": "string",
+                "format": "animalidentifier",
+                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$"
+            },
+            "AnimalList-get": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Animal-post"
+                }
+            },
+            "AnimalList-post": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Animal-post"
+                }
+            },
             "ApplicationInfo-get": {
+                "type": "object",
                 "required": [
                     "applicationName",
                     "applicationVersion",
                     "author"
                 ],
-                "type": "object",
                 "properties": {
                     "applicationName": {
                         "type": "string",
@@ -643,12 +688,12 @@
                 }
             },
             "ApplicationInfo-post": {
+                "type": "object",
                 "required": [
                     "applicationName",
                     "applicationVersion",
                     "author"
                 ],
-                "type": "object",
                 "properties": {
                     "applicationName": {
                         "type": "string",
@@ -663,6 +708,10 @@
                         "nullable": false
                     }
                 }
+            },
+            "BelgianPhoneNumber-get": {
+                "type": "string",
+                "format": "belgianphonenumber"
             },
             "BelgianPhoneNumber-post": {
                 "type": "string",
@@ -680,14 +729,119 @@
                 ],
                 "type": "string"
             },
+            "CompositeObjectExample-get": {
+                "type": "object",
+                "required": [
+                    "value1",
+                    "value2",
+                    "value3"
+                ],
+                "properties": {
+                    "value1": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "value2": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "value3": {
+                        "type": "integer",
+                        "nullable": true
+                    }
+                }
+            },
+            "CompositeObjectExample-post": {
+                "type": "object",
+                "required": [
+                    "value1",
+                    "value2",
+                    "value3"
+                ],
+                "properties": {
+                    "value1": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "value2": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "value3": {
+                        "type": "integer",
+                        "nullable": true
+                    }
+                }
+            },
+            "Cow-post": {
+                "type": "object",
+                "required": [
+                    "animalType"
+                ],
+                "properties": {
+                    "animalType": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-post"
+                    },
+                    "hasMilk": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
             "DateTime-post": {
                 "pattern": "^((|\\-)[0-9]{4})\\-((0[1-9])|(1[0-2]))\\-((0[1-9])|([12][0-9])|(3[01]))T(([01][0-9])|(2[0-3]))\\:[0-5][0-9]\\:[0-5][0-9](\\+\\d{2}:\\d{2})$",
                 "type": "string",
                 "format": "datetime"
             },
+            "DutchPhoneNumber-get": {
+                "type": "string",
+                "format": "dutchphonenumber"
+            },
             "DutchPhoneNumber-post": {
                 "type": "string",
                 "format": "dutchphonenumber"
+            },
+            "Elephant-post": {
+                "type": "object",
+                "required": [
+                    "animalType"
+                ],
+                "properties": {
+                    "animalType": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-post"
+                    },
+                    "starving": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
+            "Fish-post": {
+                "type": "object",
+                "required": [
+                    "animalType"
+                ],
+                "properties": {
+                    "animalType": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-post"
+                    },
+                    "poisonous": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
             },
             "Gender-post": {
                 "enum": [
@@ -705,22 +859,181 @@
                 "type": "integer"
             },
             "ManyColumns-get": {
-                "required": [
-                    "id"
-                ],
                 "type": "object",
+                "required": [
+                    "id",
+                    "stringValue",
+                    "intValue",
+                    "booleanValue",
+                    "floatValue",
+                    "stringList",
+                    "stringListHashmap",
+                    "animalList",
+                    "compositeObject",
+                    "nullableCompositeObject",
+                    "passwordList",
+                    "phonenumber"
+                ],
                 "properties": {
                     "id": {
                         "$ref": "#/components/schemas/ManyColumnsIdentifier-get"
+                    },
+                    "stringValue": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "intValue": {
+                        "type": "integer",
+                        "nullable": false
+                    },
+                    "booleanValue": {
+                        "type": "boolean",
+                        "nullable": false
+                    },
+                    "floatValue": {
+                        "type": "number",
+                        "nullable": false
+                    },
+                    "nullableStringValue": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "nullableIntValue": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "nullableBooleanValue": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "nullableFloatValue": {
+                        "type": "number",
+                        "nullable": true
+                    },
+                    "stringList": {
+                        "$ref": "#/components/schemas/StringList-get"
+                    },
+                    "nullableStringList": {
+                        "$ref": "#/components/schemas/StringList-get"
+                    },
+                    "stringListHashmap": {
+                        "$ref": "#/components/schemas/StringListHashmap-get"
+                    },
+                    "nullableStringListHashmap": {
+                        "$ref": "#/components/schemas/StringListHashmap-get"
+                    },
+                    "animalList": {
+                        "$ref": "#/components/schemas/AnimalList-get"
+                    },
+                    "nullableAnimalList": {
+                        "$ref": "#/components/schemas/AnimalList-get"
+                    },
+                    "compositeObject": {
+                        "$ref": "#/components/schemas/CompositeObjectExample-get"
+                    },
+                    "nullableCompositeObject": {
+                        "$ref": "#/components/schemas/CompositeObjectExample-get"
+                    },
+                    "passwordList": {
+                        "$ref": "#/components/schemas/StrongPasswordList-get"
+                    },
+                    "nullablePasswordList": {
+                        "$ref": "#/components/schemas/StrongPasswordList-get"
+                    },
+                    "phonenumber": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/DutchPhoneNumber-get"
+                            },
+                            {
+                                "$ref": "#/components/schemas/BelgianPhoneNumber-get"
+                            }
+                        ],
+                        "nullable": false
                     }
                 }
             },
             "ManyColumns-post": {
+                "type": "object",
                 "required": [
+                    "stringValue",
+                    "intValue",
+                    "booleanValue",
+                    "floatValue",
+                    "stringList",
+                    "stringListHashmap",
+                    "animalList",
+                    "compositeObject",
+                    "nullableCompositeObject",
+                    "passwordList",
                     "phonenumber"
                 ],
-                "type": "object",
                 "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/ManyColumnsIdentifier-post"
+                    },
+                    "stringValue": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "intValue": {
+                        "type": "integer",
+                        "nullable": false
+                    },
+                    "booleanValue": {
+                        "type": "boolean",
+                        "nullable": false
+                    },
+                    "floatValue": {
+                        "type": "number",
+                        "nullable": false
+                    },
+                    "nullableStringValue": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "nullableIntValue": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "nullableBooleanValue": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "nullableFloatValue": {
+                        "type": "number",
+                        "nullable": true
+                    },
+                    "stringList": {
+                        "$ref": "#/components/schemas/StringList-post"
+                    },
+                    "nullableStringList": {
+                        "$ref": "#/components/schemas/StringList-post"
+                    },
+                    "stringListHashmap": {
+                        "$ref": "#/components/schemas/StringListHashmap-post"
+                    },
+                    "nullableStringListHashmap": {
+                        "$ref": "#/components/schemas/StringListHashmap-post"
+                    },
+                    "animalList": {
+                        "$ref": "#/components/schemas/AnimalList-post"
+                    },
+                    "nullableAnimalList": {
+                        "$ref": "#/components/schemas/AnimalList-post"
+                    },
+                    "compositeObject": {
+                        "$ref": "#/components/schemas/CompositeObjectExample-post"
+                    },
+                    "nullableCompositeObject": {
+                        "$ref": "#/components/schemas/CompositeObjectExample-post"
+                    },
+                    "passwordList": {
+                        "$ref": "#/components/schemas/StrongPasswordList-post"
+                    },
+                    "nullablePasswordList": {
+                        "$ref": "#/components/schemas/StrongPasswordList-post"
+                    },
                     "phonenumber": {
                         "oneOf": [
                             {
@@ -729,10 +1042,8 @@
                             {
                                 "$ref": "#/components/schemas/BelgianPhoneNumber-post"
                             }
-                        ]
-                    },
-                    "id": {
-                        "$ref": "#/components/schemas/ManyColumnsIdentifier-post"
+                        ],
+                        "nullable": false
                     }
                 }
             },
@@ -750,10 +1061,46 @@
                 ],
                 "type": "string"
             },
+            "StringList-get": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "StringList-post": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "StringListHashmap-get": {
+                "type": "object",
+                "additionalProperties": {
+                    "$ref": "#/components/schemas/StringList-post"
+                }
+            },
+            "StringListHashmap-post": {
+                "type": "object",
+                "additionalProperties": {
+                    "$ref": "#/components/schemas/StringList-post"
+                }
+            },
             "StrongPassword-post": {
                 "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
                 "type": "string",
                 "format": "password"
+            },
+            "StrongPasswordList-get": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/StrongPassword-post"
+                }
+            },
+            "StrongPasswordList-post": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/StrongPassword-post"
+                }
             },
             "Throwable-get": {
                 "required": [
@@ -774,10 +1121,10 @@
                 }
             },
             "User-get": {
+                "type": "object",
                 "required": [
                     "id"
                 ],
-                "type": "object",
                 "properties": {
                     "id": {
                         "$ref": "#/components/schemas/UserIdentifier-get"
@@ -785,11 +1132,11 @@
                 }
             },
             "User-post": {
+                "type": "object",
                 "required": [
                     "password",
                     "phoneNumber"
                 ],
-                "type": "object",
                 "properties": {
                     "password": {
                         "$ref": "#/components/schemas/StrongPassword-post"
@@ -802,7 +1149,8 @@
                             {
                                 "$ref": "#/components/schemas/BritishPhoneNumber-post"
                             }
-                        ]
+                        ],
+                        "nullable": false
                     }
                 }
             },
