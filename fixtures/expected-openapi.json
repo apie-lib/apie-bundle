@@ -294,6 +294,86 @@
                         }
                     }
                 }
+            },
+            "patch": {
+                "tags": [
+                    "ManyColumns",
+                    "resource"
+                ],
+                "description": "Modifies an instance of ManyColumns",
+                "operationId": "patch-single-ManyColumns",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of instance of ManyColumns",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ManyColumnsIdentifier-post"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ManyColumns-patch"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ManyColumns-get"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/User/{id}": {
@@ -947,6 +1027,85 @@
                             },
                             {
                                 "$ref": "#/components/schemas/BelgianPhoneNumber-get"
+                            }
+                        ],
+                        "nullable": false
+                    }
+                }
+            },
+            "ManyColumns-patch": {
+                "type": "object",
+                "required": [],
+                "properties": {
+                    "stringValue": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "intValue": {
+                        "type": "integer",
+                        "nullable": false
+                    },
+                    "booleanValue": {
+                        "type": "boolean",
+                        "nullable": false
+                    },
+                    "floatValue": {
+                        "type": "number",
+                        "nullable": false
+                    },
+                    "nullableStringValue": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "nullableIntValue": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "nullableBooleanValue": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "nullableFloatValue": {
+                        "type": "number",
+                        "nullable": true
+                    },
+                    "stringList": {
+                        "$ref": "#/components/schemas/StringList-post"
+                    },
+                    "nullableStringList": {
+                        "$ref": "#/components/schemas/StringList-post"
+                    },
+                    "stringListHashmap": {
+                        "$ref": "#/components/schemas/StringListHashmap-post"
+                    },
+                    "nullableStringListHashmap": {
+                        "$ref": "#/components/schemas/StringListHashmap-post"
+                    },
+                    "animalList": {
+                        "$ref": "#/components/schemas/AnimalList-post"
+                    },
+                    "nullableAnimalList": {
+                        "$ref": "#/components/schemas/AnimalList-post"
+                    },
+                    "compositeObject": {
+                        "$ref": "#/components/schemas/CompositeObjectExample-post"
+                    },
+                    "nullableCompositeObject": {
+                        "$ref": "#/components/schemas/CompositeObjectExample-post"
+                    },
+                    "passwordList": {
+                        "$ref": "#/components/schemas/StrongPasswordList-post"
+                    },
+                    "nullablePasswordList": {
+                        "$ref": "#/components/schemas/StrongPasswordList-post"
+                    },
+                    "phonenumber": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/DutchPhoneNumber-post"
+                            },
+                            {
+                                "$ref": "#/components/schemas/BelgianPhoneNumber-post"
                             }
                         ],
                         "nullable": false
