@@ -1035,7 +1035,6 @@
             },
             "ManyColumns-patch": {
                 "type": "object",
-                "required": [],
                 "properties": {
                     "stringValue": {
                         "type": "string",
