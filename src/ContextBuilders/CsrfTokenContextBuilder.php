@@ -16,6 +16,9 @@ class CsrfTokenContextBuilder implements ContextBuilderInterface, CsrfTokenProvi
 {
     private string $tokenName = 'apie,apie';
 
+    /** @var array<string, bool> */
+    private array $alreadyChecked = [];
+
     public function __construct(private readonly ?CsrfTokenManagerInterface $csrfTokenManager = null)
     {
     }
@@ -51,6 +54,9 @@ class CsrfTokenContextBuilder implements ContextBuilderInterface, CsrfTokenProvi
 
     public function validateToken(string $token): void
     {
+        if (!empty($this->alreadyChecked[$token])) {
+            return;
+        }
         if ($this->csrfTokenManager) {
             $csrfToken = new CsrfToken($this->tokenName, $token);
             if (!$this->csrfTokenManager->isTokenValid($csrfToken)) {
@@ -60,5 +66,6 @@ class CsrfTokenContextBuilder implements ContextBuilderInterface, CsrfTokenProvi
         } else {
             (new FakeTokenProvider())->validateToken($token);
         }
+        $this->alreadyChecked[$token] = true;
     }
 }
