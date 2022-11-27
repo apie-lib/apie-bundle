@@ -819,15 +819,15 @@
                 "properties": {
                     "value1": {
                         "type": "string",
-                        "nullable": true
+                        "nullable": false
                     },
                     "value2": {
                         "type": "string",
-                        "nullable": true
+                        "nullable": false
                     },
                     "value3": {
                         "type": "integer",
-                        "nullable": true
+                        "nullable": false
                     }
                 }
             },
@@ -841,15 +841,15 @@
                 "properties": {
                     "value1": {
                         "type": "string",
-                        "nullable": true
+                        "nullable": false
                     },
                     "value2": {
                         "type": "string",
-                        "nullable": true
+                        "nullable": false
                     },
                     "value3": {
                         "type": "integer",
-                        "nullable": true
+                        "nullable": false
                     }
                 }
             },
