@@ -51,6 +51,7 @@ final class EntityNamespace implements StringValueObjectInterface, HasRegexValue
         foreach (Finder::create()->in($path)->files()->name('*.php')->depth('== 0') as $file) {
             $classes[] = $this->toClass($file->getBasename('.php'));
         }
+        sort($classes);
         return new ReflectionClassList($classes);
     }
 
@@ -71,6 +72,7 @@ final class EntityNamespace implements StringValueObjectInterface, HasRegexValue
                 }
             }
         }
+        sort($methods);
         return new ReflectionMethodList($methods);
     }
 }

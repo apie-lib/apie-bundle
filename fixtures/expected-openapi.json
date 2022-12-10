@@ -471,85 +471,6 @@
                 }
             }
         },
-        "/ApplicationInfo/powerOf2": {
-            "post": {
-                "tags": [
-                    "ApplicationInfo",
-                    "action"
-                ],
-                "description": "Calls method powerOf2 and returns return value.",
-                "operationId": "call-method-ApplicationInfo-powerOf2",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "input"
-                                ],
-                                "type": "object",
-                                "properties": {
-                                    "input": {
-                                        "type": "integer"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "400": {
-                        "description": "Invalid request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
-                                }
-                            }
-                        }
-                    },
-                    "405": {
-                        "description": "Invalid request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
-                                }
-                            }
-                        }
-                    },
-                    "406": {
-                        "description": "Invalid request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "A validation error occurred",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ValidationException-get"
-                                }
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "integer"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
         "/ApplicationInfo/manyArguments": {
             "post": {
                 "tags": [
@@ -659,6 +580,85 @@
                             "application/json": {
                                 "schema": {
                                     "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ApplicationInfo/powerOf2": {
+            "post": {
+                "tags": [
+                    "ApplicationInfo",
+                    "action"
+                ],
+                "description": "Calls method powerOf2 and returns return value.",
+                "operationId": "call-method-ApplicationInfo-powerOf2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "input"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "input": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "A validation error occurred",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationException-get"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "integer"
                                 }
                             }
                         }
