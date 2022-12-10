@@ -1,4 +1,4 @@
 services:
   Apie\SchemaGenerator\ComponentsBuilderFactory:
     factory: Apie\SchemaGenerator\ComponentsBuilderFactory::createComponentsBuilderFactory
-    arguments: ['%kernel.debug%']
+    arguments: []

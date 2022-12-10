@@ -1321,20 +1321,18 @@
                 }
             },
             "Throwable-get": {
+                "type": "object",
                 "required": [
                     "message",
-                    "trace"
+                    "code"
                 ],
-                "type": "object",
                 "properties": {
                     "message": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": false
                     },
-                    "trace": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "$ref": "#/components/schemas/mixed"
-                        }
+                    "code": {
+                        "$ref": "#/components/schemas/mixed"
                     }
                 }
             },
