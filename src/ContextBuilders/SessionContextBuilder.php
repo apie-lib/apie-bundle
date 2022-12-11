@@ -21,16 +21,16 @@ class SessionContextBuilder implements ContextBuilderInterface
             $session = $request->getSession();
             $context = $context->withContext(SessionInterface::class, $session);
             // TODO: move to its own context builder
-            if (!$context->hasContext(ContextConstants::RAW_CONTENTS)) {
+            if ($session->has('_filled_in')) {
                 $context = $context->withContext(
                     ContextConstants::RAW_CONTENTS,
                     Utils::toArray($session->get('_filled_in', []))
                 );
-                $context = $context->withContext(
-                    ContextConstants::VALIDATION_ERRORS,
-                    Utils::toArray($session->get('_validation_errors', []))
-                );
             }
+            $context = $context->withContext(
+                ContextConstants::VALIDATION_ERRORS,
+                Utils::toArray($session->get('_validation_errors', []))
+            );
         }
 
         return $context;
