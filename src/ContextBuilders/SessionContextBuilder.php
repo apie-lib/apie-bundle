@@ -18,7 +18,7 @@ class SessionContextBuilder implements ContextBuilderInterface
     public function process(ApieContext $context): ApieContext
     {
         $request = $this->requestStack->getMainRequest();
-        if ($request && $request->hasSession()) {
+        if ($request && $request->hasSession() && $context->hasContext(RequestMethod::class)) {
             $session = $request->getSession();
             $context = $context->withContext(SessionInterface::class, $session);
             // TODO: move to its own context builder
