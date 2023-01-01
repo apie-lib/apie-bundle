@@ -30,8 +30,8 @@ final class ApieRouteLoader extends Loader
         private readonly string $apiPath
     ) {
         $this->prefixes = [
-            UrlPrefix::CMS->value => $this->cmsPath,
-            UrlPrefix::API->value => $this->apiPath,
+            UrlPrefix::CMS->value => ltrim($this->cmsPath, '/'),
+            UrlPrefix::API->value => ltrim($this->apiPath, '/'),
         ];
     }
 
