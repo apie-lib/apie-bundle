@@ -1,0 +1,7 @@
+services:
+  Apie\CmsApiDropdownOption\Controllers\DropdownOptionController:
+    arguments:
+      - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
+      - '@Apie\Common\ApieFacade'
+      - '@Apie\Serializer\EncoderHashmap'
+    tags: ['controller.service_arguments']

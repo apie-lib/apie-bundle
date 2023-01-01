@@ -2,6 +2,7 @@
 namespace Apie\ApieBundle\DependencyInjection;
 
 use Apie\Cms\RouteDefinitions\CmsRouteDefinitionProvider;
+use Apie\CmsApiDropdownOption\RouteDefinitions\DropdownOptionsForExistingObjectRouteDefinition;
 use Apie\Console\ConsoleCommandFactory;
 use Apie\Faker\ApieObjectFaker;
 use Apie\RestApi\OpenApi\OpenApiGenerator;
@@ -56,6 +57,7 @@ final class Configuration implements ConfigurationInterface
             ->end()
             ->booleanNode('enable_core')->defaultValue(true)->end()
             ->booleanNode('enable_cms')->defaultValue(class_exists(CmsRouteDefinitionProvider::class))->end()
+            ->booleanNode('enable_cms_dropdown')->defaultValue(class_exists(DropdownOptionsForExistingObjectRouteDefinition::class))->end()
             ->booleanNode('enable_faker')->defaultValue(class_exists(ApieObjectFaker::class))->end()
             ->booleanNode('enable_rest_api')->defaultValue(class_exists(OpenApiGenerator::class))->end()
             ->booleanNode('enable_console')->defaultValue(class_exists(ConsoleCommandFactory::class))->end()
