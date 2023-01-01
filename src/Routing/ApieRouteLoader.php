@@ -62,7 +62,7 @@ final class ApieRouteLoader extends Loader
                     default:
                         $prefix = '/{prefix}/';
                         // TODO escape regex?
-                        $requirements['prefix'] = '/' . implode('|', $possiblePrefixes) . '/';
+                        $requirements['prefix'] = implode('|', $possiblePrefixes);
                 }
                 $path = $prefix . $boundedContextId . '/' . ltrim($routeDefinition->getUrl(), '/');
 
