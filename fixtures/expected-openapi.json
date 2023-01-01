@@ -16,10 +16,10 @@
                     {
                         "name": "property",
                         "in": "path",
-                        "description": "property of instance of string",
+                        "description": "property of instance of PartialInput",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/components/schemas/PartialInput-post"
                         }
                     }
                 ],
@@ -27,7 +27,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "string"
+                                "$ref": "#/components/schemas/PartialInput-post"
                             }
                         }
                     }
@@ -90,10 +90,10 @@
                     {
                         "name": "property",
                         "in": "path",
-                        "description": "property of instance of string",
+                        "description": "property of instance of PartialInput",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/components/schemas/PartialInput-post"
                         }
                     }
                 ],
@@ -101,7 +101,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "string"
+                                "$ref": "#/components/schemas/PartialInput-post"
                             }
                         }
                     }
@@ -164,19 +164,19 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "description": "id of instance of string",
+                        "description": "id of instance of PartialInput",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/components/schemas/PartialInput-post"
                         }
                     },
                     {
                         "name": "property",
                         "in": "path",
-                        "description": "property of instance of string",
+                        "description": "property of instance of PartialInput",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "$ref": "#/components/schemas/PartialInput-post"
                         }
                     }
                 ],
@@ -184,7 +184,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "string"
+                                "$ref": "#/components/schemas/PartialInput-post"
                             }
                         }
                     }
@@ -1526,6 +1526,18 @@
                     "BLUE"
                 ],
                 "type": "string"
+            },
+            "PartialInput-post": {
+                "type": "object",
+                "required": [
+                    "input"
+                ],
+                "properties": {
+                    "input": {
+                        "type": "string",
+                        "nullable": false
+                    }
+                }
             },
             "StringList-get": {
                 "type": "array",
