@@ -21,6 +21,10 @@ final class ApieExtension extends Extension
             'html_builders.yaml',
             'serializer.yaml',
         ],
+        'enable_cms_dropdown' => [
+             'common.yaml',
+             'cms_dropdown.yaml',
+        ],
         'enable_core' => [
             'core.yaml',
         ],
