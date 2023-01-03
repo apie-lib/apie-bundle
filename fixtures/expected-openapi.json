@@ -38,40 +38,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "required": [
-                                        "totalCount",
-                                        "first",
-                                        "last",
-                                        "list"
-                                    ],
-                                    "type": "object",
-                                    "properties": {
-                                        "totalCount": {
-                                            "type": "integer"
-                                        },
-                                        "first": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "last": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "prev": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "next": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "list": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/DropdownOption-get"
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/DropdownOptionList-get"
                                 }
                             }
                         }
@@ -112,40 +79,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "required": [
-                                        "totalCount",
-                                        "first",
-                                        "last",
-                                        "list"
-                                    ],
-                                    "type": "object",
-                                    "properties": {
-                                        "totalCount": {
-                                            "type": "integer"
-                                        },
-                                        "first": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "last": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "prev": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "next": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "list": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/DropdownOption-get"
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/DropdownOptionList-get"
                                 }
                             }
                         }
@@ -195,40 +129,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "required": [
-                                        "totalCount",
-                                        "first",
-                                        "last",
-                                        "list"
-                                    ],
-                                    "type": "object",
-                                    "properties": {
-                                        "totalCount": {
-                                            "type": "integer"
-                                        },
-                                        "first": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "last": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "prev": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "next": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "list": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/DropdownOption-get"
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/DropdownOptionList-get"
                                 }
                             }
                         }
@@ -1168,7 +1069,7 @@
                 "type": "string",
                 "format": "datetime"
             },
-            "DropdownOption-get": {
+            "DropdownOption-post": {
                 "type": "object",
                 "required": [
                     "value",
@@ -1183,6 +1084,12 @@
                         "type": "string",
                         "nullable": false
                     }
+                }
+            },
+            "DropdownOptionList-get": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/DropdownOption-post"
                 }
             },
             "DutchPhoneNumber-get": {

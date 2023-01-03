@@ -3,7 +3,6 @@ namespace Apie\ApieBundle\Routing;
 
 use Apie\Common\Enums\UrlPrefix;
 use Apie\Common\Interfaces\HasRouteDefinition;
-use Apie\Common\Interfaces\RestApiRouteDefinition;
 use Apie\Common\Interfaces\RouteDefinitionProviderInterface;
 use Apie\Core\BoundedContext\BoundedContextHashmap;
 use Apie\Core\Context\ApieContext;

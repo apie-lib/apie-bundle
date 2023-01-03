@@ -5,6 +5,7 @@ use Apie\Common\ContextConstants;
 use Apie\Core\BoundedContext\BoundedContext;
 use Apie\Core\BoundedContext\BoundedContextHashmap;
 use Apie\Core\Entities\EntityInterface;
+use ReflectionClass;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -44,13 +45,6 @@ final class BoundedContextSelected
      */
     public function getBoundedContextFromClassName(string $className): ?BoundedContext
     {
-        foreach ($this->boundedContextHashmap as $boundedContext) {
-            foreach ($boundedContext->resources as $resource) {
-                if ($resource->name === $className) {
-                    return $boundedContext;
-                }
-            }
-        }
-        return null;
+        return $this->boundedContextHashmap->getBoundedContextFromClassName(new ReflectionClass($className));
     }
 }
