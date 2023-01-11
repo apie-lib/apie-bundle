@@ -1235,6 +1235,9 @@
                     "nullablePasswordList": {
                         "$ref": "#/components/schemas/StrongPasswordList-get"
                     },
+                    "userIdentifier": {
+                        "$ref": "#/components/schemas/UserIdentifier-get"
+                    },
                     "phonenumber": {
                         "oneOf": [
                             {
@@ -1312,6 +1315,9 @@
                     },
                     "nullablePasswordList": {
                         "$ref": "#/components/schemas/StrongPasswordList-post"
+                    },
+                    "userIdentifier": {
+                        "$ref": "#/components/schemas/UserIdentifier-post"
                     },
                     "phonenumber": {
                         "oneOf": [
@@ -1406,6 +1412,9 @@
                     },
                     "nullablePasswordList": {
                         "$ref": "#/components/schemas/StrongPasswordList-post"
+                    },
+                    "userIdentifier": {
+                        "$ref": "#/components/schemas/UserIdentifier-post"
                     },
                     "phonenumber": {
                         "oneOf": [

@@ -5,3 +5,19 @@ services:
       - '@Apie\Common\ApieFacade'
       - '@Apie\Serializer\EncoderHashmap'
     tags: ['controller.service_arguments']
+
+  Apie\CmsApiDropdownOption\DropdownOptionProvider\DropdownOptionProviderInterface:
+    class: Apie\CmsApiDropdownOption\DropdownOptionProvider\ChainedDropdownOptionProvider
+    tags: ['apie.context']
+    factory: ['Apie\CmsApiDropdownOption\DropdownOptionProvider\ChainedDropdownOptionProvider', 'create']
+    arguments:
+      - !tagged Apie\CmsApiDropdownOption\DropdownOptionProvider\DropdownOptionProviderInterface
+
+  Apie\CmsApiDropdownOption\DropdownOptionProvider\EntityIdentifierOptionProvider:
+    arguments:
+      - '@Apie\Core\BoundedContext\BoundedContextHashmap'
+      - '@Apie\Core\Datalayers\ApieDatalayer'
+    tags: ['Apie\CmsApiDropdownOption\DropdownOptionProvider\DropdownOptionProviderInterface']
+
+
+    

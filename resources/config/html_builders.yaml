@@ -7,6 +7,13 @@ services:
 
   Apie\HtmlBuilders\Factories\FormComponentFactory:
     factory: ['Apie\HtmlBuilders\Factories\FormComponentFactory', 'create']
+    arguments:
+      - !tagged_iterator Apie\HtmlBuilders\Interfaces\FormComponentProviderInterface
+
+  Apie\HtmlBuilders\Factories\Concrete\DropdownOptionsComponentProvider:
+    arguments:
+      - '@Apie\HtmlBuilders\Configuration\ApplicationConfiguration'
+    tags: ['Apie\HtmlBuilders\Interfaces\FormComponentProviderInterface']
 
   Apie\HtmlBuilders\Configuration\ApplicationConfiguration:
     arguments:

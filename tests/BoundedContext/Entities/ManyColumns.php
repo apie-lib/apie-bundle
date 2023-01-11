@@ -10,6 +10,7 @@ use Apie\Tests\ApieBundle\BoundedContext\Lists\AnimalList;
 use Apie\Tests\ApieBundle\BoundedContext\Lists\StringListHashmap;
 use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\CompositeObjectExample;
 use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\ManyColumnsIdentifier;
+use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\UserIdentifier;
 
 class ManyColumns implements EntityInterface
 {
@@ -48,6 +49,8 @@ class ManyColumns implements EntityInterface
     public StrongPasswordList $passwordList;
 
     public ?StrongPasswordList $nullablePasswordList = null;
+
+    public ?UserIdentifier $userIdentifier = null;
 
     public function __construct(
         public DutchPhoneNumber|BelgianPhoneNumber $phonenumber,
