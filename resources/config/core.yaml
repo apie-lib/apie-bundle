@@ -40,6 +40,13 @@ services:
   apie.datalayer:
     alias: Apie\Core\Datalayers\ApieDatalayer
 
+  Apie\Core\Indexing\Indexer:
+    factory: ['Apie\Core\Indexing\Indexer', 'create']
+
+  Apie\Core\Datalayers\Search\LazyLoadedListFilterer:
+    arguments:
+      - '@Apie\Core\Indexing\Indexer'
+
   Apie\Core\Datalayers\Grouped\DataLayerByBoundedContext:
     factory: ['Apie\ApieBundle\Wrappers\GeneralServiceFactory', 'createDataLayerMap']
     arguments:
