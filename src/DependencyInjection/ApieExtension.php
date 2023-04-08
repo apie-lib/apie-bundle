@@ -1,6 +1,7 @@
 <?php
 namespace Apie\ApieBundle\DependencyInjection;
 
+use Apie\Common\DependencyInjection\ApieConfigFileLocator;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -54,7 +55,7 @@ final class ApieExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../../resources/config'));
+        $loader = new YamlFileLoader($container, new ApieConfigFileLocator(__DIR__.'/../../resources/config'));
         $loader->load('services.yaml');
         $loader->load('psr7.yaml');
         $configuration = $this->getConfiguration($configs, $container);
