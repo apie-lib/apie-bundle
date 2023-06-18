@@ -12,6 +12,9 @@ use Symfony\Component\DependencyInjection\ServiceLocator;
  */
 final class ServiceContextBuilder implements ContextBuilderInterface
 {
+    /**
+     * @param ServiceLocator<mixed> $serviceLocator
+     */
     public function __construct(private readonly ServiceLocator $serviceLocator)
     {
     }
