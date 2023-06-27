@@ -1,7 +1,0 @@
-services:
-  Apie\HtmlBuilders\Interfaces\ComponentRendererInterface:
-    factory:
-      - 'Apie\ApieBundle\Wrappers\CmsRendererFactory'
-      - createRenderer
-    arguments:
-      - '@Apie\HtmlBuilders\Assets\AssetManager'
