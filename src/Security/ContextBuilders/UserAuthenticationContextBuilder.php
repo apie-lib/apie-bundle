@@ -2,7 +2,7 @@
 
 namespace Apie\ApieBundle\Security\ContextBuilders;
 
-use Apie\ApieBundle\Security\ApieUserDecorator;
+use Apie\Common\Interfaces\UserDecorator;
 use Apie\Core\Context\ApieContext;
 use Apie\Core\ContextBuilders\ContextBuilderInterface;
 use Symfony\Component\Security\Core\Security;
@@ -21,7 +21,7 @@ class UserAuthenticationContextBuilder implements ContextBuilderInterface
         $user = $this->security->getUser();
         if ($user) {
             $context = $context->registerInstance($user);
-            if ($user instanceof ApieUserDecorator) {
+            if ($user instanceof UserDecorator) {
                 $context = $context->withContext('authenticated', $user->getEntity());
             }
         }

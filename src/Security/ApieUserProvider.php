@@ -2,9 +2,9 @@
 
 namespace Apie\ApieBundle\Security;
 
-use Apie\ApieBundle\Security\Interfaces\CheckLoginStatusInterface;
-use Apie\ApieBundle\Security\ValueObjects\ApieUserDecoratorIdentifier;
 use Apie\Common\ApieFacade;
+use Apie\Common\Interfaces\CheckLoginStatusInterface;
+use Apie\Common\Wrappers\ApieUserDecoratorIdentifier;
 use Apie\Core\Entities\EntityInterface;
 use Apie\Core\ValueObjects\Utils;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
