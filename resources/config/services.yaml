@@ -1,9 +1,5 @@
 # Apie core services
 services:
-  apie.bounded_context.hashmap_factory:
-      class: Apie\ApieBundle\Wrappers\BoundedContextHashmapFactory
-      arguments:
-        - "%apie.bounded_contexts%"
 
   Apie\ApieBundle\Routing\ApieRouteLoader:
     arguments:
@@ -28,11 +24,8 @@ services:
       - '@?Symfony\Component\Security\Csrf\CsrfTokenManagerInterface'
     tags: [apie.core.context_builder]
 
-  Apie\ApieBundle\Wrappers\RequestAwareInMemoryDatalayer:
-    arguments:
-      - '@Apie\ApieBundle\Wrappers\BoundedContextSelected'
-    tags:
-      - apie.datalayer
+  Apie\Common\Interfaces\BoundedContextSelection:
+    alias: Apie\ApieBundle\Wrappers\BoundedContextSelected
 
   Apie\ApieBundle\Wrappers\BoundedContextSelected:
     arguments:

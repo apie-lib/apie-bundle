@@ -1,7 +1,7 @@
 <?php
 namespace Apie\ApieBundle\DependencyInjection\Compiler;
 
-use Apie\ApieBundle\Wrappers\BoundedContextHashmapFactory;
+use Apie\Common\Wrappers\BoundedContextHashmapFactory;
 use Apie\Core\Exceptions\InvalidTypeException;
 use ReflectionClass;
 use ReflectionNamedType;

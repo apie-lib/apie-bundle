@@ -1,7 +1,7 @@
 <?php
 namespace Apie\Tests\ApieBundle\Concerns;
 
-use Apie\ApieBundle\Wrappers\RequestAwareInMemoryDatalayer;
+use Apie\Common\Wrappers\RequestAwareInMemoryDatalayer;
 use Apie\Tests\ApieBundle\ApieBundleTestingKernel;
 
 trait ItCreatesASymfonyApplication
