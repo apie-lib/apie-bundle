@@ -1,9 +1,9 @@
 <?php
 namespace Apie\ApieBundle\Routing;
 
-use Apie\Common\Enums\UrlPrefix;
 use Apie\Common\Interfaces\HasRouteDefinition;
 use Apie\Common\Interfaces\RouteDefinitionProviderInterface;
+use Apie\Common\RouteDefinitions\PossibleRoutePrefixProvider;
 use Apie\Core\BoundedContext\BoundedContextHashmap;
 use Apie\Core\Context\ApieContext;
 use Symfony\Component\Config\Loader\Loader;
@@ -15,23 +15,13 @@ use Symfony\Component\Routing\RouteCollection;
  */
 final class ApieRouteLoader extends Loader
 {
-    /**
-     * @var array<string, string>
-     */
-    private array $prefixes;
-
     private bool $loaded = false;
 
     public function __construct(
         private readonly RouteDefinitionProviderInterface $routeProvider,
         private readonly BoundedContextHashmap $boundedContextHashmap,
-        private readonly string $cmsPath,
-        private readonly string $apiPath
+        private readonly PossibleRoutePrefixProvider $routePrefixProvider,
     ) {
-        $this->prefixes = [
-            UrlPrefix::CMS->value => ltrim($this->cmsPath, '/'),
-            UrlPrefix::API->value => ltrim($this->apiPath, '/'),
-        ];
     }
 
     /**
@@ -49,20 +39,9 @@ final class ApieRouteLoader extends Loader
         foreach ($this->boundedContextHashmap as $boundedContextId => $boundedContext) {
             foreach ($this->routeProvider->getActionsForBoundedContext($boundedContext, $apieContext) as $routeDefinition) {
                 /** @var HasRouteDefinition $routeDefinition */
-                $prefix = '/';
-                $requirements = [];
-                $possiblePrefixes = $this->getPossiblePrefixes($routeDefinition);
-                switch(count($possiblePrefixes)) {
-                    case 0:
-                        break;
-                    case 1:
-                        $prefix = '/' . reset($possiblePrefixes) . '/';
-                        break;
-                    default:
-                        $prefix = '/{prefix}/';
-                        // TODO escape regex?
-                        $requirements['prefix'] = implode('|', $possiblePrefixes);
-                }
+                $prefix = $this->routePrefixProvider->getPossiblePrefixes($routeDefinition);
+
+                $requirements = $prefix->getRouteRequirements();
                 $path = $prefix . $boundedContextId . '/' . ltrim($routeDefinition->getUrl(), '/');
 
                 $method = $routeDefinition->getMethod();
@@ -81,20 +60,6 @@ final class ApieRouteLoader extends Loader
         }
         
         return $routes;
-    }
-
-    /**
-     * @return string[]
-     */
-    private function getPossiblePrefixes(HasRouteDefinition $routeDefinition): array
-    {
-        $result = [];
-        foreach ($routeDefinition->getUrlPrefixes() as $urlPrefix) {
-            if (isset($this->prefixes[$urlPrefix->value])) {
-                $result[] = $this->prefixes[$urlPrefix->value];
-            }
-        }
-        return $result;
     }
 
     /**

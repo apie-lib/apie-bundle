@@ -5,8 +5,7 @@ services:
     arguments:
       - "@apie.route_definitions.provider"
       - "@apie.bounded_context.hashmap"
-      - '%apie.cms.base_url%'
-      - '%apie.rest_api.base_url%'
+      - '@Apie\Common\RouteDefinitions\PossibleRoutePrefixProvider'
     tags: [routing.loader]
 
   Apie\ApieBundle\ContextBuilders\ServiceContextBuilder:
