@@ -1,7 +1,7 @@
 <?php
 namespace Apie\Tests\ApieBundle\BoundedContext\ValueObjects;
 
-use Apie\CompositeValueObjects\CompositeValueObject;
+use Apie\Core\ValueObjects\CompositeValueObject;
 use Apie\Core\ValueObjects\Interfaces\ValueObjectInterface;
 
 class CompositeObjectExample implements ValueObjectInterface

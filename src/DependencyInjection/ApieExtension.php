@@ -28,6 +28,7 @@ final class ApieExtension extends Extension
         ],
         'enable_core' => [
             'core.yaml',
+            'sf_core.yaml',
         ],
         'enable_console' => [
             'common.yaml',
