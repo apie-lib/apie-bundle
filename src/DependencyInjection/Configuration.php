@@ -4,6 +4,8 @@ namespace Apie\ApieBundle\DependencyInjection;
 use Apie\Cms\RouteDefinitions\CmsRouteDefinitionProvider;
 use Apie\CmsApiDropdownOption\RouteDefinitions\DropdownOptionsForExistingObjectRouteDefinition;
 use Apie\Console\ConsoleCommandFactory;
+use Apie\DoctrineEntityConverter\EntityBuilder;
+use Apie\DoctrineEntityDatalayer\DoctrineEntityDatalayer;
 use Apie\Faker\ApieObjectFaker;
 use Apie\RestApi\OpenApi\OpenApiGenerator;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
@@ -55,9 +57,23 @@ final class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
             ->end()
+            ->arrayNode('doctrine')
+                ->children()
+                    ->scalarNode('build_once')->defaultValue(false)->end()
+                    ->scalarNode('run_migrations')->defaultValue(true)->end()
+                    ->arrayNode('connection_params')
+                      ->defaultValue(['driver' => 'pdo_sqlite'])
+                      ->useAttributeAsKey('class')
+                      ->scalarPrototype()
+                      ->end()
+                    ->end()
+                ->end()
+            ->end()
             ->booleanNode('enable_core')->defaultValue(true)->end()
             ->booleanNode('enable_cms')->defaultValue(class_exists(CmsRouteDefinitionProvider::class))->end()
             ->booleanNode('enable_cms_dropdown')->defaultValue(class_exists(DropdownOptionsForExistingObjectRouteDefinition::class))->end()
+            ->booleanNode('enable_doctrine_entity_converter')->defaultValue(class_exists(EntityBuilder::class))->end()
+            ->booleanNode('enable_doctrine_entity_datalayer')->defaultValue(class_exists(DoctrineEntityDatalayer::class))->end()
             ->booleanNode('enable_faker')->defaultValue(class_exists(ApieObjectFaker::class))->end()
             ->booleanNode('enable_rest_api')->defaultValue(class_exists(OpenApiGenerator::class))->end()
             ->booleanNode('enable_console')->defaultValue(class_exists(ConsoleCommandFactory::class))->end()
