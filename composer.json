@@ -19,6 +19,9 @@
       "Apie\\Tests\\ApieBundle\\": "tests/"
     }
   },
+  "suggest": {
+    "apie/doctrine-entity-datalayer": "Store domain objects by using generated doctrine entities internally"
+  },
   "require": {
     "php": ">=8.1",
     "apie/common": "self.version",
