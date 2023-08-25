@@ -51,7 +51,7 @@ class ApieBundleTestingKernel extends Kernel
         return $res;
     }
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         $loader->load(__DIR__ . '/../fixtures/services.yaml');
         $loader->load(function (ContainerBuilder $container) {

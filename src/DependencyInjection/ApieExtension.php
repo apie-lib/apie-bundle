@@ -34,6 +34,11 @@ final class ApieExtension extends Extension
             'core.yaml',
             'doctrine_entity_converter.yaml',
         ],
+        'enable_doctrine_entity_datalayer' => [
+            'core.yaml',
+            'doctrine_entity_converter.yaml',
+            'doctrine_entity_datalayer.yaml',
+        ],
         'enable_console' => [
             'common.yaml',
             'console.yaml',
@@ -72,8 +77,8 @@ final class ApieExtension extends Extension
         $container->setParameter('apie.cms.error_template', $config['cms']['error_template'] ?? '@Apie/error.html.twig');
         $container->setParameter('apie.cms.base_url', rtrim($config['cms']['base_url'] ?? '/cms', '/'));
         $container->setParameter('apie.doctrine.build_once', $config['doctrine']['build_once'] ?? false);
-        $container->setParameter('apie.doctrine.connection_config', $config['doctrine']['connection_config'] ?? []);
-        $container->setParameter('apie.doctrine.run_migrations', $config['doctrine']['build_once'] ?? false);
+        $container->setParameter('apie.doctrine.connection_params', $config['doctrine']['connection_params'] ?? []);
+        $container->setParameter('apie.doctrine.run_migrations', $config['doctrine']['run_migrations'] ?? false);
         $container->setParameter('apie.rest_api.base_url', rtrim($config['rest_api']['base_url'] ?? '/api', '/'));
         $loaded = [];
         foreach ($this->dependencies as $configName => $dependencyList) {

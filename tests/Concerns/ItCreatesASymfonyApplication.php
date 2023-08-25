@@ -6,7 +6,7 @@ use Apie\Tests\ApieBundle\ApieBundleTestingKernel;
 
 trait ItCreatesASymfonyApplication
 {
-    public function given_a_symfony_application_with_apie(bool $includeTwig = false): ApieBundleTestingKernel
+    public function given_a_symfony_application_with_apie(bool $includeTwig = false, string $defaultDatalayer = RequestAwareInMemoryDatalayer::class): ApieBundleTestingKernel
     {
         $boundedContexts = [
             'default' => [
@@ -20,8 +20,14 @@ trait ItCreatesASymfonyApplication
             [
                 'bounded_contexts' => $boundedContexts,
                 'datalayers' => [
-                    'default_datalayer' => RequestAwareInMemoryDatalayer::class,
-                ]
+                    'default_datalayer' => $defaultDatalayer,
+                ],
+                'doctrine' => [
+                    'run_migrations' => true,
+                    'connection_params' => [
+                        'driver' => 'pdo_sqlite'
+                    ]
+                ],
             ],
             $includeTwig
         );
