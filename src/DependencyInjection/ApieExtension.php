@@ -43,7 +43,7 @@ final class ApieExtension extends Extension
             'core.yaml',
             'doctrine_entity_converter.yaml',
             'doctrine_entity_datalayer.yaml',
-            'sf2_doctrine.yaml',
+            'sf_doctrine.yaml',
         ],
         'enable_console' => [
             'common.yaml',
