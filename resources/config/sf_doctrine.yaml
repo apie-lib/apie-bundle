@@ -8,8 +8,10 @@ services:
 
   doctrine.orm.apie_manager_entity_manager:
     public: true
+    class: Doctrine\ORM\EntityManager
     factory: ['@Apie\DoctrineEntityDatalayer\OrmBuilder', 'createEntityManager']
 
   doctrine.dbal.apie_connection:
     public: true
+    class: Doctrine\DBAL\Connection
     factory: ['@doctrine.orm.apie_manager_entity_manager', 'getConnection']
