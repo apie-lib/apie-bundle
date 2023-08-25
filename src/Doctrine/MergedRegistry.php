@@ -47,7 +47,7 @@ class MergedRegistry implements ManagerRegistry
     public function getManagerNames(): array
     {
         $internal = $this->internal->getManagerNames();
-        $internal[self::APIE_MANAGER_NAME] = 'Apie library';
+        $internal[self::APIE_MANAGER_NAME] = 'doctrine.orm.apie_manager_entity_manager';
         return $internal;
     }
 
@@ -58,7 +58,7 @@ class MergedRegistry implements ManagerRegistry
         if ($persistentManagerName === null && str_starts_with($persistentObject, $this->ormBuilder->getGeneratedNamespace())) {
             return $this->ormBuilder->createEntityManager();
         }
-        if ($persistentManagerName === 'apie') {
+        if ($persistentManagerName === self::APIE_MANAGER_NAME) {
             return $this->ormBuilder->createEntityManager();
         }
 
@@ -98,7 +98,7 @@ class MergedRegistry implements ManagerRegistry
     public function getConnectionNames(): array
     {
         $internal = $this->internal->getConnectionNames();
-        $internal[self::APIE_CONNECTION_NAME] = 'Apie connection';
+        $internal[self::APIE_CONNECTION_NAME] = 'doctrine.dbal.apie_connection';
 
         return $internal;
     }

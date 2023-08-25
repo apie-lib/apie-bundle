@@ -5,3 +5,11 @@ services:
     arguments:
       - '@.inner'
       - '@Apie\DoctrineEntityDatalayer\OrmBuilder'
+
+  doctrine.orm.apie_manager_entity_manager:
+    public: true
+    factory: ['@Apie\DoctrineEntityDatalayer\OrmBuilder', 'createEntityManager']
+
+  doctrine.dbal.apie_connection:
+    public: true
+    factory: ['@doctrine.orm.apie_manager_entity_manager', 'getConnection']
