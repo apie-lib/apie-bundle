@@ -45,6 +45,7 @@
     "apie/fixtures": "self.version",
     "apie/text-value-objects": "self.version",
     "apie/rest-api": "self.version",
+    "doctrine/persistence": "^3.2",
     "league/openapi-psr7-validator": "0.18",
     "symfony/framework-bundle": "6.*",
     "symfony/security-bundle": "6.*",

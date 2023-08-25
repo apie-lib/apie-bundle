@@ -8,6 +8,7 @@ use Apie\DoctrineEntityConverter\EntityBuilder;
 use Apie\DoctrineEntityDatalayer\DoctrineEntityDatalayer;
 use Apie\Faker\ApieObjectFaker;
 use Apie\RestApi\OpenApi\OpenApiGenerator;
+use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -74,6 +75,7 @@ final class Configuration implements ConfigurationInterface
             ->booleanNode('enable_cms_dropdown')->defaultValue(class_exists(DropdownOptionsForExistingObjectRouteDefinition::class))->end()
             ->booleanNode('enable_doctrine_entity_converter')->defaultValue(class_exists(EntityBuilder::class))->end()
             ->booleanNode('enable_doctrine_entity_datalayer')->defaultValue(class_exists(DoctrineEntityDatalayer::class))->end()
+            ->booleanNode('enable_doctrine_bundle_connection')->defaultValue(class_exists(DoctrineEntityDatalayer::class) && class_exists(DoctrineBundle::class))->end()
             ->booleanNode('enable_faker')->defaultValue(class_exists(ApieObjectFaker::class))->end()
             ->booleanNode('enable_rest_api')->defaultValue(class_exists(OpenApiGenerator::class))->end()
             ->booleanNode('enable_console')->defaultValue(class_exists(ConsoleCommandFactory::class))->end()

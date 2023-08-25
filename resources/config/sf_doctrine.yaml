@@ -1,0 +1,7 @@
+services:
+  Apie\ApieBundle\Doctrine\MergedRegistry:
+    public: true
+    decorates: doctrine
+    arguments:
+      - '@.inner'
+      - '@Apie\DoctrineEntityDatalayer\OrmBuilder'
