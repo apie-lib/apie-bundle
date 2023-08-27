@@ -22,6 +22,7 @@ trait ItCreatesASymfonyApplication
                 'datalayers' => [
                     'default_datalayer' => $defaultDatalayer,
                 ],
+                'enable_doctrine_bundle_connection' => false,
                 'doctrine' => [
                     'run_migrations' => true,
                     'connection_params' => [
