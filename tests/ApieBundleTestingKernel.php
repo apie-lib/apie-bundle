@@ -28,12 +28,7 @@ class ApieBundleTestingKernel extends Kernel
 
     public function getCacheDir(): string
     {
-        return sys_get_temp_dir() . '/cache/' . spl_object_hash($this);
-    }
-
-    public function __destruct()
-    {
-        @system('rm -rf ' . escapeshellarg($this->getCacheDir()));
+        return sys_get_temp_dir() . '/cache/' . md5(json_encode([$this->apieConfig, $this->includeTwigBundle, $this->includeSecurityBundle]));
     }
     
     public function registerBundles(): iterable

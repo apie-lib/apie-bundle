@@ -34,7 +34,7 @@ class CmsCreateResourceCommitTest extends TestCase
         $response = $testItem->handle($request);
         $this->assertEquals(419, $response->getStatusCode());
         $allUsers = $testItem->getContainer()->get('apie')->all(User::class, new BoundedContextId('default'));
-        $this->assertEquals(0, $allUsers->totalCount(), 'no user was created and can be retrieved.');
+        $this->assertEquals(0, $allUsers->getTotalCount(), 'no user was created and can be retrieved.');
     }
 
     /**
@@ -65,6 +65,6 @@ class CmsCreateResourceCommitTest extends TestCase
             $response->headers->get('Location')
         );
         $allUsers = $testItem->getContainer()->get('apie')->all(User::class, new BoundedContextId('default'));
-        $this->assertEquals(1, $allUsers->totalCount(), 'a user was created and can be retrieved.');
+        $this->assertEquals(1, $allUsers->getTotalCount(), 'a user was created and can be retrieved.');
     }
 }

@@ -14,9 +14,9 @@ class User implements EntityInterface
     private UserIdentifier $id;
     private EncryptedPassword $encryptedPassword;
 
-    public function __construct(StrongPassword $password, private DutchPhoneNumber|BritishPhoneNumber $phoneNumber)
+    public function __construct(StrongPassword $password, private DutchPhoneNumber|BritishPhoneNumber $phoneNumber, UserIdentifier $id = null)
     {
-        $this->id = UserIdentifier::createRandom();
+        $this->id = $id ?? UserIdentifier::createRandom();
         $this->encryptedPassword = EncryptedPassword::fromUnencryptedPassword($password);
     }
 

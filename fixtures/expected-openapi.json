@@ -1530,6 +1530,9 @@
                     "phoneNumber"
                 ],
                 "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/UserIdentifier-post"
+                    },
                     "password": {
                         "$ref": "#/components/schemas/StrongPassword-post"
                     },
