@@ -23,7 +23,7 @@ class SessionContextBuilder implements ContextBuilderInterface
             $context = $context->withContext(SessionInterface::class, $session);
             // TODO: move to its own context builder
             if ($context->getContext(RequestMethod::class) === RequestMethod::GET) {
-                if ($session->has('_filled_in')) {
+                if ($session->has('_filled_in') && $context->hasContext(ContextConstants::DISPLAY_FORM)) {
                     $context = $context->withContext(
                         ContextConstants::RAW_CONTENTS,
                         Utils::toArray($session->get('_filled_in', []))
