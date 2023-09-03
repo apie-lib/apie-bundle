@@ -268,7 +268,171 @@
                             }
                         }
                     }
-                }
+                },
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "schema": {
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[stringValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[intValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "query[booleanValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "query[floatValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "query[nullableStringValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[nullableIntValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "query[nullableBooleanValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "query[nullableFloatValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "query[stringList]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/StringList-get"
+                        }
+                    },
+                    {
+                        "name": "query[nullableStringList]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/StringList-get"
+                        }
+                    },
+                    {
+                        "name": "query[stringListHashmap]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/StringListHashmap-get"
+                        }
+                    },
+                    {
+                        "name": "query[nullableStringListHashmap]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/StringListHashmap-get"
+                        }
+                    },
+                    {
+                        "name": "query[animalList]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/AnimalList-get"
+                        }
+                    },
+                    {
+                        "name": "query[nullableAnimalList]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/AnimalList-get"
+                        }
+                    },
+                    {
+                        "name": "query[compositeObject]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/CompositeObjectExample-get"
+                        }
+                    },
+                    {
+                        "name": "query[nullableCompositeObject]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/CompositeObjectExample-get"
+                        }
+                    },
+                    {
+                        "name": "query[passwordList]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/StrongPasswordList-get"
+                        }
+                    },
+                    {
+                        "name": "query[nullablePasswordList]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/StrongPasswordList-get"
+                        }
+                    },
+                    {
+                        "name": "query[userIdentifier]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserIdentifier-get"
+                        }
+                    },
+                    {
+                        "name": "query[phonenumber]",
+                        "in": "query",
+                        "schema": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/schemas/DutchPhoneNumber-get"
+                                },
+                                {
+                                    "$ref": "#/components/schemas/BelgianPhoneNumber-get"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "name": "query[id]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/ManyColumnsIdentifier-get"
+                        }
+                    }
+                ]
             }
         },
         "/User": {
@@ -402,7 +566,24 @@
                             }
                         }
                     }
-                }
+                },
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "schema": {
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[id]",
+                        "in": "query",
+                        "schema": {
+                            "$ref": "#/components/schemas/UserIdentifier-get"
+                        }
+                    }
+                ]
             }
         },
         "/ManyColumns/{id}": {
