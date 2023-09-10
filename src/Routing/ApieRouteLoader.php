@@ -50,7 +50,6 @@ final class ApieRouteLoader extends Loader
                         '_controller' => $routeDefinition->getController(),
                         '_is_apie' => true,
                     ];
-
                 $route = (new Route($path, $defaults, $requirements))->setMethods([$method->value]);
                 $routes->add(
                     'apie.' . $boundedContextId . '.' . $routeDefinition->getOperationId(),
