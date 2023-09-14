@@ -32,11 +32,11 @@ services:
       - '@Apie\Core\BoundedContext\BoundedContextHashmap'
     tags: ['apie.context']
 
+  Apie\Common\ErrorHandler\ApiErrorRenderer:
+
   Apie\ApieBundle\EventListeners\RenderErrorListener:
     arguments:
-      - '@?Apie\HtmlBuilders\Factories\ComponentFactory'
-      - '@?Apie\HtmlBuilders\Interfaces\ComponentRendererInterface'
-      - '@?Twig\Environment'
+      - '@?Apie\HtmlBuilders\ErrorHandler\CmsErrorRenderer'
+      - '@Apie\Common\ErrorHandler\ApiErrorRenderer'
       - '%apie.cms.base_url%'
-      - '%apie.cms.error_template%'
     tags: ['kernel.event_subscriber']
