@@ -32,7 +32,12 @@ services:
       - '@Apie\Core\BoundedContext\BoundedContextHashmap'
     tags: ['apie.context']
 
-  Apie\Common\ErrorHandler\ApiErrorRenderer:
+  Apie\Common\Interfaces\DashboardContentFactoryInterface:
+    alias: Apie\ApieBundle\Wrappers\DashboardContentFactory
+
+  Apie\ApieBundle\Wrappers\DashboardContentFactory:
+    arguments:
+      - '@?twig'
 
   Apie\ApieBundle\EventListeners\RenderErrorListener:
     arguments:
