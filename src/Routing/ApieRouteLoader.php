@@ -43,7 +43,6 @@ final class ApieRouteLoader extends Loader
 
                 $requirements = $prefix->getRouteRequirements();
                 $path = $prefix . $boundedContextId . '/' . ltrim($routeDefinition->getUrl(), '/');
-
                 $method = $routeDefinition->getMethod();
                 $defaults = $routeDefinition->getRouteAttributes()
                     + [
