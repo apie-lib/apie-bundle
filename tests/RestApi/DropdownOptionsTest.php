@@ -36,7 +36,7 @@ class DropdownOptionsTest extends TestCase
 
     public function prefixProvider(): Generator
     {
-        yield ['cms'];
-        yield ['api'];
+        yield 'cms prefix' => ['cms'];
+        yield 'api prefix' => ['api'];
     }
 }
