@@ -2,7 +2,7 @@
 namespace Apie\ApieBundle;
 
 use Apie\ApieBundle\DependencyInjection\Compiler\AutoTagActionsCompilerPass;
-use Apie\ApieBundle\Wrappers\ConsoleCommandFactory;
+use Apie\Common\Wrappers\ConsoleCommandFactory;
 use Symfony\Component\Console\Application;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
