@@ -1,7 +1,13 @@
 <?php
 namespace Apie\ApieBundle\DependencyInjection;
 
+use Apie\ApieBundle\Interfaces\ApieContextService;
+use Apie\CmsApiDropdownOption\DropdownOptionProvider\DropdownOptionProviderInterface;
 use Apie\Common\DependencyInjection\ApieConfigFileLocator;
+use Apie\Common\Interfaces\RouteDefinitionProviderInterface;
+use Apie\Core\ContextBuilders\ContextBuilderInterface;
+use Apie\Core\Datalayers\ApieDatalayer;
+use Apie\HtmlBuilders\Interfaces\FormComponentProviderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
@@ -96,6 +102,23 @@ final class ApieExtension extends Extension
                     }
                 }
             }
+        }
+
+        $container->registerForAutoconfiguration(ContextBuilderInterface::class)
+            ->addTag('apie.core.context_builder');
+        $container->registerForAutoconfiguration(ApieContextService::class)
+            ->addTag('apie.context');
+        $container->registerForAutoconfiguration(RouteDefinitionProviderInterface::class)
+            ->addTag('apie.common.route_definition');
+        $container->registerForAutoconfiguration(ApieDatalayer::class)
+            ->addTag('apie.datalayer');
+        if ($config['enable_cms']) {
+            $container->registerForAutoconfiguration(FormComponentProviderInterface::class)
+                ->addTag(FormComponentProviderInterface::class);
+        }
+        if ($config['enable_cms_dropdown']) {
+            $container->registerForAutoconfiguration(DropdownOptionProviderInterface::class)
+                ->addTag(DropdownOptionProviderInterface::class);
         }
     }
 }
