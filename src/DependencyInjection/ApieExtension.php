@@ -7,6 +7,7 @@ use Apie\Common\DependencyInjection\ApieConfigFileLocator;
 use Apie\Common\Interfaces\RouteDefinitionProviderInterface;
 use Apie\Core\ContextBuilders\ContextBuilderInterface;
 use Apie\Core\Datalayers\ApieDatalayer;
+use Apie\Faker\Interfaces\ApieClassFaker;
 use Apie\HtmlBuilders\Interfaces\FormComponentProviderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -112,6 +113,8 @@ final class ApieExtension extends Extension
             ->addTag('apie.common.route_definition');
         $container->registerForAutoconfiguration(ApieDatalayer::class)
             ->addTag('apie.datalayer');
+        $container->registerForAutoconfiguration(ApieClassFaker::class)
+            ->addTag('apie.faker');
         if ($config['enable_cms']) {
             $container->registerForAutoconfiguration(FormComponentProviderInterface::class)
                 ->addTag(FormComponentProviderInterface::class);
