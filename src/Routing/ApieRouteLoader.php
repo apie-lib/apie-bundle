@@ -1,12 +1,21 @@
 <?php
 namespace Apie\ApieBundle\Routing;
 
+use Apie\Cms\RouteDefinitions\CmsRouteDefinitionProvider;
 use Apie\Common\Interfaces\HasRouteDefinition;
 use Apie\Common\Interfaces\RouteDefinitionProviderInterface;
+use Apie\Common\Lists\UrlPrefixList;
+use Apie\Common\RouteDefinitions\ActionHashmap;
 use Apie\Common\RouteDefinitions\PossibleRoutePrefixProvider;
+use Apie\Core\ApieLib;
 use Apie\Core\BoundedContext\BoundedContextHashmap;
 use Apie\Core\Context\ApieContext;
+use Apie\Core\Enums\RequestMethod;
+use Apie\Core\ValueObjects\UrlRouteDefinition;
+use Apie\RestApi\RouteDefinitions\RestApiRouteDefinitionProvider;
+use ReflectionClass;
 use Symfony\Component\Config\Loader\Loader;
+use Symfony\Component\Config\Resource\ReflectionClassResource;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
@@ -35,9 +44,35 @@ final class ApieRouteLoader extends Loader
         }
 
         $routes = new RouteCollection();
+        $classesForCaching = [
+            __CLASS__,
+            $this->routeProvider,
+            $this->boundedContextHashmap,
+            $this->routePrefixProvider,
+            RestApiRouteDefinitionProvider::class,
+            CmsRouteDefinitionProvider::class,
+            RouteDefinitionProviderInterface::class,
+            HasRouteDefinition::class,
+            UrlRouteDefinition::class,
+            RequestMethod::class,
+            UrlPrefixList::class,
+            ActionHashmap::class,
+            ApieLib::class,
+        ];
+        foreach ($classesForCaching as $classForCaching) {
+            if (is_object($classForCaching) || class_exists($classForCaching)) {
+                $routes->addResource(new ReflectionClassResource(new ReflectionClass($classForCaching)));
+            }
+        }
+        foreach ($this->boundedContextHashmap as $boundedContext) {
+            foreach ($boundedContext->resources as $resource) {
+                $routes->addResource(new ReflectionClassResource($resource));
+            }
+        }
         $apieContext = new ApieContext([]);
         foreach ($this->boundedContextHashmap as $boundedContextId => $boundedContext) {
             foreach ($this->routeProvider->getActionsForBoundedContext($boundedContext, $apieContext) as $routeDefinition) {
+                $routes->addResource(new ReflectionClassResource(new ReflectionClass($routeDefinition)));
                 /** @var HasRouteDefinition $routeDefinition */
                 $prefix = $this->routePrefixProvider->getPossiblePrefixes($routeDefinition);
 
