@@ -15,6 +15,7 @@ use Apie\Core\ValueObjects\UrlRouteDefinition;
 use Apie\RestApi\RouteDefinitions\RestApiRouteDefinitionProvider;
 use ReflectionClass;
 use Symfony\Component\Config\Loader\Loader;
+use Symfony\Component\Config\Resource\DirectoryResource;
 use Symfony\Component\Config\Resource\ReflectionClassResource;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
@@ -64,9 +65,15 @@ final class ApieRouteLoader extends Loader
                 $routes->addResource(new ReflectionClassResource(new ReflectionClass($classForCaching)));
             }
         }
+        $pathsHandled = [];
         foreach ($this->boundedContextHashmap as $boundedContext) {
             foreach ($boundedContext->resources as $resource) {
                 $routes->addResource(new ReflectionClassResource($resource));
+                $path = dirname($resource->getFileName());
+                if (!isset($pathsHandled[$path])) {
+                    $pathsHandled[$path] = true;
+                    $routes->addResource(new DirectoryResource($path));
+                }
             }
         }
         $apieContext = new ApieContext([]);
