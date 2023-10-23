@@ -8,11 +8,6 @@ services:
       - '@Apie\Common\RouteDefinitions\PossibleRoutePrefixProvider'
     tags: [routing.loader]
 
-  Apie\ApieBundle\ContextBuilders\ServiceContextBuilder:
-    arguments:
-      - !tagged_locator { tag: 'apie.context' }
-    tags: [apie.core.context_builder]
-
   Apie\ApieBundle\ContextBuilders\SessionContextBuilder:
     arguments:
       - '@request_stack'
