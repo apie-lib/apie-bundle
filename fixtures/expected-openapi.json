@@ -1093,15 +1093,9 @@
                 "discriminator": {
                     "propertyName": "animalType",
                     "mapping": {
-                        "cow": {
-                            "$ref": "#/components/schemas/Cow-post"
-                        },
-                        "elephant": {
-                            "$ref": "#/components/schemas/Elephant-post"
-                        },
-                        "fish": {
-                            "$ref": "#/components/schemas/Fish-post"
-                        }
+                        "cow": "#/components/schemas/Cow-post",
+                        "elephant": "#/components/schemas/Elephant-post",
+                        "fish": "#/components/schemas/Fish-post"
                     }
                 },
                 "nullable": true
@@ -1122,15 +1116,9 @@
                 "discriminator": {
                     "propertyName": "animalType",
                     "mapping": {
-                        "cow": {
-                            "$ref": "#/components/schemas/Cow-post"
-                        },
-                        "elephant": {
-                            "$ref": "#/components/schemas/Elephant-post"
-                        },
-                        "fish": {
-                            "$ref": "#/components/schemas/Fish-post"
-                        }
+                        "cow": "#/components/schemas/Cow-post",
+                        "elephant": "#/components/schemas/Elephant-post",
+                        "fish": "#/components/schemas/Fish-post"
                     }
                 }
             },
