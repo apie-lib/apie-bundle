@@ -310,28 +310,32 @@
                         "name": "query[nullableStringValue]",
                         "in": "query",
                         "schema": {
-                            "type": "string"
+                            "type": "string",
+                            "nullable": true
                         }
                     },
                     {
                         "name": "query[nullableIntValue]",
                         "in": "query",
                         "schema": {
-                            "type": "integer"
+                            "type": "integer",
+                            "nullable": true
                         }
                     },
                     {
                         "name": "query[nullableBooleanValue]",
                         "in": "query",
                         "schema": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "nullable": true
                         }
                     },
                     {
                         "name": "query[nullableFloatValue]",
                         "in": "query",
                         "schema": {
-                            "type": "number"
+                            "type": "number",
+                            "nullable": true
                         }
                     },
                     {
@@ -345,7 +349,7 @@
                         "name": "query[nullableStringList]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/StringList-get"
+                            "$ref": "#/components/schemas/StringList-nullable-get"
                         }
                     },
                     {
@@ -359,7 +363,7 @@
                         "name": "query[nullableStringListHashmap]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/StringListHashmap-get"
+                            "$ref": "#/components/schemas/StringListHashmap-nullable-get"
                         }
                     },
                     {
@@ -373,7 +377,7 @@
                         "name": "query[nullableAnimalList]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/AnimalList-get"
+                            "$ref": "#/components/schemas/AnimalList-nullable-get"
                         }
                     },
                     {
@@ -387,7 +391,7 @@
                         "name": "query[nullableCompositeObject]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/CompositeObjectExample-get"
+                            "$ref": "#/components/schemas/CompositeObjectExample-nullable-get"
                         }
                     },
                     {
@@ -401,14 +405,14 @@
                         "name": "query[nullablePasswordList]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/StrongPasswordList-get"
+                            "$ref": "#/components/schemas/StrongPasswordList-nullable-get"
                         }
                     },
                     {
                         "name": "query[userIdentifier]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/UserIdentifier-get"
+                            "$ref": "#/components/schemas/UserIdentifier-nullable-get"
                         }
                     },
                     {
@@ -1054,7 +1058,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/User-get"
+                                    "$ref": "#/components/schemas/User-nullable-get"
                                 }
                             }
                         }
@@ -1073,6 +1077,35 @@
     ],
     "components": {
         "schemas": {
+            "Animal-nullable-post": {
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/Cow-post"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Elephant-post"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Fish-post"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "animalType",
+                    "mapping": {
+                        "cow": {
+                            "$ref": "#/components/schemas/Cow-post"
+                        },
+                        "elephant": {
+                            "$ref": "#/components/schemas/Elephant-post"
+                        },
+                        "fish": {
+                            "$ref": "#/components/schemas/Fish-post"
+                        }
+                    }
+                },
+                "nullable": true
+            },
             "Animal-post": {
                 "type": "object",
                 "oneOf": [
@@ -1101,16 +1134,31 @@
                     }
                 }
             },
-            "AnimalIdentifier-post": {
+            "AnimalIdentifier-nullable-post": {
                 "type": "string",
                 "format": "animalidentifier",
-                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$"
+                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$",
+                "nullable": true
             },
             "AnimalList-get": {
                 "type": "array",
                 "items": {
                     "$ref": "#/components/schemas/Animal-post"
                 }
+            },
+            "AnimalList-nullable-get": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Animal-nullable-post"
+                },
+                "nullable": true
+            },
+            "AnimalList-nullable-post": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Animal-nullable-post"
+                },
+                "nullable": true
             },
             "AnimalList-post": {
                 "type": "array",
@@ -1204,6 +1252,52 @@
                     }
                 }
             },
+            "CompositeObjectExample-nullable-get": {
+                "type": "object",
+                "required": [
+                    "value1",
+                    "value2",
+                    "value3"
+                ],
+                "nullable": true,
+                "properties": {
+                    "value1": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "value2": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "value3": {
+                        "type": "integer",
+                        "nullable": false
+                    }
+                }
+            },
+            "CompositeObjectExample-nullable-post": {
+                "type": "object",
+                "required": [
+                    "value1",
+                    "value2",
+                    "value3"
+                ],
+                "nullable": true,
+                "properties": {
+                    "value1": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "value2": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "value3": {
+                        "type": "integer",
+                        "nullable": false
+                    }
+                }
+            },
             "CompositeObjectExample-post": {
                 "type": "object",
                 "required": [
@@ -1233,11 +1327,14 @@
                 ],
                 "properties": {
                     "animalType": {
+                        "enum": [
+                            "cow"
+                        ],
                         "type": "string",
                         "nullable": false
                     },
                     "id": {
-                        "$ref": "#/components/schemas/AnimalIdentifier-post"
+                        "$ref": "#/components/schemas/AnimalIdentifier-nullable-post"
                     },
                     "hasMilk": {
                         "type": "boolean",
@@ -1288,11 +1385,14 @@
                 ],
                 "properties": {
                     "animalType": {
+                        "enum": [
+                            "elephant"
+                        ],
                         "type": "string",
                         "nullable": false
                     },
                     "id": {
-                        "$ref": "#/components/schemas/AnimalIdentifier-post"
+                        "$ref": "#/components/schemas/AnimalIdentifier-nullable-post"
                     },
                     "starving": {
                         "type": "boolean",
@@ -1307,11 +1407,14 @@
                 ],
                 "properties": {
                     "animalType": {
+                        "enum": [
+                            "fish"
+                        ],
                         "type": "string",
                         "nullable": false
                     },
                     "id": {
-                        "$ref": "#/components/schemas/AnimalIdentifier-post"
+                        "$ref": "#/components/schemas/AnimalIdentifier-nullable-post"
                     },
                     "poisonous": {
                         "type": "boolean",
@@ -1390,34 +1493,34 @@
                         "$ref": "#/components/schemas/StringList-get"
                     },
                     "nullableStringList": {
-                        "$ref": "#/components/schemas/StringList-get"
+                        "$ref": "#/components/schemas/StringList-nullable-get"
                     },
                     "stringListHashmap": {
                         "$ref": "#/components/schemas/StringListHashmap-get"
                     },
                     "nullableStringListHashmap": {
-                        "$ref": "#/components/schemas/StringListHashmap-get"
+                        "$ref": "#/components/schemas/StringListHashmap-nullable-get"
                     },
                     "animalList": {
                         "$ref": "#/components/schemas/AnimalList-get"
                     },
                     "nullableAnimalList": {
-                        "$ref": "#/components/schemas/AnimalList-get"
+                        "$ref": "#/components/schemas/AnimalList-nullable-get"
                     },
                     "compositeObject": {
                         "$ref": "#/components/schemas/CompositeObjectExample-get"
                     },
                     "nullableCompositeObject": {
-                        "$ref": "#/components/schemas/CompositeObjectExample-get"
+                        "$ref": "#/components/schemas/CompositeObjectExample-nullable-get"
                     },
                     "passwordList": {
                         "$ref": "#/components/schemas/StrongPasswordList-get"
                     },
                     "nullablePasswordList": {
-                        "$ref": "#/components/schemas/StrongPasswordList-get"
+                        "$ref": "#/components/schemas/StrongPasswordList-nullable-get"
                     },
                     "userIdentifier": {
-                        "$ref": "#/components/schemas/UserIdentifier-get"
+                        "$ref": "#/components/schemas/UserIdentifier-nullable-get"
                     },
                     "phonenumber": {
                         "oneOf": [
@@ -1471,34 +1574,34 @@
                         "$ref": "#/components/schemas/StringList-post"
                     },
                     "nullableStringList": {
-                        "$ref": "#/components/schemas/StringList-post"
+                        "$ref": "#/components/schemas/StringList-nullable-post"
                     },
                     "stringListHashmap": {
                         "$ref": "#/components/schemas/StringListHashmap-post"
                     },
                     "nullableStringListHashmap": {
-                        "$ref": "#/components/schemas/StringListHashmap-post"
+                        "$ref": "#/components/schemas/StringListHashmap-nullable-post"
                     },
                     "animalList": {
                         "$ref": "#/components/schemas/AnimalList-post"
                     },
                     "nullableAnimalList": {
-                        "$ref": "#/components/schemas/AnimalList-post"
+                        "$ref": "#/components/schemas/AnimalList-nullable-post"
                     },
                     "compositeObject": {
                         "$ref": "#/components/schemas/CompositeObjectExample-post"
                     },
                     "nullableCompositeObject": {
-                        "$ref": "#/components/schemas/CompositeObjectExample-post"
+                        "$ref": "#/components/schemas/CompositeObjectExample-nullable-post"
                     },
                     "passwordList": {
                         "$ref": "#/components/schemas/StrongPasswordList-post"
                     },
                     "nullablePasswordList": {
-                        "$ref": "#/components/schemas/StrongPasswordList-post"
+                        "$ref": "#/components/schemas/StrongPasswordList-nullable-post"
                     },
                     "userIdentifier": {
-                        "$ref": "#/components/schemas/UserIdentifier-post"
+                        "$ref": "#/components/schemas/UserIdentifier-nullable-post"
                     },
                     "phonenumber": {
                         "oneOf": [
@@ -1530,7 +1633,7 @@
                 ],
                 "properties": {
                     "id": {
-                        "$ref": "#/components/schemas/ManyColumnsIdentifier-post"
+                        "$ref": "#/components/schemas/ManyColumnsIdentifier-nullable-post"
                     },
                     "stringValue": {
                         "type": "string",
@@ -1568,34 +1671,34 @@
                         "$ref": "#/components/schemas/StringList-post"
                     },
                     "nullableStringList": {
-                        "$ref": "#/components/schemas/StringList-post"
+                        "$ref": "#/components/schemas/StringList-nullable-post"
                     },
                     "stringListHashmap": {
                         "$ref": "#/components/schemas/StringListHashmap-post"
                     },
                     "nullableStringListHashmap": {
-                        "$ref": "#/components/schemas/StringListHashmap-post"
+                        "$ref": "#/components/schemas/StringListHashmap-nullable-post"
                     },
                     "animalList": {
                         "$ref": "#/components/schemas/AnimalList-post"
                     },
                     "nullableAnimalList": {
-                        "$ref": "#/components/schemas/AnimalList-post"
+                        "$ref": "#/components/schemas/AnimalList-nullable-post"
                     },
                     "compositeObject": {
                         "$ref": "#/components/schemas/CompositeObjectExample-post"
                     },
                     "nullableCompositeObject": {
-                        "$ref": "#/components/schemas/CompositeObjectExample-post"
+                        "$ref": "#/components/schemas/CompositeObjectExample-nullable-post"
                     },
                     "passwordList": {
                         "$ref": "#/components/schemas/StrongPasswordList-post"
                     },
                     "nullablePasswordList": {
-                        "$ref": "#/components/schemas/StrongPasswordList-post"
+                        "$ref": "#/components/schemas/StrongPasswordList-nullable-post"
                     },
                     "userIdentifier": {
-                        "$ref": "#/components/schemas/UserIdentifier-post"
+                        "$ref": "#/components/schemas/UserIdentifier-nullable-post"
                     },
                     "phonenumber": {
                         "oneOf": [
@@ -1611,10 +1714,16 @@
                 }
             },
             "ManyColumnsIdentifier-get": {
-                "type": "integer"
+                "type": "integer",
+                "nullable": true
+            },
+            "ManyColumnsIdentifier-nullable-post": {
+                "type": "integer",
+                "nullable": true
             },
             "ManyColumnsIdentifier-post": {
-                "type": "integer"
+                "type": "integer",
+                "nullable": true
             },
             "NoValueEnum-post": {
                 "enum": [
@@ -1642,6 +1751,22 @@
                     "type": "string"
                 }
             },
+            "StringList-nullable-get": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "nullable": true
+                },
+                "nullable": true
+            },
+            "StringList-nullable-post": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "nullable": true
+                },
+                "nullable": true
+            },
             "StringList-post": {
                 "type": "array",
                 "items": {
@@ -1654,11 +1779,37 @@
                     "$ref": "#/components/schemas/StringList-post"
                 }
             },
+            "StringListHashmap-nullable-get": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/components/schemas/StringList-post"
+                    }
+                },
+                "nullable": true
+            },
+            "StringListHashmap-nullable-post": {
+                "type": "object",
+                "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/components/schemas/StringList-post"
+                    }
+                },
+                "nullable": true
+            },
             "StringListHashmap-post": {
                 "type": "object",
                 "additionalProperties": {
                     "$ref": "#/components/schemas/StringList-post"
                 }
+            },
+            "StrongPassword-nullable-post": {
+                "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
+                "type": "string",
+                "format": "password",
+                "nullable": true
             },
             "StrongPassword-post": {
                 "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
@@ -1670,6 +1821,20 @@
                 "items": {
                     "$ref": "#/components/schemas/StrongPassword-post"
                 }
+            },
+            "StrongPasswordList-nullable-get": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/StrongPassword-nullable-post"
+                },
+                "nullable": true
+            },
+            "StrongPasswordList-nullable-post": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/StrongPassword-nullable-post"
+                },
+                "nullable": true
             },
             "StrongPasswordList-post": {
                 "type": "array",
@@ -1704,6 +1869,18 @@
                     }
                 }
             },
+            "User-nullable-get": {
+                "type": "object",
+                "required": [
+                    "id"
+                ],
+                "nullable": true,
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/UserIdentifier-get"
+                    }
+                }
+            },
             "User-post": {
                 "type": "object",
                 "required": [
@@ -1712,7 +1889,7 @@
                 ],
                 "properties": {
                     "id": {
-                        "$ref": "#/components/schemas/UserIdentifier-post"
+                        "$ref": "#/components/schemas/UserIdentifier-nullable-post"
                     },
                     "password": {
                         "$ref": "#/components/schemas/StrongPassword-post"
@@ -1734,6 +1911,18 @@
                 "type": "string",
                 "format": "useridentifier",
                 "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$"
+            },
+            "UserIdentifier-nullable-get": {
+                "type": "string",
+                "format": "useridentifier",
+                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$",
+                "nullable": true
+            },
+            "UserIdentifier-nullable-post": {
+                "type": "string",
+                "format": "useridentifier",
+                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$",
+                "nullable": true
             },
             "UserIdentifier-post": {
                 "type": "string",
