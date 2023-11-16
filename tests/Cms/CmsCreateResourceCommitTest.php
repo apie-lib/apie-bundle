@@ -60,8 +60,8 @@ class CmsCreateResourceCommitTest extends TestCase
         );
         $response = $testItem->handle($request);
         $this->assertEquals(301, $response->getStatusCode());
-        $this->assertEquals(
-            '/cms/default/resource/User',
+        $this->assertStringStartsWith(
+            '/cms/default/resource/User/',
             $response->headers->get('Location')
         );
         $allUsers = $testItem->getContainer()->get('apie')->all(User::class, new BoundedContextId('default'));
