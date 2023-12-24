@@ -1,6 +1,9 @@
 <?php
 namespace Apie\Tests\ApieBundle;
 
+use Apie\Core\ApieLib;
+use Apie\CountryAndPhoneNumber\BritishPhoneNumber;
+use Apie\CountryAndPhoneNumber\DutchPhoneNumber;
 use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
 use Apie\Tests\ApieBundle\Concerns\ItValidatesOpenapi;
 use Generator;
@@ -14,9 +17,12 @@ class CreateResourceTest extends TestCase
 
     /**
      * @test
+     * @runInSeparateProcess
      */
     public function it_can_create_a_resource(): void
     {
+        ApieLib::registerValueObject(DutchPhoneNumber::class);
+        ApieLib::registerValueObject(BritishPhoneNumber::class);
         $testItem = $this->given_a_symfony_application_with_apie();
         $request = Request::create(
             '/api/default/User',
@@ -37,6 +43,7 @@ class CreateResourceTest extends TestCase
 
     /**
      * @test
+     * @runInSeparateProcess
      * @dataProvider invalidDataProvider
      */
     public function it_can_throw_a_validation_error(array $input): void

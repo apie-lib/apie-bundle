@@ -18,7 +18,7 @@ class DropdownOptionsTest extends TestCase
     {
         $testItem = $this->given_a_symfony_application_with_apie();
         $request = Request::create(
-            '/api/default/ManyColumns/dropdown-options/UserIdentifier',
+            '/' . $prefix . '/default/ManyColumns/dropdown-options/UserIdentifier',
             'POST',
             [],
             [],

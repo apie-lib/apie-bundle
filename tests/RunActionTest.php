@@ -13,6 +13,7 @@ class RunActionTest extends TestCase
 
     /**
      * @test
+     * @runInSeparateProcess
      */
     public function it_can_execute_a_method_call_without_arguments()
     {

@@ -289,21 +289,21 @@
                         "name": "query[intValue]",
                         "in": "query",
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         }
                     },
                     {
                         "name": "query[booleanValue]",
                         "in": "query",
                         "schema": {
-                            "type": "boolean"
+                            "type": "string"
                         }
                     },
                     {
                         "name": "query[floatValue]",
                         "in": "query",
                         "schema": {
-                            "type": "number"
+                            "type": "string"
                         }
                     },
                     {
@@ -318,7 +318,7 @@
                         "name": "query[nullableIntValue]",
                         "in": "query",
                         "schema": {
-                            "type": "integer",
+                            "type": "string",
                             "nullable": true
                         }
                     },
@@ -326,7 +326,7 @@
                         "name": "query[nullableBooleanValue]",
                         "in": "query",
                         "schema": {
-                            "type": "boolean",
+                            "type": "string",
                             "nullable": true
                         }
                     },
@@ -334,7 +334,7 @@
                         "name": "query[nullableFloatValue]",
                         "in": "query",
                         "schema": {
-                            "type": "number",
+                            "type": "string",
                             "nullable": true
                         }
                     },
@@ -342,98 +342,97 @@
                         "name": "query[stringList]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/StringList-get"
+                            "type": "string"
                         }
                     },
                     {
                         "name": "query[nullableStringList]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/StringList-nullable-get"
+                            "type": "string",
+                            "nullable": true
                         }
                     },
                     {
                         "name": "query[stringListHashmap]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/StringListHashmap-get"
+                            "type": "string"
                         }
                     },
                     {
                         "name": "query[nullableStringListHashmap]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/StringListHashmap-nullable-get"
+                            "type": "string",
+                            "nullable": true
                         }
                     },
                     {
                         "name": "query[animalList]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/AnimalList-get"
+                            "type": "string"
                         }
                     },
                     {
                         "name": "query[nullableAnimalList]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/AnimalList-nullable-get"
+                            "type": "string",
+                            "nullable": true
                         }
                     },
                     {
                         "name": "query[compositeObject]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/CompositeObjectExample-get"
+                            "type": "string"
                         }
                     },
                     {
                         "name": "query[nullableCompositeObject]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/CompositeObjectExample-nullable-get"
+                            "type": "string",
+                            "nullable": true
                         }
                     },
                     {
                         "name": "query[passwordList]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/StrongPasswordList-get"
+                            "type": "string"
                         }
                     },
                     {
                         "name": "query[nullablePasswordList]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/StrongPasswordList-nullable-get"
+                            "type": "string",
+                            "nullable": true
                         }
                     },
                     {
                         "name": "query[userIdentifier]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/UserIdentifier-nullable-get"
+                            "type": "string",
+                            "nullable": true
                         }
                     },
                     {
                         "name": "query[phonenumber]",
                         "in": "query",
                         "schema": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/components/schemas/DutchPhoneNumber-get"
-                                },
-                                {
-                                    "$ref": "#/components/schemas/BelgianPhoneNumber-get"
-                                }
-                            ]
+                            "type": "string"
                         }
                     },
                     {
                         "name": "query[id]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/ManyColumnsIdentifier-get"
+                            "type": "string"
                         }
                     }
                 ]
@@ -584,7 +583,7 @@
                         "name": "query[id]",
                         "in": "query",
                         "schema": {
-                            "$ref": "#/components/schemas/UserIdentifier-get"
+                            "type": "string"
                         }
                     }
                 ]

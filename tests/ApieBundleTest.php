@@ -17,6 +17,7 @@ class ApieBundleTest extends TestCase
 
     /**
      * @test
+     * @runInSeparateProcess
      */
     public function bundle_can_be_loaded_out_of_the_box()
     {
@@ -48,6 +49,7 @@ class ApieBundleTest extends TestCase
 
     /**
      * @test
+     * @runInSeparateProcess
      */
     public function bundle_can_provide_a_faker()
     {

@@ -13,6 +13,7 @@ class GetResourceTest extends TestCase
 
     /**
      * @test
+     * @runInSeparateProcess
      */
     public function it_can_retrieve_resources(): void
     {

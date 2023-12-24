@@ -2,7 +2,9 @@
 namespace Apie\Tests\ApieBundle;
 
 use Apie\Common\Interfaces\ApieFacadeInterface;
+use Apie\Core\ApieLib;
 use Apie\Core\BoundedContext\BoundedContextId;
+use Apie\CountryAndPhoneNumber\BritishPhoneNumber;
 use Apie\CountryAndPhoneNumber\DutchPhoneNumber;
 use Apie\DoctrineEntityDatalayer\DoctrineEntityDatalayer;
 use Apie\DoctrineEntityDatalayer\OrmBuilder;
@@ -19,8 +21,15 @@ class DoctrineDatalayerTest extends TestCase
     use ItCreatesASymfonyApplication;
     use ItValidatesOpenapi;
 
+    protected function setUp(): void
+    {
+        ApieLib::registerValueObject(DutchPhoneNumber::class);
+        ApieLib::registerValueObject(BritishPhoneNumber::class);
+    }
+
     /**
      * @test
+     * @runInSeparateProcess
      */
     public function it_can_store_in_the_database_with_doctrine_datalayer()
     {
@@ -50,12 +59,13 @@ class DoctrineDatalayerTest extends TestCase
         $ormBuilder = $testItem->getContainer()->get(OrmBuilder::class);
         $this->assertInstanceOf(OrmBuilder::class, $ormBuilder);
         $entityManager = $ormBuilder->createEntityManager();
-        $repository = $entityManager->getRepository('Generated\\apie_entity_default_user');
+        $repository = $entityManager->getRepository('Generated\\ApieEntities\\apie_resource__default_user');
         $this->assertCount(1, $repository->findBy([]));
     }
 
     /**
      * @test
+     * @runInSeparateProcess
      */
     public function it_can_retrieve_data_with_pagination_from_database()
     {
