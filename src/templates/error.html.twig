@@ -1,4 +1,4 @@
-<h1>An error occurred. Please try again later.<h1>
+<h1>An error occurred. Please try again later.</h1>
 {% if app.debug %}
-  {{ renderStacktrace(error.wrappedError) }}
+  <div>{{ renderStacktrace(error.wrappedError) }}</div>
 {% endif %}
