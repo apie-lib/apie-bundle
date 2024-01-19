@@ -8,6 +8,7 @@ use Apie\Common\Lists\UrlPrefixList;
 use Apie\Common\RouteDefinitions\ActionHashmap;
 use Apie\Common\RouteDefinitions\PossibleRoutePrefixProvider;
 use Apie\Core\ApieLib;
+use Apie\Core\Attributes\Route as AttributesRoute;
 use Apie\Core\BoundedContext\BoundedContextHashmap;
 use Apie\Core\Context\ApieContext;
 use Apie\Core\Enums\RequestMethod;
@@ -59,6 +60,7 @@ final class ApieRouteLoader extends Loader
             UrlPrefixList::class,
             ActionHashmap::class,
             ApieLib::class,
+            AttributesRoute::class,
         ];
         foreach ($classesForCaching as $classForCaching) {
             if (is_object($classForCaching) || class_exists($classForCaching)) {
