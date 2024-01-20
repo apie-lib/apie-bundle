@@ -54,8 +54,8 @@ class CmsGlobalMethodCommitTest extends TestCase
         );
         $response = $testItem->handle($request);
         $this->assertEquals(301, $response->getStatusCode());
-        $this->assertEquals(
-            'http://localhost/cms/default/action/ApplicationInfo/powerOf2',
+        $this->assertStringStartsWith(
+            '/cms/default/last-action-result/',
             $response->headers->get('Location')
         );
     }
