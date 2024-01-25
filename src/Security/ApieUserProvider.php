@@ -6,6 +6,7 @@ use Apie\Common\ApieFacade;
 use Apie\Common\Interfaces\CheckLoginStatusInterface;
 use Apie\Common\Wrappers\ApieUserDecoratorIdentifier;
 use Apie\Core\Entities\EntityInterface;
+use Apie\Core\Exceptions\EntityNotFoundException;
 use Apie\Core\ValueObjects\Utils;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -32,7 +33,9 @@ class ApieUserProvider implements UserProviderInterface
         }
         $entity = $user->getEntity();
         if ($entity instanceof CheckLoginStatusInterface) {
-            if ($entity->isDisabled()) {
+            $user = $this->loadUserByIdentifier($user->getUserIdentifier());
+            $entity = $user->getEntity();
+            if (!($entity instanceof CheckLoginStatusInterface) || $entity->isDisabled()) {
                 throw new UnsupportedUserException('User ' . Utils::toString($entity->getId()) . ' is disabled, logging out');
             }
         }
@@ -51,7 +54,15 @@ class ApieUserProvider implements UserProviderInterface
     {
         $identifier = new ApieUserDecoratorIdentifier($identifier);
         $boundedContextId = $identifier->getBoundedContextId();
-        $entity = $this->apieFacade->find($identifier->getIdentifier(), $boundedContextId);
+        try {
+            $entity = $this->apieFacade->find($identifier->getIdentifier(), $boundedContextId);
+        } catch (EntityNotFoundException $notFound) {
+            throw new UnsupportedUserException(
+                'User ' . Utils::toString($identifier->getIdentifier()) . ' is removed, logging out',
+                0,
+                $notFound
+            );
+        }
         return new ApieUserDecorator($identifier, $entity);
     }
 }
