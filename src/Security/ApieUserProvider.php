@@ -25,9 +25,9 @@ class ApieUserProvider implements UserProviderInterface
     /**
      * @template T of EntityInterface
      * @param ApieUserDecorator<T> $user
-     * @return ApieUserDecorator<T>|null
+     * @return ApieUserDecorator<T>
      */
-    public function refreshUser(UserInterface $user): ?ApieUserDecorator
+    public function refreshUser(UserInterface $user): ApieUserDecorator
     {
         if (!$user instanceof ApieUserDecorator) {
             throw new UnsupportedUserException(get_debug_type($user) . ' is not supported');
@@ -36,8 +36,10 @@ class ApieUserProvider implements UserProviderInterface
         if ($entity instanceof CheckLoginStatusInterface) {
             $user = $this->loadUserByIdentifier($user->getUserIdentifier());
             $entity = $user->getEntity();
-            if (!($entity instanceof CheckLoginStatusInterface) || $entity->isDisabled()) {
-                return null;
+            if ($entity instanceof CheckLoginStatusInterface && $entity->isDisabled()) {
+                throw new UserNotFoundException(
+                    'User . ' . Utils::toString($entity->getId()) . ' is disabled' 
+                );
             }
         }
         return $user;
