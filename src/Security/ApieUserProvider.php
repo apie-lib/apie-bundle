@@ -25,9 +25,9 @@ class ApieUserProvider implements UserProviderInterface
     /**
      * @template T of EntityInterface
      * @param ApieUserDecorator<T> $user
-     * @return ApieUserDecorator<T>
+     * @return ApieUserDecorator<T>|null
      */
-    public function refreshUser(UserInterface $user): ApieUserDecorator
+    public function refreshUser(UserInterface $user): ?ApieUserDecorator
     {
         if (!$user instanceof ApieUserDecorator) {
             throw new UnsupportedUserException(get_debug_type($user) . ' is not supported');
