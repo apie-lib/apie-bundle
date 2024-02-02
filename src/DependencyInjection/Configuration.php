@@ -4,9 +4,10 @@ namespace Apie\ApieBundle\DependencyInjection;
 use Apie\Cms\RouteDefinitions\CmsRouteDefinitionProvider;
 use Apie\CmsApiDropdownOption\RouteDefinitions\DropdownOptionsForExistingObjectRouteDefinition;
 use Apie\Console\ConsoleCommandFactory;
-use Apie\DoctrineEntityConverter\EntityBuilder;
+use Apie\DoctrineEntityConverter\OrmBuilder;
 use Apie\DoctrineEntityDatalayer\DoctrineEntityDatalayer;
 use Apie\Faker\ApieObjectFaker;
+use Apie\Maker\Utils;
 use Apie\RestApi\OpenApi\OpenApiGenerator;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
@@ -73,10 +74,11 @@ final class Configuration implements ConfigurationInterface
             ->booleanNode('enable_core')->defaultValue(true)->end()
             ->booleanNode('enable_cms')->defaultValue(class_exists(CmsRouteDefinitionProvider::class))->end()
             ->booleanNode('enable_cms_dropdown')->defaultValue(class_exists(DropdownOptionsForExistingObjectRouteDefinition::class))->end()
-            ->booleanNode('enable_doctrine_entity_converter')->defaultValue(class_exists(EntityBuilder::class))->end()
+            ->booleanNode('enable_doctrine_entity_converter')->defaultValue(class_exists(OrmBuilder::class))->end()
             ->booleanNode('enable_doctrine_entity_datalayer')->defaultValue(class_exists(DoctrineEntityDatalayer::class))->end()
             ->booleanNode('enable_doctrine_bundle_connection')->defaultValue(class_exists(DoctrineEntityDatalayer::class) && class_exists(DoctrineBundle::class))->end()
             ->booleanNode('enable_faker')->defaultValue(class_exists(ApieObjectFaker::class))->end()
+            ->booleanNode('enable_maker')->defaultValue(class_exists(Utils::class))->end()
             ->booleanNode('enable_rest_api')->defaultValue(class_exists(OpenApiGenerator::class))->end()
             ->booleanNode('enable_console')->defaultValue(class_exists(ConsoleCommandFactory::class))->end()
             ->booleanNode('enable_security')->defaultValue(class_exists(SecurityBundle::class))->end()

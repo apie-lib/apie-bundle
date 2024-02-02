@@ -38,7 +38,7 @@ class ApieUserProvider implements UserProviderInterface
             $entity = $user->getEntity();
             if ($entity instanceof CheckLoginStatusInterface && $entity->isDisabled()) {
                 throw new UserNotFoundException(
-                    'User . ' . Utils::toString($entity->getId()) . ' is disabled' 
+                    'User . ' . Utils::toString($entity->getId()) . ' is disabled'
                 );
             }
         }
