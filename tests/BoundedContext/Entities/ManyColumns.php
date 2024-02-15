@@ -38,6 +38,8 @@ class ManyColumns implements EntityInterface
 
     public ?StringListHashmap $nullableStringListHashmap = null;
 
+    public CompositeObjectExample|AnimalList|int|null $conflictingTypes = null;
+
     public AnimalList $animalList;
 
     public ?AnimalList $nullableAnimalList = null;

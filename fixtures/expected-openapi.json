@@ -369,6 +369,14 @@
                         }
                     },
                     {
+                        "name": "query[conflictingTypes]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
                         "name": "query[animalList]",
                         "in": "query",
                         "schema": {
@@ -1488,6 +1496,24 @@
                     "nullableStringListHashmap": {
                         "$ref": "#/components/schemas/StringListHashmap-nullable-get"
                     },
+                    "conflictingTypes": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CompositeObjectExample-get"
+                            },
+                            {
+                                "$ref": "#/components/schemas/AnimalList-get"
+                            },
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "nullable": true,
+                                "default": null
+                            }
+                        ],
+                        "nullable": true
+                    },
                     "animalList": {
                         "$ref": "#/components/schemas/AnimalList-get"
                     },
@@ -1568,6 +1594,24 @@
                     },
                     "nullableStringListHashmap": {
                         "$ref": "#/components/schemas/StringListHashmap-nullable-post"
+                    },
+                    "conflictingTypes": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CompositeObjectExample-post"
+                            },
+                            {
+                                "$ref": "#/components/schemas/AnimalList-post"
+                            },
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "nullable": true,
+                                "default": null
+                            }
+                        ],
+                        "nullable": true
                     },
                     "animalList": {
                         "$ref": "#/components/schemas/AnimalList-post"
@@ -1665,6 +1709,24 @@
                     },
                     "nullableStringListHashmap": {
                         "$ref": "#/components/schemas/StringListHashmap-nullable-post"
+                    },
+                    "conflictingTypes": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CompositeObjectExample-post"
+                            },
+                            {
+                                "$ref": "#/components/schemas/AnimalList-post"
+                            },
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "nullable": true,
+                                "default": null
+                            }
+                        ],
+                        "nullable": true
                     },
                     "animalList": {
                         "$ref": "#/components/schemas/AnimalList-post"
