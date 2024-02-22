@@ -54,6 +54,8 @@ class ManyColumns implements EntityInterface
 
     public ?UserIdentifier $userIdentifier = null;
 
+    public mixed $mixedType = null;
+
     public function __construct(
         public DutchPhoneNumber|BelgianPhoneNumber $phonenumber,
         private ?ManyColumnsIdentifier $id = null

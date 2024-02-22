@@ -430,6 +430,14 @@
                         }
                     },
                     {
+                        "name": "query[mixedType]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
                         "name": "query[phonenumber]",
                         "in": "query",
                         "schema": {
@@ -1535,6 +1543,9 @@
                     "userIdentifier": {
                         "$ref": "#/components/schemas/UserIdentifier-nullable-get"
                     },
+                    "mixedType": {
+                        "$ref": "#/components/schemas/mixed"
+                    },
                     "phonenumber": {
                         "oneOf": [
                             {
@@ -1633,6 +1644,9 @@
                     },
                     "userIdentifier": {
                         "$ref": "#/components/schemas/UserIdentifier-nullable-post"
+                    },
+                    "mixedType": {
+                        "$ref": "#/components/schemas/mixed"
                     },
                     "phonenumber": {
                         "oneOf": [
@@ -1748,6 +1762,9 @@
                     },
                     "userIdentifier": {
                         "$ref": "#/components/schemas/UserIdentifier-nullable-post"
+                    },
+                    "mixedType": {
+                        "$ref": "#/components/schemas/mixed"
                     },
                     "phonenumber": {
                         "oneOf": [
