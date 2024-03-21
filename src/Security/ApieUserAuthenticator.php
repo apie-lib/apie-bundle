@@ -6,6 +6,7 @@ use Apie\Common\ApieFacade;
 use Apie\Common\ContextConstants;
 use Apie\Common\RequestBodyDecoder;
 use Apie\Core\Actions\ActionInterface;
+use Apie\Core\Attributes\LoggedIn;
 use Apie\Core\ContextBuilders\ContextBuilderFactory;
 use Apie\Core\Entities\EntityInterface;
 use Apie\Core\ValueObjects\Utils;
@@ -52,6 +53,7 @@ class ApieUserAuthenticator extends AbstractAuthenticator
             $actionResponse = $action($context, $this->decoder->decodeBody($psrRequest));
 
             if ($actionResponse->result instanceof EntityInterface) {
+                $request->attributes->set(ContextConstants::ALREADY_CALCULATED, $actionResponse);
                 $userIdentifier = get_class($actionResponse->result)
                     . '/'
                     . $psrRequest->getAttribute(ContextConstants::BOUNDED_CONTEXT_ID)
