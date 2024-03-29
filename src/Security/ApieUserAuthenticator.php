@@ -6,7 +6,6 @@ use Apie\Common\ApieFacade;
 use Apie\Common\ContextConstants;
 use Apie\Common\RequestBodyDecoder;
 use Apie\Core\Actions\ActionInterface;
-use Apie\Core\Attributes\LoggedIn;
 use Apie\Core\ContextBuilders\ContextBuilderFactory;
 use Apie\Core\Entities\EntityInterface;
 use Apie\Core\ValueObjects\Utils;
