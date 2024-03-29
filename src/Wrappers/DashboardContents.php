@@ -1,7 +1,9 @@
 <?php
 namespace Apie\ApieBundle\Wrappers;
 
+use Apie\HtmlBuilders\ErrorHandler\StacktraceRenderer;
 use Stringable;
+use Throwable;
 use Twig\Environment;
 
 class DashboardContents implements Stringable
@@ -21,10 +23,14 @@ class DashboardContents implements Stringable
     public function __toString(): string
     {
         if ($this->twig === null) {
-            if (file_exists($this->twigTemplate)) {
-                return file_get_contents($this->twigTemplate) ? : self::NO_TWIG_MESSAGE;
+            $fallback = self::NO_TWIG_MESSAGE;
+            if (($this->templateParameters['error'] ?? null) instanceof Throwable) {
+                $fallback = (string) new StacktraceRenderer($this->templateParameters['error']);
             }
-            return self::NO_TWIG_MESSAGE;
+            if (file_exists($this->twigTemplate)) {
+                return file_get_contents($this->twigTemplate) ? : $fallback;
+            }
+            return $fallback;
         }
         return $this->twig->render($this->twigTemplate, $this->templateParameters);
     }
