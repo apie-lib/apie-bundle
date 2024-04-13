@@ -5,6 +5,7 @@ services:
   Apie\ApieBundle\Twig\ComponentExtension:
     arguments:
       - '@Apie\HtmlBuilders\Interfaces\ComponentRendererInterface'
+      - '@Apie\HtmlBuilders\Factories\FieldDisplayComponentFactory'
     tags:
       - { name: twig.extension }
 
