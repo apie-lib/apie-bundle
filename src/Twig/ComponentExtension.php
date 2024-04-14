@@ -27,9 +27,14 @@ class ComponentExtension extends AbstractExtension
         ];
     }
 
-    public function renderApieCmsData(mixed $input, ApieContext $apieContext = new ApieContext()): string
-    {
-        return $this->renderApieComponent($this->fieldDisplayComponentFactory->createDisplayFor($input, $apieContext));
+    public function renderApieCmsData(
+        mixed $input,
+        ApieContext $apieContext = new ApieContext()
+    ): string {
+        return $this->renderApieComponent(
+            $this->fieldDisplayComponentFactory->createDisplayFor($input, $apieContext),
+            $apieContext
+        );
     }
 
     public function renderStacktrace(Throwable $throwable): string
@@ -38,8 +43,10 @@ class ComponentExtension extends AbstractExtension
         return (string) $renderer;
     }
 
-    public function renderApieComponent(ComponentInterface $component): string
-    {
-        return $this->renderer->render($component);
+    public function renderApieComponent(
+        ComponentInterface $component,
+        ApieContext $apieContext = new ApieContext()
+    ): string {
+        return $this->renderer->render($component, $apieContext);
     }
 }
