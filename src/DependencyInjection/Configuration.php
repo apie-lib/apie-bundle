@@ -1,6 +1,7 @@
 <?php
 namespace Apie\ApieBundle\DependencyInjection;
 
+use Apie\ApieCommonPlugin\ApieCommonPlugin;
 use Apie\Cms\RouteDefinitions\CmsRouteDefinitionProvider;
 use Apie\CmsApiDropdownOption\RouteDefinitions\DropdownOptionsForExistingObjectRouteDefinition;
 use Apie\Console\ConsoleCommandFactory;
@@ -72,6 +73,7 @@ final class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
             ->end()
+            ->booleanNode('enable_common_plugin')->defaultValue(class_exists(ApieCommonPlugin::class))->end()
             ->booleanNode('enable_core')->defaultValue(true)->end()
             ->booleanNode('enable_cms')->defaultValue(class_exists(CmsRouteDefinitionProvider::class))->end()
             ->booleanNode('enable_cms_dropdown')->defaultValue(class_exists(DropdownOptionsForExistingObjectRouteDefinition::class))->end()

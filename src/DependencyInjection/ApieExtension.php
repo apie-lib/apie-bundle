@@ -22,6 +22,9 @@ final class ApieExtension extends Extension
      * @var array<string, array<int, string>>
      */
     private array $dependencies = [
+        'enable_common_plugin' => [
+            'apie_common_plugin.yaml',
+        ],
         'enable_cms' => [
             'common.yaml',
             'cms.yaml',
