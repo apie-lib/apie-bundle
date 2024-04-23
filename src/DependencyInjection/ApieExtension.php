@@ -86,6 +86,7 @@ final class ApieExtension extends Extension
         $loader->load('psr7.yaml');
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
+        $container->setParameter('apie.encryption_key', $config['encryption_key'] ?? null);
         $container->setParameter('apie.bounded_contexts', $config['bounded_contexts']);
         $container->setParameter('apie.datalayers', $config['datalayers'] ?? []);
         $container->setParameter('apie.cms.asset_folders', $config['cms']['asset_folders'] ?? []);

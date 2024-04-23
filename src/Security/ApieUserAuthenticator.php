@@ -4,7 +4,9 @@ namespace Apie\ApieBundle\Security;
 
 use Apie\Common\ApieFacade;
 use Apie\Common\ContextConstants;
+use Apie\Common\Events\AddAuthenticationCookie;
 use Apie\Common\RequestBodyDecoder;
+use Apie\Common\Wrappers\TextEncrypter;
 use Apie\Core\Actions\ActionInterface;
 use Apie\Core\ContextBuilders\ContextBuilderFactory;
 use Apie\Core\Entities\EntityInterface;
@@ -34,6 +36,12 @@ class ApieUserAuthenticator extends AbstractAuthenticator
 
     public function supports(Request $request): ?bool
     {
+        return $request->cookies->has(AddAuthenticationCookie::COOKIE_NAME)
+            || $this->isVerifyAuthenticationAction($request);
+    }
+
+    private function isVerifyAuthenticationAction(Request $request): bool
+    {
         return $request->attributes->has('_is_apie')
             && $request->attributes->get(ContextConstants::OPERATION_ID)
             && str_starts_with($request->attributes->get(ContextConstants::OPERATION_ID), 'call-method-')
@@ -42,13 +50,37 @@ class ApieUserAuthenticator extends AbstractAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        try {
-            $psrRequest = $this->httpMessageFactory->createRequest($request)
+        $psrRequest = $this->httpMessageFactory->createRequest($request)
                 ->withHeader('Accept', 'application/json');
+        $context = $this->contextBuilderFactory->createFromRequest($psrRequest, $psrRequest->getAttributes());
+        try {
+            if ($request->cookies->has(AddAuthenticationCookie::COOKIE_NAME)) {
+                $textEncrypter = $context->getContext(TextEncrypter::class);
+                assert($textEncrypter instanceof TextEncrypter);
+                $data = explode(
+                    '/',
+                    $textEncrypter->decrypt($request->cookies->get(AddAuthenticationCookie::COOKIE_NAME)),
+                    2
+                );
+                if (!$this->isVerifyAuthenticationAction($request)) {
+                    $userIdentifier = $data[0]
+                        . '/'
+                        . $psrRequest->getAttribute(ContextConstants::BOUNDED_CONTEXT_ID)
+                        . '/'
+                        .$data[1];
+                    return new SelfValidatingPassport(
+                        new UserBadge($userIdentifier),
+                        [
+                            new RememberMeBadge()
+                        ]
+                    );
+                }
+            }
+
+            
             $actionClass = $psrRequest->getAttribute(ContextConstants::APIE_ACTION);
             /** @var ActionInterface $action */
             $action = new $actionClass($this->apieFacade);
-            $context = $this->contextBuilderFactory->createFromRequest($psrRequest, $psrRequest->getAttributes());
             $actionResponse = $action($context, $this->decoder->decodeBody($psrRequest));
 
             if ($actionResponse->result instanceof EntityInterface) {

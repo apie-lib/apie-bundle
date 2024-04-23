@@ -24,6 +24,7 @@ final class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('apie');
 
         $treeBuilder->getRootNode()->children()
+            ->scalarNode('encryption_key')->end()
             ->arrayNode('cms')
                 ->children()
                     ->scalarNode('base_url')->defaultValue('/cms')->end()
