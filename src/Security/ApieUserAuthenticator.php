@@ -6,12 +6,14 @@ use Apie\Common\ApieFacade;
 use Apie\Common\ContextConstants;
 use Apie\Common\Events\AddAuthenticationCookie;
 use Apie\Common\RequestBodyDecoder;
-use Apie\Common\Wrappers\TextEncrypter;
+use Apie\Common\ValueObjects\DecryptedAuthenticatedUser;
 use Apie\Core\Actions\ActionInterface;
+use Apie\Core\BoundedContext\BoundedContextId;
 use Apie\Core\ContextBuilders\ContextBuilderFactory;
 use Apie\Core\Entities\EntityInterface;
-use Apie\Core\ValueObjects\Utils;
+use Apie\Serializer\Exceptions\ValidationException;
 use Exception;
+use Psr\Log\LoggerInterface;
 use Symfony\Bridge\PsrHttpMessage\HttpMessageFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,7 +32,8 @@ class ApieUserAuthenticator extends AbstractAuthenticator
         private readonly ApieFacade $apieFacade,
         private readonly HttpMessageFactoryInterface $httpMessageFactory,
         private readonly ContextBuilderFactory $contextBuilderFactory,
-        private readonly RequestBodyDecoder $decoder
+        private readonly RequestBodyDecoder $decoder,
+        private readonly LoggerInterface $logger
     ) {
     }
 
@@ -43,6 +46,7 @@ class ApieUserAuthenticator extends AbstractAuthenticator
     private function isVerifyAuthenticationAction(Request $request): bool
     {
         return $request->attributes->has('_is_apie')
+            && in_array($request->getMethod(), ['POST', 'PUT', 'PATCH'])
             && $request->attributes->get(ContextConstants::OPERATION_ID)
             && str_starts_with($request->attributes->get(ContextConstants::OPERATION_ID), 'call-method-')
             && 'verifyAuthentication' === $request->attributes->get(ContextConstants::METHOD_NAME);
@@ -54,52 +58,51 @@ class ApieUserAuthenticator extends AbstractAuthenticator
                 ->withHeader('Accept', 'application/json');
         $context = $this->contextBuilderFactory->createFromRequest($psrRequest, $psrRequest->getAttributes());
         try {
-            if ($request->cookies->has(AddAuthenticationCookie::COOKIE_NAME)) {
-                $textEncrypter = $context->getContext(TextEncrypter::class);
-                assert($textEncrypter instanceof TextEncrypter);
-                $data = explode(
-                    '/',
-                    $textEncrypter->decrypt($request->cookies->get(AddAuthenticationCookie::COOKIE_NAME)),
-                    2
-                );
-                if (!$this->isVerifyAuthenticationAction($request)) {
-                    $userIdentifier = $data[0]
-                        . '/'
-                        . $psrRequest->getAttribute(ContextConstants::BOUNDED_CONTEXT_ID)
-                        . '/'
-                        .$data[1];
+            $decryptedUserId = $context->getContext(DecryptedAuthenticatedUser::class, false);
+            $loginAction = $this->isVerifyAuthenticationAction($request);
+            if ($decryptedUserId instanceof DecryptedAuthenticatedUser) {
+                if ($decryptedUserId->isExpired()) {
+                    throw new \LogicException('Token is expired!');
+                }
+                if (!$loginAction) {
                     return new SelfValidatingPassport(
-                        new UserBadge($userIdentifier),
+                        new UserBadge($decryptedUserId->toNative()),
                         [
                             new RememberMeBadge()
                         ]
                     );
                 }
             }
-
-            
-            $actionClass = $psrRequest->getAttribute(ContextConstants::APIE_ACTION);
-            /** @var ActionInterface $action */
-            $action = new $actionClass($this->apieFacade);
-            $actionResponse = $action($context, $this->decoder->decodeBody($psrRequest));
-
-            if ($actionResponse->result instanceof EntityInterface) {
-                $request->attributes->set(ContextConstants::ALREADY_CALCULATED, $actionResponse);
-                $userIdentifier = get_class($actionResponse->result)
-                    . '/'
-                    . $psrRequest->getAttribute(ContextConstants::BOUNDED_CONTEXT_ID)
-                    . '/'
-                    . Utils::toString($actionResponse->result->getId());
-                return new SelfValidatingPassport(
-                    new UserBadge($userIdentifier),
-                    [
-                        new RememberMeBadge()
-                    ]
-                );
+            if ($loginAction) {
+                $actionClass = $psrRequest->getAttribute(ContextConstants::APIE_ACTION);
+                /** @var ActionInterface $action */
+                $action = new $actionClass($this->apieFacade);
+                $actionResponse = $action($context, $this->decoder->decodeBody($psrRequest));
+                if ($actionResponse->result instanceof EntityInterface) {
+                    $decryptedUserId = DecryptedAuthenticatedUser::createFromEntity(
+                        $actionResponse->result,
+                        new BoundedContextId($psrRequest->getAttribute(ContextConstants::BOUNDED_CONTEXT_ID)),
+                        time() + 3600
+                    );
+                    $request->attributes->set(ContextConstants::AUTHENTICATED_USER, $actionResponse->result);
+                    $request->attributes->set(DecryptedAuthenticatedUser::class, $decryptedUserId);
+                    $request->attributes->set(ContextConstants::ALREADY_CALCULATED, $actionResponse);
+                    return new SelfValidatingPassport(
+                        new UserBadge($decryptedUserId->toNative()),
+                        [
+                            new RememberMeBadge()
+                        ]
+                    );
+                }
+                if ($actionResponse->result instanceof ValidationException) {
+                    throw $actionResponse->result;
+                }
             }
         } catch (Exception $error) {
+            $this->logger->error('Could not authenticate user: ' . $error->getMessage(), ['error' => $error]);
             throw new CustomUserMessageAuthenticationException('Could not authenticate user!', [], 0, $error);
         }
+        $this->logger->error('Could not authenticate user, but no exception was thrown');
         throw new CustomUserMessageAuthenticationException('Could not authenticate user!');
     }
 

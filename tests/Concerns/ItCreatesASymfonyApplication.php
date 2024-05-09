@@ -18,6 +18,7 @@ trait ItCreatesASymfonyApplication
         ];
         $testItem = new ApieBundleTestingKernel(
             [
+                'encryption_key' => 'test',
                 'bounded_contexts' => $boundedContexts,
                 'datalayers' => [
                     'default_datalayer' => $defaultDatalayer,

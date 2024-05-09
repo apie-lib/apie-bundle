@@ -11,6 +11,7 @@ services:
             - '@Symfony\Bridge\PsrHttpMessage\HttpMessageFactoryInterface'
             - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
             - '@Apie\Common\RequestBodyDecoder'
+            - '@Psr\Log\LoggerInterface'
 
     Apie\ApieBundle\Security\ApieUserProvider:
         arguments:

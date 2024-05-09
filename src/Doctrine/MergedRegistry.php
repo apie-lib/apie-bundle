@@ -108,6 +108,6 @@ class MergedRegistry implements ManagerRegistry
      */
     public function __call(string $method, array $args): mixed
     {
-        return $this->$method(...$args);
+        return $this->internal->$method(...$args);
     }
 }

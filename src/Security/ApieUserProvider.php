@@ -4,7 +4,7 @@ namespace Apie\ApieBundle\Security;
 
 use Apie\Common\ApieFacade;
 use Apie\Common\Interfaces\CheckLoginStatusInterface;
-use Apie\Common\Wrappers\ApieUserDecoratorIdentifier;
+use Apie\Common\ValueObjects\DecryptedAuthenticatedUser;
 use Apie\Core\Entities\EntityInterface;
 use Apie\Core\Exceptions\EntityNotFoundException;
 use Apie\Core\ValueObjects\Utils;
@@ -55,13 +55,18 @@ class ApieUserProvider implements UserProviderInterface
      */
     public function loadUserByIdentifier(string $identifier): ApieUserDecorator
     {
-        $identifier = new ApieUserDecoratorIdentifier($identifier);
+        $identifier = new DecryptedAuthenticatedUser($identifier);
         $boundedContextId = $identifier->getBoundedContextId();
         try {
-            $entity = $this->apieFacade->find($identifier->getIdentifier(), $boundedContextId);
+            $entity = $this->apieFacade->find($identifier->getId(), $boundedContextId);
+            if ($entity instanceof CheckLoginStatusInterface && $entity->isDisabled()) {
+                throw new UserNotFoundException(
+                    'User . ' . Utils::toString($entity->getId()) . ' is disabled'
+                );
+            }
         } catch (EntityNotFoundException $notFound) {
             throw new UserNotFoundException(
-                'User ' . Utils::toString($identifier->getIdentifier()) . ' is removed, logging out',
+                'User ' . Utils::toString($identifier->getId()) . ' is removed, logging out',
                 0,
                 $notFound
             );

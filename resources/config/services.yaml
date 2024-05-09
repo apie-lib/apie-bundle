@@ -38,5 +38,6 @@ services:
     arguments:
       - '@?Apie\HtmlBuilders\ErrorHandler\CmsErrorRenderer'
       - '@Apie\Common\ErrorHandler\ApiErrorRenderer'
+      - '@Psr\Log\LoggerInterface'
       - '%apie.cms.base_url%'
     tags: ['kernel.event_subscriber']

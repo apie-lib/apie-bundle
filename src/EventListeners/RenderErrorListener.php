@@ -6,6 +6,7 @@ use Apie\Common\ErrorHandler\ApiErrorRenderer;
 use Apie\Common\IntegrationTestLogger;
 use Apie\Core\Exceptions\HttpStatusCodeException;
 use Apie\HtmlBuilders\ErrorHandler\CmsErrorRenderer;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -16,6 +17,7 @@ class RenderErrorListener implements EventSubscriberInterface
     public function __construct(
         private readonly ?CmsErrorRenderer $cmsErrorRenderer,
         private readonly ApiErrorRenderer $apiErrorRenderer,
+        private readonly LoggerInterface $logger,
         private readonly string $cmsBaseUrl
     ) {
     }
@@ -32,6 +34,10 @@ class RenderErrorListener implements EventSubscriberInterface
 
     public function onKernelException(ExceptionEvent $event): void
     {
+        $this->logger->error(
+            'An error occured in Symfony: ' . $event->getThrowable()->getMessage(),
+            ['error' => $event->getThrowable()]
+        );
         if (!$event->isMainRequest()) {
             return;
         }
