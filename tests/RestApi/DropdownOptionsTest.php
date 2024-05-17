@@ -1,6 +1,7 @@
 <?php
 namespace Apie\Tests\ApieBundle\RestApi;
 
+use Apie\CmsApiDropdownOption\RouteDefinitions\DropdownOptionsForExistingObjectRouteDefinition;
 use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
 use Generator;
 use PHPUnit\Framework\TestCase;
@@ -16,6 +17,9 @@ class DropdownOptionsTest extends TestCase
      */
     public function it_can_give_dropdown_options(string $prefix)
     {
+        if (!class_exists(DropdownOptionsForExistingObjectRouteDefinition::class)) {
+            $this->markTestSkipped('optional composer dependency apie/cms-api-dropdown-option missing');
+        }
         $testItem = $this->given_a_symfony_application_with_apie();
         $request = Request::create(
             '/' . $prefix . '/default/ManyColumns/dropdown-options/UserIdentifier',
