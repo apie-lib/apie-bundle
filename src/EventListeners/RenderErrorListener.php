@@ -1,9 +1,9 @@
 <?php
 namespace Apie\ApieBundle\EventListeners;
 
-use Apie\Common\ContextConstants;
 use Apie\Common\ErrorHandler\ApiErrorRenderer;
 use Apie\Common\IntegrationTestLogger;
+use Apie\Core\ContextConstants;
 use Apie\Core\Exceptions\HttpStatusCodeException;
 use Apie\HtmlBuilders\ErrorHandler\CmsErrorRenderer;
 use Psr\Log\LoggerInterface;

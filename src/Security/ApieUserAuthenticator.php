@@ -3,13 +3,13 @@
 namespace Apie\ApieBundle\Security;
 
 use Apie\Common\ApieFacade;
-use Apie\Common\ContextConstants;
 use Apie\Common\Events\AddAuthenticationCookie;
 use Apie\Common\RequestBodyDecoder;
 use Apie\Common\ValueObjects\DecryptedAuthenticatedUser;
 use Apie\Core\Actions\ActionInterface;
 use Apie\Core\BoundedContext\BoundedContextId;
 use Apie\Core\ContextBuilders\ContextBuilderFactory;
+use Apie\Core\ContextConstants;
 use Apie\Core\Entities\EntityInterface;
 use Apie\Serializer\Exceptions\ValidationException;
 use Exception;

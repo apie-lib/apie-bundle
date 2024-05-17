@@ -1,10 +1,10 @@
 <?php
 namespace Apie\ApieBundle\Wrappers;
 
-use Apie\Common\ContextConstants;
 use Apie\Common\Interfaces\BoundedContextSelection;
 use Apie\Core\BoundedContext\BoundedContext;
 use Apie\Core\BoundedContext\BoundedContextHashmap;
+use Apie\Core\ContextConstants;
 use Apie\Core\Entities\EntityInterface;
 use ReflectionClass;
 use Symfony\Component\HttpFoundation\RequestStack;
