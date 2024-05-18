@@ -7,7 +7,7 @@ use Apie\CountryAndPhoneNumber\DutchPhoneNumber;
 use Apie\Tests\ApieBundle\BoundedContext\Entities\User;
 use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
 use Apie\Tests\ApieBundle\Concerns\ItValidatesOpenapi;
-use Apie\TextValueObjects\StrongPassword;
+use Apie\Fixtures\ValueObjects\Password as StrongPassword;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 

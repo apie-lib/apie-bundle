@@ -1811,6 +1811,11 @@
                     }
                 }
             },
+            "Password-post": {
+                "type": "string",
+                "format": "password",
+                "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\-_\\+\\.]{6,42}$"
+            },
             "StringList-get": {
                 "type": "array",
                 "items": {
@@ -1958,7 +1963,7 @@
                         "$ref": "#/components/schemas/UserIdentifier-nullable-post"
                     },
                     "password": {
-                        "$ref": "#/components/schemas/StrongPassword-post"
+                        "$ref": "#/components/schemas/Password-post"
                     },
                     "phoneNumber": {
                         "oneOf": [
