@@ -6,8 +6,8 @@ use Apie\Core\Entities\EntityInterface;
 use Apie\CountryAndPhoneNumber\BritishPhoneNumber;
 use Apie\CountryAndPhoneNumber\DutchPhoneNumber;
 use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\UserIdentifier;
-use Apie\TextValueObjects\EncryptedPassword;
-use Apie\TextValueObjects\StrongPassword;
+use Apie\Fixtures\ValueObjects\EncryptedPassword;
+use Apie\Fixtures\ValueObjects\Password as StrongPassword;
 
 class User implements EntityInterface
 {
