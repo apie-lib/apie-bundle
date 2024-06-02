@@ -4,10 +4,10 @@ namespace Apie\Tests\ApieBundle\Security;
 use Apie\Common\ApieFacade;
 use Apie\Core\BoundedContext\BoundedContextId;
 use Apie\CountryAndPhoneNumber\DutchPhoneNumber;
+use Apie\Fixtures\ValueObjects\Password as StrongPassword;
 use Apie\Tests\ApieBundle\BoundedContext\Entities\User;
 use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
 use Apie\Tests\ApieBundle\Concerns\ItValidatesOpenapi;
-use Apie\Fixtures\ValueObjects\Password as StrongPassword;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 

@@ -8,11 +8,11 @@ use Apie\CountryAndPhoneNumber\BritishPhoneNumber;
 use Apie\CountryAndPhoneNumber\DutchPhoneNumber;
 use Apie\DoctrineEntityDatalayer\DoctrineEntityDatalayer;
 use Apie\DoctrineEntityDatalayer\OrmBuilder;
+use Apie\Fixtures\ValueObjects\Password as StrongPassword;
 use Apie\Tests\ApieBundle\BoundedContext\Entities\User;
 use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\UserIdentifier;
 use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
 use Apie\Tests\ApieBundle\Concerns\ItValidatesOpenapi;
-use Apie\Fixtures\ValueObjects\Password as StrongPassword;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
