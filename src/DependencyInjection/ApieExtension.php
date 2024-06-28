@@ -7,6 +7,7 @@ use Apie\Common\DependencyInjection\ApieConfigFileLocator;
 use Apie\Common\Interfaces\RouteDefinitionProviderInterface;
 use Apie\Core\ContextBuilders\ContextBuilderInterface;
 use Apie\Core\Datalayers\ApieDatalayer;
+use Apie\Core\FileStorage\InlineStorage;
 use Apie\Faker\Interfaces\ApieClassFaker;
 use Apie\HtmlBuilders\Interfaces\FormComponentProviderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -91,6 +92,7 @@ final class ApieExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('apie.encryption_key', $config['encryption_key'] ?? null);
         $container->setParameter('apie.bounded_contexts', $config['bounded_contexts']);
+        $container->setParameter('apie.storage', $config['storage'] ?? [['class' => InlineStorage::class]]);
         $container->setParameter('apie.datalayers', $config['datalayers'] ?? []);
         $container->setParameter('apie.cms.asset_folders', $config['cms']['asset_folders'] ?? []);
         $container->setParameter('apie.cms.dashboard_template', $config['cms']['dashboard_template'] ?? '@Apie/dashboard.html.twig');
