@@ -1092,6 +1092,51 @@
     ],
     "components": {
         "schemas": {
+            "Animal-get": {
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/Cow-get"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Elephant-get"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Fish-get"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "animalType",
+                    "mapping": {
+                        "cow": "#/components/schemas/Cow-get",
+                        "elephant": "#/components/schemas/Elephant-get",
+                        "fish": "#/components/schemas/Fish-get"
+                    }
+                }
+            },
+            "Animal-nullable-get": {
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/Cow-nullable-get"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Elephant-nullable-get"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Fish-nullable-get"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "animalType",
+                    "mapping": {
+                        "cow": "#/components/schemas/Cow-nullable-get",
+                        "elephant": "#/components/schemas/Elephant-nullable-get",
+                        "fish": "#/components/schemas/Fish-nullable-get"
+                    }
+                },
+                "nullable": true
+            },
             "Animal-nullable-post": {
                 "type": "object",
                 "oneOf": [
@@ -1137,6 +1182,11 @@
                     }
                 }
             },
+            "AnimalIdentifier-get": {
+                "type": "string",
+                "format": "animalidentifier",
+                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$"
+            },
             "AnimalIdentifier-nullable-post": {
                 "type": "string",
                 "format": "animalidentifier",
@@ -1146,13 +1196,13 @@
             "AnimalList-get": {
                 "type": "array",
                 "items": {
-                    "$ref": "#/components/schemas/Animal-post"
+                    "$ref": "#/components/schemas/Animal-get"
                 }
             },
             "AnimalList-nullable-get": {
                 "type": "array",
                 "items": {
-                    "$ref": "#/components/schemas/Animal-nullable-post"
+                    "$ref": "#/components/schemas/Animal-nullable-get"
                 },
                 "nullable": true
             },
@@ -1323,6 +1373,53 @@
                     }
                 }
             },
+            "Cow-get": {
+                "type": "object",
+                "required": [
+                    "animalType",
+                    "id"
+                ],
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "cow"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-get"
+                    },
+                    "hasMilk": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
+            "Cow-nullable-get": {
+                "type": "object",
+                "required": [
+                    "animalType",
+                    "id"
+                ],
+                "nullable": true,
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "cow"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-get"
+                    },
+                    "hasMilk": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
             "Cow-post": {
                 "type": "object",
                 "required": [
@@ -1350,7 +1447,7 @@
                 "type": "string",
                 "format": "datetime"
             },
-            "DropdownOption-post": {
+            "DropdownOption-get": {
                 "type": "object",
                 "required": [
                     "value",
@@ -1370,7 +1467,7 @@
             "DropdownOptionList-get": {
                 "type": "array",
                 "items": {
-                    "$ref": "#/components/schemas/DropdownOption-post"
+                    "$ref": "#/components/schemas/DropdownOption-get"
                 }
             },
             "DutchPhoneNumber-get": {
@@ -1380,6 +1477,53 @@
             "DutchPhoneNumber-post": {
                 "type": "string",
                 "format": "dutchphonenumber"
+            },
+            "Elephant-get": {
+                "type": "object",
+                "required": [
+                    "animalType",
+                    "id"
+                ],
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "elephant"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-get"
+                    },
+                    "starving": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
+            "Elephant-nullable-get": {
+                "type": "object",
+                "required": [
+                    "animalType",
+                    "id"
+                ],
+                "nullable": true,
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "elephant"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-get"
+                    },
+                    "starving": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
             },
             "Elephant-post": {
                 "type": "object",
@@ -1398,6 +1542,53 @@
                         "$ref": "#/components/schemas/AnimalIdentifier-nullable-post"
                     },
                     "starving": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
+            "Fish-get": {
+                "type": "object",
+                "required": [
+                    "animalType",
+                    "id"
+                ],
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "fish"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-get"
+                    },
+                    "poisonous": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
+            "Fish-nullable-get": {
+                "type": "object",
+                "required": [
+                    "animalType",
+                    "id"
+                ],
+                "nullable": true,
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "fish"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-get"
+                    },
+                    "poisonous": {
                         "type": "boolean",
                         "nullable": false
                     }
@@ -1847,26 +2038,20 @@
             "StringListHashmap-get": {
                 "type": "object",
                 "additionalProperties": {
-                    "$ref": "#/components/schemas/StringList-post"
+                    "$ref": "#/components/schemas/StringList-get"
                 }
             },
             "StringListHashmap-nullable-get": {
                 "type": "object",
                 "additionalProperties": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/components/schemas/StringList-post"
-                    }
+                    "$ref": "#/components/schemas/StringList-nullable-get"
                 },
                 "nullable": true
             },
             "StringListHashmap-nullable-post": {
                 "type": "object",
                 "additionalProperties": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/components/schemas/StringList-post"
-                    }
+                    "$ref": "#/components/schemas/StringList-nullable-post"
                 },
                 "nullable": true
             },
@@ -1875,6 +2060,17 @@
                 "additionalProperties": {
                     "$ref": "#/components/schemas/StringList-post"
                 }
+            },
+            "StrongPassword-get": {
+                "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
+                "type": "string",
+                "format": "password"
+            },
+            "StrongPassword-nullable-get": {
+                "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
+                "type": "string",
+                "format": "password",
+                "nullable": true
             },
             "StrongPassword-nullable-post": {
                 "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
@@ -1890,13 +2086,13 @@
             "StrongPasswordList-get": {
                 "type": "array",
                 "items": {
-                    "$ref": "#/components/schemas/StrongPassword-post"
+                    "$ref": "#/components/schemas/StrongPassword-get"
                 }
             },
             "StrongPasswordList-nullable-get": {
                 "type": "array",
                 "items": {
-                    "$ref": "#/components/schemas/StrongPassword-nullable-post"
+                    "$ref": "#/components/schemas/StrongPassword-nullable-get"
                 },
                 "nullable": true
             },
