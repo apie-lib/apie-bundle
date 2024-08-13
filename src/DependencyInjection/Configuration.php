@@ -87,6 +87,7 @@ final class Configuration implements ConfigurationInterface
             ->arrayNode('maker')
                 ->children()
                   ->scalarNode('target_path')->defaultValue(false)->end()
+                  ->scalarNode('target_namespace')->defaultValue('App\Apie')->end()
                 ->end()
             ->end()
             ->booleanNode('enable_common_plugin')->defaultValue(class_exists(ApieCommonPlugin::class))->end()
