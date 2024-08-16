@@ -20,7 +20,10 @@
     }
   },
   "suggest": {
-    "apie/doctrine-entity-datalayer": "Store domain objects by using generated doctrine entities internally"
+    "apie/cms": "Access domain object actions in a fully working admin panel to your application",
+    "apie/console": "Access domain object actions by symfony console",
+    "apie/doctrine-entity-datalayer": "Store domain objects by using generated doctrine entities internally",
+    "apie/rest-api": "Access domain object actions in a fully working REST API to your application"
   },
   "require": {
     "php": ">=8.1",

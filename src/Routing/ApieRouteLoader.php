@@ -28,10 +28,14 @@ final class ApieRouteLoader extends Loader
 {
     private bool $loaded = false;
 
+    /**
+     * @param array<string, string> $scanBoundedContexts
+     */
     public function __construct(
         private readonly RouteDefinitionProviderInterface $routeProvider,
         private readonly BoundedContextHashmap $boundedContextHashmap,
         private readonly PossibleRoutePrefixProvider $routePrefixProvider,
+        private readonly array $scanBoundedContexts
     ) {
     }
 
@@ -62,6 +66,9 @@ final class ApieRouteLoader extends Loader
             ApieLib::class,
             AttributesRoute::class,
         ];
+        if (!empty($this->scanBoundedContexts['search_path']) && is_dir($this->scanBoundedContexts['search_path'])) {
+            $routes->addResource(new DirectoryResource($this->scanBoundedContexts['search_path']));
+        }
         foreach ($classesForCaching as $classForCaching) {
             if (is_object($classForCaching) || class_exists($classForCaching)) {
                 $routes->addResource(new ReflectionClassResource(new ReflectionClass($classForCaching)));

@@ -92,6 +92,7 @@ final class ApieExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('apie.encryption_key', $config['encryption_key'] ?? null);
         $container->setParameter('apie.bounded_contexts', $config['bounded_contexts']);
+        $container->setParameter('apie.scan_bounded_contexts', $config['scan_bounded_contexts'] ?? []);
         $container->setParameter('apie.storage', $config['storage'] ? : [['class' => InlineStorage::class]]);
         $container->setParameter('apie.datalayers', $config['datalayers'] ?? []);
         $container->setParameter('apie.cms.asset_folders', $config['cms']['asset_folders'] ?? []);

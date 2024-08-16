@@ -112,6 +112,12 @@ final class Configuration implements ConfigurationInterface
                         ->scalarNode('actions_namespace')->isRequired()->end()
                     ->end()
                 ->end()
+            ->end()
+            ->arrayNode('scan_bounded_contexts')
+                ->children()
+                    ->scalarNode('search_path')->isRequired()->end()
+                    ->scalarNode('search_namespace')->isRequired()->end()
+                ->end()
             ->end();
 
         return $treeBuilder;

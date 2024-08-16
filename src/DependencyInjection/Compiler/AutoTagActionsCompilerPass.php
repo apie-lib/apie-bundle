@@ -21,7 +21,8 @@ class AutoTagActionsCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container): void
     {
         $boundedContextConfig = $container->getParameter('apie.bounded_contexts');
-        $factory = new BoundedContextHashmapFactory($boundedContextConfig);
+        $scanBoundedContextConfig = $container->getParameter('apie.scan_bounded_contexts');
+        $factory = new BoundedContextHashmapFactory($boundedContextConfig, $scanBoundedContextConfig);
         $hashmap = $factory->create();
         foreach ($hashmap as $boundedContext) {
             foreach ($boundedContext->actions as $action) {
