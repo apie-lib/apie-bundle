@@ -17,6 +17,7 @@ use Apie\RestApi\RouteDefinitions\RestApiRouteDefinitionProvider;
 use ReflectionClass;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Config\Resource\DirectoryResource;
+use Symfony\Component\Config\Resource\GlobResource;
 use Symfony\Component\Config\Resource\ReflectionClassResource;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
@@ -66,9 +67,13 @@ final class ApieRouteLoader extends Loader
             ApieLib::class,
             AttributesRoute::class,
         ];
-        if (!empty($this->scanBoundedContexts['search_path']) && is_dir($this->scanBoundedContexts['search_path'])) {
-            $routes->addResource(new DirectoryResource($this->scanBoundedContexts['search_path']));
+        if (!empty($this->scanBoundedContexts['search_path'])) {
+            if (!is_dir($this->scanBoundedContexts['search_path'])) {
+                mkdir($this->scanBoundedContexts['search_path'], recursive: true);
+            }
+            $routes->addResource(new GlobResource($this->scanBoundedContexts['search_path'], '*', true));
         }
+        
         foreach ($classesForCaching as $classForCaching) {
             if (is_object($classForCaching) || class_exists($classForCaching)) {
                 $routes->addResource(new ReflectionClassResource(new ReflectionClass($classForCaching)));

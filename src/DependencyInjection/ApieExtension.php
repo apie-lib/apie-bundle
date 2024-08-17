@@ -63,6 +63,7 @@ final class ApieExtension extends Extension
         ],
         'enable_maker' => [
             'maker.yaml',
+            "sf_maker.yaml",
         ],
         'enable_security' => [
             'common.yaml',

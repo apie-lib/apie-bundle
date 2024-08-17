@@ -18,6 +18,9 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class AutoTagActionsCompilerPass implements CompilerPassInterface
 {
+    private const SYMFONY_SERVICES = [
+        'cache_warmer',
+    ];
     public function process(ContainerBuilder $container): void
     {
         $boundedContextConfig = $container->getParameter('apie.bounded_contexts');
@@ -41,6 +44,12 @@ class AutoTagActionsCompilerPass implements CompilerPassInterface
                 if (empty($tag)) {
                     $definition->addTag('apie.context');
                 }
+            }
+        }
+        foreach (self::SYMFONY_SERVICES as $serviceId) {
+            if ($container->hasDefinition($serviceId)) {
+                $definition = $container->getDefinition($serviceId);
+                $definition->addTag('apie.context');
             }
         }
     }
