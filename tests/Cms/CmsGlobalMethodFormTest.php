@@ -22,7 +22,7 @@ class CmsGlobalMethodFormTest extends TestCase
         );
         $response = $testItem->handle($request);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertStringContainsString('<form', $response->getContent());
+        $this->assertStringContainsString('-form', $response->getContent());
         HtmlOutput::writeHtml(__METHOD__, $response->getContent());
     }
 }

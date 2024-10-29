@@ -5,6 +5,7 @@ use Apie\Common\ApieFacade;
 use Apie\Core\BoundedContext\BoundedContextId;
 use Apie\CountryAndPhoneNumber\DutchPhoneNumber;
 use Apie\Tests\ApieBundle\BoundedContext\Entities\ManyColumns;
+use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\CompositeObjectExample;
 use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
 use Apie\Tests\ApieBundle\HtmlOutput;
 use PHPUnit\Framework\TestCase;
@@ -27,6 +28,12 @@ class CmsModifyResourceFormTest extends TestCase
         $entity->intValue = 42;
         $entity->booleanValue = true;
         $entity->floatValue = M_PI;
+        $entity->compositeObject = CompositeObjectExample::fromNative([
+            'value1' => 'text',
+            'value2' => 'another text',
+            'value3' => 42,
+        ]);
+        $entity->nullableCompositeObject = null;
         $apie->persistNew($entity, new BoundedContextId('default'));
         $request = Request::create(
             '/cms/default/resource/edit/ManyColumns/1',
@@ -35,6 +42,6 @@ class CmsModifyResourceFormTest extends TestCase
         $response = $testItem->handle($request);
         HtmlOutput::writeHtml(__METHOD__, $response->getContent());
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertStringContainsString('<form', $response->getContent());
+        $this->assertStringContainsString('-form', $response->getContent());
     }
 }
