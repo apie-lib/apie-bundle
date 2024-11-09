@@ -79,6 +79,9 @@ final class ApieExtension extends Extension
         'enable_faker' => [
             'faker.yaml',
         ],
+        'enable_twig_template_layout_renderer' => [
+            'twig_template_layout_renderer.yaml',
+        ],
     ];
 
     /**
