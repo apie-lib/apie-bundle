@@ -98,7 +98,12 @@ final class ApieRouteLoader extends Loader
                 $prefix = $this->routePrefixProvider->getPossiblePrefixes($routeDefinition);
 
                 $requirements = $prefix->getRouteRequirements();
-                $path = $prefix . $boundedContextId . '/' . ltrim($routeDefinition->getUrl(), '/');
+                $url = $routeDefinition->getUrl();
+                $placeholders = $url->getPlaceholders();
+                if (in_array('properties', $placeholders)) {
+                    $requirements['properties'] = '[a-zA-Z0-9]+(/[a-zA-Z0-9]+)*';
+                }
+                $path = $prefix . $boundedContextId . '/' . ltrim($url, '/');
                 $method = $routeDefinition->getMethod();
                 $defaults = $routeDefinition->getRouteAttributes()
                     + [
