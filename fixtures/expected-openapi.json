@@ -19,7 +19,7 @@
                         "description": "property of instance of PartialInput",
                         "required": true,
                         "schema": {
-                            "$ref": "#/components/schemas/PartialInput-post"
+                            "$ref": "#/components/schemas/NonEmptyString-post"
                         }
                     }
                 ],
@@ -60,7 +60,7 @@
                         "description": "property of instance of PartialInput",
                         "required": true,
                         "schema": {
-                            "$ref": "#/components/schemas/PartialInput-post"
+                            "$ref": "#/components/schemas/NonEmptyString-post"
                         }
                     }
                 ],
@@ -101,7 +101,7 @@
                         "description": "id of instance of PartialInput",
                         "required": true,
                         "schema": {
-                            "$ref": "#/components/schemas/PartialInput-post"
+                            "$ref": "#/components/schemas/NonEmptyString-post"
                         }
                     },
                     {
@@ -110,7 +110,7 @@
                         "description": "property of instance of PartialInput",
                         "required": true,
                         "schema": {
-                            "$ref": "#/components/schemas/PartialInput-post"
+                            "$ref": "#/components/schemas/NonEmptyString-post"
                         }
                     }
                 ],
@@ -1989,6 +1989,11 @@
                     "BLUE"
                 ],
                 "type": "string"
+            },
+            "NonEmptyString-post": {
+                "type": "string",
+                "format": "nonemptystring",
+                "pattern": "^.+$"
             },
             "PartialInput-post": {
                 "type": "object",
