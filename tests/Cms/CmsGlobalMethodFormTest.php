@@ -10,9 +10,7 @@ class CmsGlobalMethodFormTest extends TestCase
 {
     use ItCreatesASymfonyApplication;
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_display_a_form_for_an_action(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();

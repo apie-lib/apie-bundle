@@ -11,9 +11,7 @@ class CmsCreateResourceCommitTest extends TestCase
 {
     use ItCreatesASymfonyApplication;
 
-    /**
-         * @test
-         */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_requires_a_proper_csrf_creating_a_resource(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();
@@ -37,9 +35,7 @@ class CmsCreateResourceCommitTest extends TestCase
         $this->assertEquals(0, $allUsers->getTotalCount(), 'no user was created and can be retrieved.');
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_submit_a_creation_form_for_creating_a_resource(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();

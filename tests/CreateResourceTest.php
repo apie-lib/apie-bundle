@@ -15,10 +15,8 @@ class CreateResourceTest extends TestCase
     use ItCreatesASymfonyApplication;
     use ItValidatesOpenapi;
 
-    /**
-     * @test
-     * @runInSeparateProcess
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\RunInSeparateProcess]
     public function it_can_create_a_resource(): void
     {
         ApieLib::registerValueObject(DutchPhoneNumber::class);
@@ -41,11 +39,9 @@ class CreateResourceTest extends TestCase
         $this->assertEquals(201, $response->getStatusCode());
     }
 
-    /**
-     * @test
-     * @runInSeparateProcess
-     * @dataProvider invalidDataProvider
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('invalidDataProvider')]
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\RunInSeparateProcess]
     public function it_can_throw_a_validation_error(array $input): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();
@@ -63,7 +59,7 @@ class CreateResourceTest extends TestCase
         $this->assertEquals(422, $response->getStatusCode());
     }
 
-    public function invalidDataProvider(): Generator
+    public static function invalidDataProvider(): Generator
     {
         yield 'missing field and invalid value object' => [
             [

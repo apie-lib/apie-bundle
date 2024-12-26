@@ -11,10 +11,8 @@ class DropdownOptionsTest extends TestCase
 {
     use ItCreatesASymfonyApplication;
 
-    /**
-     * @test
-     * @dataProvider prefixProvider
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('prefixProvider')]
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_give_dropdown_options(string $prefix)
     {
         if (!class_exists(DropdownOptionsForExistingObjectRouteDefinition::class)) {
@@ -38,7 +36,7 @@ class DropdownOptionsTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    public function prefixProvider(): Generator
+    public static function prefixProvider(): Generator
     {
         yield 'cms prefix' => ['cms'];
         yield 'api prefix' => ['api'];

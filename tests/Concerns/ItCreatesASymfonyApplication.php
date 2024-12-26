@@ -3,6 +3,7 @@ namespace Apie\Tests\ApieBundle\Concerns;
 
 use Apie\Common\Wrappers\RequestAwareInMemoryDatalayer;
 use Apie\Tests\ApieBundle\ApieBundleTestingKernel;
+use PHPUnit\Framework\Attributes\After;
 
 trait ItCreatesASymfonyApplication
 {
@@ -36,5 +37,11 @@ trait ItCreatesASymfonyApplication
         $testItem->boot();
 
         return $testItem;
+    }
+
+    #[After()]
+    public function __internalDisableErrorHandler(): void
+    {
+        restore_exception_handler();
     }
 }

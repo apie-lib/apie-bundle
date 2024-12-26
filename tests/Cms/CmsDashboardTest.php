@@ -11,9 +11,7 @@ class CmsDashboardTest extends TestCase
 {
     use ItCreatesASymfonyApplication;
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_display_a_dashboard_without_twig(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();
@@ -27,9 +25,7 @@ class CmsDashboardTest extends TestCase
         HtmlOutput::writeHtml(__METHOD__, $response->getContent());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_display_a_dashboard_with_twig(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie(true);

@@ -16,10 +16,8 @@ class ApieBundleTest extends TestCase
 {
     use ItCreatesASymfonyApplication;
 
-    /**
-     * @test
-     * @runInSeparateProcess
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\RunInSeparateProcess]
     public function bundle_can_be_loaded_out_of_the_box()
     {
         $testItem = $this->given_a_symfony_application_with_apie();
@@ -51,10 +49,8 @@ class ApieBundleTest extends TestCase
         $this->assertStringContainsString('default/openapi.yaml', $actual);
     }
 
-    /**
-     * @test
-     * @runInSeparateProcess
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\RunInSeparateProcess]
     public function bundle_can_provide_a_faker()
     {
         $testItem = $this->given_a_symfony_application_with_apie();

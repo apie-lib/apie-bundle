@@ -6,14 +6,13 @@ use Apie\Common\Interfaces\UserDecorator;
 use Apie\Core\Context\ApieContext;
 use Apie\Core\ContextBuilders\ContextBuilderInterface;
 use Symfony\Bundle\SecurityBundle\Security;
-use  Symfony\Component\Security\Core\Security as LegacySecurity;
 
 /**
  * Checks the authenticated user used in Symfony and add it to the context.
  */
 class UserAuthenticationContextBuilder implements ContextBuilderInterface
 {
-    public function __construct(private readonly Security|LegacySecurity $security)
+    public function __construct(private readonly Security $security)
     {
     }
 

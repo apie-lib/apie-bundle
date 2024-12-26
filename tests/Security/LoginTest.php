@@ -16,7 +16,7 @@ class LoginTest extends TestCase
     use ItCreatesASymfonyApplication;
     use ItValidatesOpenapi;
 
-    /** @test */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_login_as_an_user()
     {
         $kernel = $this->given_a_symfony_application_with_apie();

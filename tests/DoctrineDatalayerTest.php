@@ -27,10 +27,8 @@ class DoctrineDatalayerTest extends TestCase
         ApieLib::registerValueObject(BritishPhoneNumber::class);
     }
 
-    /**
-     * @test
-     * @runInSeparateProcess
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\RunInSeparateProcess]
     public function it_can_store_in_the_database_with_doctrine_datalayer()
     {
         if (!class_exists(DoctrineEntityDatalayer::class)) {
@@ -63,10 +61,8 @@ class DoctrineDatalayerTest extends TestCase
         $this->assertCount(1, $repository->findBy([]));
     }
 
-    /**
-     * @test
-     * @runInSeparateProcess
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\RunInSeparateProcess]
     public function it_can_retrieve_data_with_pagination_from_database()
     {
         if (!class_exists(DoctrineEntityDatalayer::class)) {

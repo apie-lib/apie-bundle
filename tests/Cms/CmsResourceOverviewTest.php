@@ -50,9 +50,7 @@ class CmsResourceOverviewTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_display_a_table_with_users(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();
@@ -67,9 +65,7 @@ class CmsResourceOverviewTest extends TestCase
         HtmlOutput::writeHtml(__METHOD__, $response->getContent());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_has_no_pagination_with_few_records(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();
@@ -84,9 +80,7 @@ class CmsResourceOverviewTest extends TestCase
         HtmlOutput::writeHtml(__METHOD__, $response->getContent());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_supports_pagination(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();
