@@ -56,10 +56,10 @@ class MergedRegistry implements ManagerRegistry
         ?string $persistentManagerName = null
     ): ObjectRepository {
         if ($persistentManagerName === null && str_starts_with($persistentObject, $this->ormBuilder->getGeneratedNamespace())) {
-            return $this->ormBuilder->createEntityManager();
+            return $this->ormBuilder->createEntityManager()->getRepository($persistentObject);
         }
         if ($persistentManagerName === self::APIE_MANAGER_NAME) {
-            return $this->ormBuilder->createEntityManager();
+            return $this->ormBuilder->createEntityManager()->getRepository($persistentObject);
         }
 
         return $this->internal->getRepository($persistentObject, $persistentManagerName);
@@ -104,7 +104,7 @@ class MergedRegistry implements ManagerRegistry
     }
 
     /**
-     * @param array<int, mixed> $args) $args
+     * @param array<int, mixed> $args
      */
     public function __call(string $method, array $args): mixed
     {
