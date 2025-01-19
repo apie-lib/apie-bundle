@@ -1459,11 +1459,6 @@
             },
             "ApplicationInfo-post": {
                 "type": "object",
-                "required": [
-                    "applicationName",
-                    "applicationVersion",
-                    "author"
-                ],
                 "properties": {
                     "applicationName": {
                         "type": "string",
