@@ -2,8 +2,11 @@ services:
     Apie\ApieBundle\Security\ContextBuilders\UserAuthenticationContextBuilder:
         arguments:
             - '@security.helper'
+            - '@Apie\ApieBundle\Wrappers\SymfonyUserDecoratorFactory'
         tags:
             - apie.core.context_builder
+
+    Apie\ApieBundle\Wrappers\SymfonyUserDecoratorFactory: ~
 
     Apie\ApieBundle\Security\ApieUserAuthenticator:
         arguments:
