@@ -2,8 +2,6 @@
 
 namespace Apie\ApieBundle\Security;
 
-use Apie\Core\Entities\EntityInterface;
-use Apie\Core\Identifiers\IdentifierInterface;
 use Apie\Core\Lists\PermissionList;
 use Apie\Core\Permissions\PermissionInterface;
 use Symfony\Component\Security\Core\User\UserInterface;

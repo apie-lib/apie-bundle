@@ -3,7 +3,6 @@
 namespace Apie\ApieBundle\Security;
 
 use Apie\Core\Entities\EntityInterface;
-use Apie\Core\Identifiers\IdentifierInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class SymfonyUserDecorator implements EntityInterface
