@@ -1,0 +1,16 @@
+services:
+  Apie\ApieBundle\DataCollector\ApieDataCollector:
+    tags:
+      - name: data_collector
+        id: 'Apie\ApieBundle\DataCollector\ApieDataCollector'
+        template: '@Apie/data_collector/template.html.twig'
+  Apie\ApieBundle\DataCollector\GeneralServiceFactoryWithDataCollector:
+    arguments:
+      - '@Apie\ApieBundle\DataCollector\ApieDataCollector'
+
+  Apie\Core\ContextBuilders\ContextBuilderFactory:
+    factory: [ '@Apie\ApieBundle\DataCollector\GeneralServiceFactoryWithDataCollector', 'createContextBuilderFactory' ]
+    arguments:
+      - '@Apie\Core\BoundedContext\BoundedContextHashmap'
+      - '@?Apie\Serializer\DecoderHashmap'
+      - !tagged_iterator apie.core.context_builder

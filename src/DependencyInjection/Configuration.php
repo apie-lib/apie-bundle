@@ -13,6 +13,7 @@ final class Configuration extends CommonConfiguration
         $tree = parent::getConfigTreeBuilder();
         $tree->getRootNode()
             ->children()
+            ->booleanNode('enable_profiler')->defaultValue(true)->end()
             ->booleanNode('enable_doctrine_bundle_connection')->defaultValue(class_exists('Apie\DoctrineEntityDatalayer\DoctrineEntityDatalayer') && class_exists('Doctrine\Bundle\DoctrineBundle\DoctrineBundle'))->end()
             ->booleanNode('enable_security')->defaultValue(class_exists('Symfony\Bundle\SecurityBundle\SecurityBundle'))->end();
         return $tree;
