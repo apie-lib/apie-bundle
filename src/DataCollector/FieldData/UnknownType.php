@@ -10,4 +10,9 @@ class UnknownType extends AbstractFieldData
         $this->data = null;
         $this->typehint = get_debug_type($value);
     }
+
+    public function __toString(): string
+    {
+        return 'Unknown ' . $this->typehint;
+    }
 }

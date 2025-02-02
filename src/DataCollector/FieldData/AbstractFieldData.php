@@ -4,7 +4,7 @@ namespace Apie\ApieBundle\DataCollector\FieldData;
 
 use Apie\ApieBundle\DataCollector\ContextChange;
 
-abstract class AbstractFieldData
+abstract class AbstractFieldData implements \Stringable
 {
     protected string $typehint;
 

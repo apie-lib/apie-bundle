@@ -14,4 +14,9 @@ class ResourceType extends AbstractFieldData
         $this->data = get_resource_id($value);
         $this->typehint = 'resource';
     }
+
+    public function __toString(): string
+    {
+        return 'Resource ' . $this->data;
+    }
 }

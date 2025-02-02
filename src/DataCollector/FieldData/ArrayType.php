@@ -39,5 +39,18 @@ final class ArrayType extends AbstractFieldData
         return count($intersect) === count($fieldData->data);
     }
 
-
+    public function __toString(): string
+    {
+        if (array_is_list($this->data)) {
+            if (empty($this->data)) {
+                return 'empty list';
+            }
+            return 'list(' . implode(', ', array_keys($this->data)) . ')';
+        }
+        $list = [];
+        foreach ($this->data as $key => $value) {
+            $list[] = '    ' . $key . ' => ' . $value . ',';
+        }
+        return 'array(' . PHP_EOL . rtrim(implode(PHP_EOL, $list), ',') . PHP_EOL . ')';
+    }
 }

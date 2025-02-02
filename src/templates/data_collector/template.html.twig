@@ -31,5 +31,62 @@
 {% endblock %}
 
 {% block panel %}
-    <pre>{{ dump(collector.getApieContextChanges()) }}</pre>
+    <h2>Apie Context Changes</h2>
+
+    {% if collector.getApieContextChanges() is empty %}
+        <p>No context changes recorded.</p>
+    {% else %}
+        {% for changes in collector.getApieContextChanges() %}
+        <table class="alt">
+            <thead>
+                <tr>
+                    <td colspan="3"><h1>Apie context #{{ loop.index }}</td>
+                </tr>
+                <tr>
+                    <th>Added</th>
+                    <th>Removed</th>
+                    <th>Modified</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%  for change in changes %}
+                {% if change.name and change.name != '-' %}
+                    <tr>
+                        <td colspan="3">{{ change.name }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td>
+                        {% if change.added is not empty %}
+                            <ul>
+                                {% for key, value in change.added %}
+                                    <li><strong>{{ key }}</strong>: <pre style="display: inline">{{ value }}</pre></li>
+                                {% endfor %}
+                            </ul>
+                        {% else %} None {% endif %}
+                    </td>
+                    <td>
+                        {% if change.removed is not empty %}
+                            <ul>
+                                {% for key, value in change.removed %}
+                                    <li><strong>{{ key }}</strong>: <pre style="display: inline">{{ value }}</pre></li>
+                                {% endfor %}
+                            </ul>
+                        {% else %} None {% endif %}
+                    </td>
+                    <td>
+                        {% if change.modified is not empty %}
+                            <ul>
+                                {% for key, value in change.modified %}
+                                    <li><strong>{{ key }}</strong>: <pre style="display: inline">{{ value }}</pre></li>
+                                {% endfor %}
+                            </ul>
+                        {% else %} None {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 {% endblock %}
