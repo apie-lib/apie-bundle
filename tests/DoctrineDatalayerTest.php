@@ -57,7 +57,7 @@ class DoctrineDatalayerTest extends TestCase
         $ormBuilder = $testItem->getContainer()->get(OrmBuilder::class);
         $this->assertInstanceOf(OrmBuilder::class, $ormBuilder);
         $entityManager = $ormBuilder->createEntityManager();
-        $repository = $entityManager->getRepository('Generated\\ApieEntities\\apie_resource__default_user');
+        $repository = $entityManager->getRepository($ormBuilder->getGeneratedNamespace() . 'apie_resource__default_user');
         $this->assertCount(1, $repository->findBy([]));
     }
 
