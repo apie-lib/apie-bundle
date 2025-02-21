@@ -22,7 +22,7 @@ class MergedRegistry implements ManagerRegistry
         return $this->internal->getDefaultManagerName();
     }
 
-    public function getManager(?string $name = null): ?ObjectManager
+    public function getManager(?string $name = null): ObjectManager
     {
         if ($name === self::APIE_MANAGER_NAME) {
             return $this->ormBuilder->createEntityManager();
