@@ -14,6 +14,17 @@
                 "operationId": "cms.dropdown_options.ManyColumns",
                 "parameters": [
                     {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
                         "name": "property",
                         "in": "path",
                         "description": "property of instance of PartialInput",
@@ -55,6 +66,17 @@
                 "operationId": "cms.dropdown_options.User",
                 "parameters": [
                     {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
                         "name": "property",
                         "in": "path",
                         "description": "property of instance of PartialInput",
@@ -95,6 +117,17 @@
                 "description": "Returns dropdown options for a specific input",
                 "operationId": "cms.dropdown_options.existing.ManyColumns",
                 "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -146,6 +179,17 @@
                 "operationId": "cms.dropdown_options.method-call.ApplicationInfo-__invoke",
                 "parameters": [
                     {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
                         "name": "property",
                         "in": "path",
                         "description": "property of instance of PartialInput",
@@ -186,6 +230,17 @@
                 "description": "Returns dropdown options for a specific input",
                 "operationId": "cms.dropdown_options.method-call.ApplicationInfo-manyArguments",
                 "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
                     {
                         "name": "property",
                         "in": "path",
@@ -228,6 +283,17 @@
                 "operationId": "cms.dropdown_options.method-call.ApplicationInfo-powerOf2",
                 "parameters": [
                     {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
                         "name": "property",
                         "in": "path",
                         "description": "property of instance of PartialInput",
@@ -269,6 +335,17 @@
                 "operationId": "cms.dropdown_options.method-call.Login-verifyAuthentication",
                 "parameters": [
                     {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
                         "name": "property",
                         "in": "path",
                         "description": "property of instance of PartialInput",
@@ -309,6 +386,19 @@
                 ],
                 "description": "Creates an instance of ManyColumns",
                 "operationId": "post-ManyColumns",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -388,58 +478,18 @@
                 ],
                 "description": "Gets a list of resource that are an instance of ManyColumns",
                 "operationId": "get-all-ManyColumns",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "required": [
-                                        "filteredCount",
-                                        "totalCount",
-                                        "first",
-                                        "last",
-                                        "list"
-                                    ],
-                                    "type": "object",
-                                    "properties": {
-                                        "totalCount": {
-                                            "minimum": 0,
-                                            "type": "integer"
-                                        },
-                                        "filteredCount": {
-                                            "minimum": 0,
-                                            "type": "integer"
-                                        },
-                                        "first": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "last": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "prev": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "next": {
-                                            "type": "string",
-                                            "format": "uri"
-                                        },
-                                        "list": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/ManyColumns-get"
-                                            }
-                                        }
-                                    }
-                                }
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
                             }
                         }
-                    }
-                },
-                "parameters": [
+                    },
                     {
                         "name": "search",
                         "in": "query",
@@ -621,7 +671,58 @@
                             "type": "string"
                         }
                     }
-                ]
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "filteredCount",
+                                        "totalCount",
+                                        "first",
+                                        "last",
+                                        "list"
+                                    ],
+                                    "type": "object",
+                                    "properties": {
+                                        "totalCount": {
+                                            "minimum": 0,
+                                            "type": "integer"
+                                        },
+                                        "filteredCount": {
+                                            "minimum": 0,
+                                            "type": "integer"
+                                        },
+                                        "first": {
+                                            "type": "string",
+                                            "format": "uri"
+                                        },
+                                        "last": {
+                                            "type": "string",
+                                            "format": "uri"
+                                        },
+                                        "prev": {
+                                            "type": "string",
+                                            "format": "uri"
+                                        },
+                                        "next": {
+                                            "type": "string",
+                                            "format": "uri"
+                                        },
+                                        "list": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ManyColumns-get"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/User": {
@@ -632,6 +733,19 @@
                 ],
                 "description": "Creates an instance of User",
                 "operationId": "post-User",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -711,6 +825,34 @@
                 ],
                 "description": "Gets a list of resource that are an instance of User",
                 "operationId": "get-all-User",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "schema": {
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[id]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -761,24 +903,7 @@
                             }
                         }
                     }
-                },
-                "parameters": [
-                    {
-                        "name": "search",
-                        "in": "query",
-                        "schema": {
-                            "minLength": 1,
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "name": "query[id]",
-                        "in": "query",
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ]
+                }
             }
         },
         "/ManyColumns/{id}": {
@@ -790,6 +915,17 @@
                 "description": "Gets a resource of ManyColumns with a specific id",
                 "operationId": "get-single-ManyColumns",
                 "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -851,6 +987,17 @@
                 "description": "Modifies an instance of ManyColumns",
                 "operationId": "patch-single-ManyColumns",
                 "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
                     {
                         "name": "id",
                         "in": "path",
@@ -944,6 +1091,17 @@
                 "operationId": "get-single-User",
                 "parameters": [
                     {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
                         "name": "id",
                         "in": "path",
                         "description": "id of instance of User",
@@ -1005,6 +1163,19 @@
                 ],
                 "description": "Calls method ApplicationInfo and returns return value.",
                 "operationId": "call-method-ApplicationInfo",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -1027,6 +1198,19 @@
                 ],
                 "description": "Calls method manyArguments and returns return value.",
                 "operationId": "call-method-ApplicationInfo-manyArguments",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1143,6 +1327,19 @@
                 ],
                 "description": "Calls method powerOf2 and returns return value.",
                 "operationId": "call-method-ApplicationInfo-powerOf2",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -1222,6 +1419,19 @@
                 ],
                 "description": "Calls method verifyAuthentication and returns return value.",
                 "operationId": "call-method-Login-verifyAuthentication",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
