@@ -8,11 +8,20 @@ use Apie\Common\Interfaces\RouteDefinitionProviderInterface;
 use Apie\Core\ContextBuilders\ContextBuilderInterface;
 use Apie\Core\Datalayers\ApieDatalayer;
 use Apie\Core\FileStorage\InlineStorage;
+use Apie\DoctrineEntityDatalayer\Commands\ApieUpdateIdfCommand;
+use Apie\DoctrineEntityDatalayer\EntityReindexer;
+use Apie\DoctrineEntityDatalayer\IndexStrategy\BackgroundIndexStrategy;
+use Apie\DoctrineEntityDatalayer\IndexStrategy\DirectIndexStrategy;
+use Apie\DoctrineEntityDatalayer\IndexStrategy\IndexAfterResponseIsSentStrategy;
+use Apie\DoctrineEntityDatalayer\IndexStrategy\IndexStrategyInterface;
+use Apie\DoctrineEntityDatalayer\OrmBuilder;
 use Apie\Faker\Interfaces\ApieClassFaker;
 use Apie\HtmlBuilders\Interfaces\FormComponentProviderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 
 /**
  * Loads all services into symfony. Which services depend on the apie configuration set up.
@@ -114,6 +123,26 @@ final class ApieExtension extends Extension
             $container->setParameter('apie.maker', $config['maker']);
         } else {
             $container->setParameter('apie.maker', null);
+        }
+        if ($config['enable_doctrine_entity_datalayer']) {
+            $type = $config['doctrine']['indexing']['type'] ?? 'direct';
+            $container->addAliases([
+                IndexStrategyInterface::class => match($type) {
+                    'direct' => DirectIndexStrategy::class,
+                    'late' => IndexAfterResponseIsSentStrategy::class,
+                    'background' => BackgroundIndexStrategy::class,
+                    default => $config['doctrine']['indexing']['service'] ?? DirectIndexStrategy::class,
+                },
+            ]);
+            if ($type === 'background') {
+                $definition = new Definition(ApieUpdateIdfCommand::class);
+                $definition->setArguments([
+                    new Reference(EntityReindexer::class),
+                    new Reference(OrmBuilder::class)
+                ]);
+                $definition->addTag('console.command');
+                $container->addDefinitions([ApieUpdateIdfCommand::class => $definition]);
+            }
         }
         $loaded = [];
         foreach ($this->dependencies as $configName => $dependencyList) {
