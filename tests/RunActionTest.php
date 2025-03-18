@@ -11,9 +11,8 @@ class RunActionTest extends TestCase
     use ItCreatesASymfonyApplication;
     use ItValidatesOpenapi;
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\RunInSeparateProcess]
     public function it_can_execute_a_method_call_without_arguments()
     {
         $testItem = $this->given_a_symfony_application_with_apie();

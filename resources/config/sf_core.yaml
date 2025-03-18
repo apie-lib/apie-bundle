@@ -1,0 +1,3 @@
+services:
+  Apie\Core\Session\CsrfTokenProvider:
+    alias: Apie\ApieBundle\ContextBuilders\CsrfTokenContextBuilder

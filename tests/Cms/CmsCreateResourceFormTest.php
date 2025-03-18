@@ -10,9 +10,7 @@ class CmsCreateResourceFormTest extends TestCase
 {
     use ItCreatesASymfonyApplication;
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_display_a_form_for_creating_a_resource(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();
@@ -21,8 +19,8 @@ class CmsCreateResourceFormTest extends TestCase
             'GET'
         );
         $response = $testItem->handle($request);
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertStringContainsString('<form', $response->getContent());
         HtmlOutput::writeHtml(__METHOD__, $response->getContent());
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertStringContainsString('-form', $response->getContent());
     }
 }

@@ -1,0 +1,6 @@
+services:
+    Apie\Maker\EventListeners\DoCacheWarmupForApieMaker:
+      arguments:
+        - '@cache_warmer'
+        - '@kernel'
+      tags: ['kernel.event_subscriber']

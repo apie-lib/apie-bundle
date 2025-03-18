@@ -1,0 +1,92 @@
+{% extends '@WebProfiler/Profiler/layout.html.twig' %}
+
+{% block toolbar %}
+    {% set icon %}
+        {# this is the content displayed as a panel in the toolbar #}
+        {{ include('@Apie/data_collector/apie-logo.svg') }}
+        <span class="sf-toolbar-value">Apie</span>
+    {% endset %}
+
+    {% set text %}
+        {# this is the content displayed when hovering the mouse over
+           the toolbar panel #}
+        <div class="sf-toolbar-info-piece">
+            <b>Apie contexts</b>
+            <span>{{ collector.getApieContextChanges() | length }}</span>
+        </div>
+    {% endset %}
+
+    {# the 'link' value set to 'false' means that this panel doesn't
+       show a section in the web profiler #}
+    {{ include('@WebProfiler/Profiler/toolbar_item.html.twig', { link: true }) }}
+{% endblock %}
+
+
+{% block menu %}
+    {# This left-hand menu appears when using the full-screen profiler. #}
+    <span class="label">
+        <span class="icon">{{ include('@Apie/data_collector/apie-logo.svg') }}</span>
+        <strong>Apie</strong>
+    </span>
+{% endblock %}
+
+{% block panel %}
+    <h2>Apie Context Changes</h2>
+
+    {% if collector.getApieContextChanges() is empty %}
+        <p>No context changes recorded.</p>
+    {% else %}
+        {% for changes in collector.getApieContextChanges() %}
+        <table class="alt">
+            <thead>
+                <tr>
+                    <td colspan="3"><h1>Apie context #{{ loop.index }}</td>
+                </tr>
+                <tr>
+                    <th>Added</th>
+                    <th>Removed</th>
+                    <th>Modified</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%  for change in changes %}
+                {% if change.name and change.name != '-' %}
+                    <tr>
+                        <td colspan="3">{{ change.name }}</td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <td>
+                        {% if change.added is not empty %}
+                            <ul>
+                                {% for key, value in change.added %}
+                                    <li><strong>{{ key }}</strong>: <pre style="display: inline">{{ value }}</pre></li>
+                                {% endfor %}
+                            </ul>
+                        {% else %} None {% endif %}
+                    </td>
+                    <td>
+                        {% if change.removed is not empty %}
+                            <ul>
+                                {% for key, value in change.removed %}
+                                    <li><strong>{{ key }}</strong>: <pre style="display: inline">{{ value }}</pre></li>
+                                {% endfor %}
+                            </ul>
+                        {% else %} None {% endif %}
+                    </td>
+                    <td>
+                        {% if change.modified is not empty %}
+                            <ul>
+                                {% for key, value in change.modified %}
+                                    <li><strong>{{ key }}</strong>: <pre style="display: inline">{{ value }}</pre></li>
+                                {% endfor %}
+                            </ul>
+                        {% else %} None {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

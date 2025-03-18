@@ -3,6 +3,7 @@ namespace Apie\Tests\ApieBundle;
 
 use Apie\Core\BoundedContext\BoundedContextHashmap;
 use Apie\Fixtures\Enums\IntEnum;
+use Apie\RestApi\OpenApi\OpenApiGenerator;
 use Apie\Tests\ApieBundle\BoundedContext\Entities\ManyColumns;
 use Apie\Tests\ApieBundle\BoundedContext\Entities\User;
 use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
@@ -15,9 +16,8 @@ class ApieBundleTest extends TestCase
 {
     use ItCreatesASymfonyApplication;
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\RunInSeparateProcess]
     public function bundle_can_be_loaded_out_of_the_box()
     {
         $testItem = $this->given_a_symfony_application_with_apie();
@@ -30,6 +30,9 @@ class ApieBundleTest extends TestCase
         $this->assertCount(1, $hashmap);
         $this->assertEquals([ManyColumns::class, User::class], $hashmap['default']->resources->toStringArray());
 
+        if (!class_exists(OpenApiGenerator::class)) {
+            return;
+        }
         $request = Request::create('/api/default/openapi.json');
         $response = $testItem->handle($request, HttpKernelInterface::MAIN_REQUEST, false);
         $actual = $response->getContent();
@@ -46,9 +49,8 @@ class ApieBundleTest extends TestCase
         $this->assertStringContainsString('default/openapi.yaml', $actual);
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\RunInSeparateProcess]
     public function bundle_can_provide_a_faker()
     {
         $testItem = $this->given_a_symfony_application_with_apie();

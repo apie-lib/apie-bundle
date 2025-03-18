@@ -11,9 +11,8 @@ class GetResourceTest extends TestCase
     use ItCreatesASymfonyApplication;
     use ItValidatesOpenapi;
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\RunInSeparateProcess]
     public function it_can_retrieve_resources(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();

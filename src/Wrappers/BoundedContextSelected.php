@@ -1,16 +1,18 @@
 <?php
 namespace Apie\ApieBundle\Wrappers;
 
-use Apie\Common\ContextConstants;
+use Apie\Common\Interfaces\BoundedContextSelection;
 use Apie\Core\BoundedContext\BoundedContext;
 use Apie\Core\BoundedContext\BoundedContextHashmap;
+use Apie\Core\ContextConstants;
 use Apie\Core\Entities\EntityInterface;
+use ReflectionClass;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Helper class that returns the current bounded context.
  */
-final class BoundedContextSelected
+final class BoundedContextSelected implements BoundedContextSelection
 {
     public function __construct(
         private readonly RequestStack $requestStack,
@@ -44,13 +46,6 @@ final class BoundedContextSelected
      */
     public function getBoundedContextFromClassName(string $className): ?BoundedContext
     {
-        foreach ($this->boundedContextHashmap as $boundedContext) {
-            foreach ($boundedContext->resources as $resource) {
-                if ($resource->name === $className) {
-                    return $boundedContext;
-                }
-            }
-        }
-        return null;
+        return $this->boundedContextHashmap->getBoundedContextFromClassName(new ReflectionClass($className));
     }
 }

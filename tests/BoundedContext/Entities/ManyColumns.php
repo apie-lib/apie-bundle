@@ -2,7 +2,15 @@
 namespace Apie\Tests\ApieBundle\BoundedContext\Entities;
 
 use Apie\Core\Entities\EntityInterface;
+use Apie\Core\Lists\StringList;
+use Apie\CountryAndPhoneNumber\BelgianPhoneNumber;
+use Apie\CountryAndPhoneNumber\DutchPhoneNumber;
+use Apie\Fixtures\Lists\StrongPasswordList;
+use Apie\Tests\ApieBundle\BoundedContext\Lists\AnimalList;
+use Apie\Tests\ApieBundle\BoundedContext\Lists\StringListHashmap;
+use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\CompositeObjectExample;
 use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\ManyColumnsIdentifier;
+use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\UserIdentifier;
 
 class ManyColumns implements EntityInterface
 {
@@ -22,8 +30,41 @@ class ManyColumns implements EntityInterface
 
     public ?float $nullableFloatValue = null;
 
-    public function __construct(private ManyColumnsIdentifier $id)
-    {
+    public StringList $stringList;
+
+    public ?StringList $nullableStringList = null;
+
+    public StringListHashmap $stringListHashmap;
+
+    public ?StringListHashmap $nullableStringListHashmap = null;
+
+    public CompositeObjectExample|AnimalList|int|null $conflictingTypes = null;
+
+    public AnimalList $animalList;
+
+    public ?AnimalList $nullableAnimalList = null;
+
+    public CompositeObjectExample $compositeObject;
+
+    public ?CompositeObjectExample $nullableCompositeObject;
+
+    public StrongPasswordList $passwordList;
+
+    public ?StrongPasswordList $nullablePasswordList = null;
+
+    public ?UserIdentifier $userIdentifier = null;
+
+    public mixed $mixedType = null;
+
+    public function __construct(
+        public DutchPhoneNumber|BelgianPhoneNumber $phonenumber,
+        private ?ManyColumnsIdentifier $id = null
+    ) {
+        $this->id ??= new ManyColumnsIdentifier(null);
+        $this->stringList = new StringList();
+        $this->stringListHashmap = new StringListHashmap();
+        $this->animalList = new AnimalList();
+        $this->passwordList = new StrongPasswordList();
     }
 
     public function getId(): ManyColumnsIdentifier

@@ -5,6 +5,456 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/ManyColumns/dropdown-options/{property}": {
+            "post": {
+                "tags": [
+                    "ManyColumns"
+                ],
+                "description": "Returns dropdown options for a specific input",
+                "operationId": "cms.dropdown_options.ManyColumns",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "property",
+                        "in": "path",
+                        "description": "property of instance of PartialInput",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/NonEmptyString-post"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PartialInput-post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DropdownOptionList-get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/User/dropdown-options/{property}": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Returns dropdown options for a specific input",
+                "operationId": "cms.dropdown_options.User",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "property",
+                        "in": "path",
+                        "description": "property of instance of PartialInput",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/NonEmptyString-post"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PartialInput-post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DropdownOptionList-get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ManyColumns/{id}/dropdown-options/{property}": {
+            "post": {
+                "tags": [
+                    "ManyColumns"
+                ],
+                "description": "Returns dropdown options for a specific input",
+                "operationId": "cms.dropdown_options.existing.ManyColumns",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of instance of PartialInput",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/NonEmptyString-post"
+                        }
+                    },
+                    {
+                        "name": "property",
+                        "in": "path",
+                        "description": "property of instance of PartialInput",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/NonEmptyString-post"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PartialInput-post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DropdownOptionList-get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/action/ApplicationInfo/__invoke/dropdown-options/{property}": {
+            "post": {
+                "tags": [
+                    "ApplicationInfo"
+                ],
+                "description": "Returns dropdown options for a specific input",
+                "operationId": "cms.dropdown_options.method-call.ApplicationInfo-__invoke",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "property",
+                        "in": "path",
+                        "description": "property of instance of PartialInput",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/NonEmptyString-post"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PartialInput-post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DropdownOptionList-get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/action/ApplicationInfo/manyArguments/dropdown-options/{property}": {
+            "post": {
+                "tags": [
+                    "ApplicationInfo"
+                ],
+                "description": "Returns dropdown options for a specific input",
+                "operationId": "cms.dropdown_options.method-call.ApplicationInfo-manyArguments",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "property",
+                        "in": "path",
+                        "description": "property of instance of PartialInput",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/NonEmptyString-post"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PartialInput-post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DropdownOptionList-get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/action/ApplicationInfo/powerOf2/dropdown-options/{property}": {
+            "post": {
+                "tags": [
+                    "ApplicationInfo"
+                ],
+                "description": "Returns dropdown options for a specific input",
+                "operationId": "cms.dropdown_options.method-call.ApplicationInfo-powerOf2",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "property",
+                        "in": "path",
+                        "description": "property of instance of PartialInput",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/NonEmptyString-post"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PartialInput-post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DropdownOptionList-get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/action/Login/verifyAuthentication/dropdown-options/{property}": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "description": "Returns dropdown options for a specific input",
+                "operationId": "cms.dropdown_options.method-call.Login-verifyAuthentication",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "property",
+                        "in": "path",
+                        "description": "property of instance of PartialInput",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/NonEmptyString-post"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PartialInput-post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DropdownOptionList-get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/ManyColumns": {
             "post": {
                 "tags": [
@@ -13,6 +463,30 @@
                 ],
                 "description": "Creates an instance of ManyColumns",
                 "operationId": "post-ManyColumns",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -38,7 +512,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
                                 }
                             }
                         }
@@ -48,7 +522,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
                                 }
                             }
                         }
@@ -58,7 +532,17 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "A validation error occurred",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationException-get"
                                 }
                             }
                         }
@@ -82,6 +566,227 @@
                 ],
                 "description": "Gets a list of resource that are an instance of ManyColumns",
                 "operationId": "get-all-ManyColumns",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "items_per_page",
+                        "in": "query",
+                        "schema": {
+                            "type": "int",
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "schema": {
+                            "type": "int",
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "schema": {
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[stringValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[intValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[booleanValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[floatValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[nullableStringValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "query[nullableIntValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "query[nullableBooleanValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "query[nullableFloatValue]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "query[stringList]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[nullableStringList]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "query[stringListHashmap]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[nullableStringListHashmap]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "query[conflictingTypes]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "query[animalList]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[nullableAnimalList]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "query[compositeObject]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[nullableCompositeObject]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "query[passwordList]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[nullablePasswordList]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "query[userIdentifier]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "query[mixedType]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "nullable": true
+                        }
+                    },
+                    {
+                        "name": "query[phonenumber]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[id]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -89,6 +794,7 @@
                             "application/json": {
                                 "schema": {
                                     "required": [
+                                        "filteredCount",
                                         "totalCount",
                                         "first",
                                         "last",
@@ -97,6 +803,11 @@
                                     "type": "object",
                                     "properties": {
                                         "totalCount": {
+                                            "minimum": 0,
+                                            "type": "integer"
+                                        },
+                                        "filteredCount": {
+                                            "minimum": 0,
                                             "type": "integer"
                                         },
                                         "first": {
@@ -137,6 +848,30 @@
                 ],
                 "description": "Creates an instance of User",
                 "operationId": "post-User",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -162,7 +897,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
                                 }
                             }
                         }
@@ -172,7 +907,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
                                 }
                             }
                         }
@@ -182,7 +917,17 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "A validation error occurred",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationException-get"
                                 }
                             }
                         }
@@ -206,6 +951,61 @@
                 ],
                 "description": "Gets a list of resource that are an instance of User",
                 "operationId": "get-all-User",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "items_per_page",
+                        "in": "query",
+                        "schema": {
+                            "type": "int",
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "schema": {
+                            "type": "int",
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "schema": {
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query[id]",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -213,6 +1013,7 @@
                             "application/json": {
                                 "schema": {
                                     "required": [
+                                        "filteredCount",
                                         "totalCount",
                                         "first",
                                         "last",
@@ -221,6 +1022,11 @@
                                     "type": "object",
                                     "properties": {
                                         "totalCount": {
+                                            "minimum": 0,
+                                            "type": "integer"
+                                        },
+                                        "filteredCount": {
+                                            "minimum": 0,
                                             "type": "integer"
                                         },
                                         "first": {
@@ -263,6 +1069,28 @@
                 "operationId": "get-single-ManyColumns",
                 "parameters": [
                     {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
                         "name": "id",
                         "in": "path",
                         "description": "id of instance of ManyColumns",
@@ -283,7 +1111,139 @@
                             }
                         }
                     },
+                    "401": {
+                        "description": "Requires authorization",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WrongTokenException-get"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Access denied",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WrongTokenException-get"
+                                }
+                            }
+                        }
+                    },
                     "404": {
+                        "description": "Resource not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Throwable-get"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "ManyColumns",
+                    "resource"
+                ],
+                "description": "Modifies an instance of ManyColumns",
+                "operationId": "patch-single-ManyColumns",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of instance of ManyColumns",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/components/schemas/ManyColumnsIdentifier-post"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ManyColumns-patch"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ManyColumns-get"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "A validation error occurred",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationException-get"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
                         "description": "Resource not found",
                         "content": {
                             "application/json": {
@@ -306,6 +1266,28 @@
                 "operationId": "get-single-User",
                 "parameters": [
                     {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
                         "name": "id",
                         "in": "path",
                         "description": "id of instance of User",
@@ -322,6 +1304,26 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/User-get"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Requires authorization",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WrongTokenException-get"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Access denied",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WrongTokenException-get"
                                 }
                             }
                         }
@@ -347,6 +1349,30 @@
                 ],
                 "description": "Calls method ApplicationInfo and returns return value.",
                 "operationId": "call-method-ApplicationInfo",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -354,75 +1380,6 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/ApplicationInfo-get"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/ApplicationInfo/powerOf2": {
-            "post": {
-                "tags": [
-                    "ApplicationInfo",
-                    "action"
-                ],
-                "description": "Calls method powerOf2 and returns return value.",
-                "operationId": "call-method-ApplicationInfo-powerOf2",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "input"
-                                ],
-                                "type": "object",
-                                "properties": {
-                                    "input": {
-                                        "type": "integer"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "400": {
-                        "description": "Invalid request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
-                                }
-                            }
-                        }
-                    },
-                    "405": {
-                        "description": "Invalid request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
-                                }
-                            }
-                        }
-                    },
-                    "406": {
-                        "description": "Invalid request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
-                                }
-                            }
-                        }
-                    },
-                    "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "integer"
                                 }
                             }
                         }
@@ -438,6 +1395,30 @@
                 ],
                 "description": "Calls method manyArguments and returns return value.",
                 "operationId": "call-method-ApplicationInfo-manyArguments",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -498,7 +1479,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
                                 }
                             }
                         }
@@ -508,7 +1489,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
                                 }
                             }
                         }
@@ -518,7 +1499,17 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Throwable-get"
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "A validation error occurred",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationException-get"
                                 }
                             }
                         }
@@ -529,6 +1520,216 @@
                             "application/json": {
                                 "schema": {
                                     "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ApplicationInfo/powerOf2": {
+            "post": {
+                "tags": [
+                    "ApplicationInfo",
+                    "action"
+                ],
+                "description": "Calls method powerOf2 and returns return value.",
+                "operationId": "call-method-ApplicationInfo-powerOf2",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "input"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "input": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "A validation error occurred",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationException-get"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/Login/verifyAuthentication": {
+            "post": {
+                "tags": [
+                    "Login",
+                    "action"
+                ],
+                "description": "Calls method verifyAuthentication and returns return value.",
+                "operationId": "call-method-Login-verifyAuthentication",
+                "parameters": [
+                    {
+                        "name": "fields",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "relations",
+                        "in": "query",
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "username",
+                                    "password"
+                                ],
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
+                                }
+                            }
+                        }
+                    },
+                    "405": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
+                                }
+                            }
+                        }
+                    },
+                    "406": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotAcceptedException-get"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "A validation error occurred",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationException-get"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User-nullable-get"
                                 }
                             }
                         }
@@ -547,13 +1748,140 @@
     ],
     "components": {
         "schemas": {
+            "Animal-get": {
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/Cow-get"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Elephant-get"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Fish-get"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "animalType",
+                    "mapping": {
+                        "cow": "#/components/schemas/Cow-get",
+                        "elephant": "#/components/schemas/Elephant-get",
+                        "fish": "#/components/schemas/Fish-get"
+                    }
+                }
+            },
+            "Animal-nullable-get": {
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/Cow-nullable-get"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Elephant-nullable-get"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Fish-nullable-get"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "animalType",
+                    "mapping": {
+                        "cow": "#/components/schemas/Cow-nullable-get",
+                        "elephant": "#/components/schemas/Elephant-nullable-get",
+                        "fish": "#/components/schemas/Fish-nullable-get"
+                    }
+                },
+                "nullable": true
+            },
+            "Animal-nullable-post": {
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/Cow-post"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Elephant-post"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Fish-post"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "animalType",
+                    "mapping": {
+                        "cow": "#/components/schemas/Cow-post",
+                        "elephant": "#/components/schemas/Elephant-post",
+                        "fish": "#/components/schemas/Fish-post"
+                    }
+                },
+                "nullable": true
+            },
+            "Animal-post": {
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "#/components/schemas/Cow-post"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Elephant-post"
+                    },
+                    {
+                        "$ref": "#/components/schemas/Fish-post"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "animalType",
+                    "mapping": {
+                        "cow": "#/components/schemas/Cow-post",
+                        "elephant": "#/components/schemas/Elephant-post",
+                        "fish": "#/components/schemas/Fish-post"
+                    }
+                }
+            },
+            "AnimalIdentifier-get": {
+                "type": "string",
+                "format": "animalidentifier",
+                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$"
+            },
+            "AnimalIdentifier-nullable-post": {
+                "type": "string",
+                "format": "animalidentifier",
+                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$",
+                "nullable": true
+            },
+            "AnimalList-get": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Animal-get"
+                }
+            },
+            "AnimalList-nullable-get": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Animal-nullable-get"
+                },
+                "nullable": true
+            },
+            "AnimalList-nullable-post": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Animal-nullable-post"
+                },
+                "nullable": true
+            },
+            "AnimalList-post": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/Animal-post"
+                }
+            },
             "ApplicationInfo-get": {
+                "type": "object",
                 "required": [
                     "applicationName",
                     "applicationVersion",
                     "author"
                 ],
-                "type": "object",
                 "properties": {
                     "applicationName": {
                         "type": "string",
@@ -570,11 +1898,6 @@
                 }
             },
             "ApplicationInfo-post": {
-                "required": [
-                    "applicationName",
-                    "applicationVersion",
-                    "author"
-                ],
                 "type": "object",
                 "properties": {
                     "applicationName": {
@@ -591,6 +1914,14 @@
                     }
                 }
             },
+            "BelgianPhoneNumber-get": {
+                "type": "string",
+                "format": "belgianphonenumber"
+            },
+            "BelgianPhoneNumber-post": {
+                "type": "string",
+                "format": "belgianphonenumber"
+            },
             "BritishPhoneNumber-post": {
                 "type": "string",
                 "format": "britishphonenumber"
@@ -603,14 +1934,338 @@
                 ],
                 "type": "string"
             },
+            "CompositeObjectExample-get": {
+                "type": "object",
+                "required": [
+                    "value1",
+                    "value2",
+                    "value3"
+                ],
+                "properties": {
+                    "value1": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "value2": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "value3": {
+                        "type": "integer",
+                        "nullable": false
+                    }
+                }
+            },
+            "CompositeObjectExample-nullable-get": {
+                "type": "object",
+                "required": [
+                    "value1",
+                    "value2",
+                    "value3"
+                ],
+                "nullable": true,
+                "properties": {
+                    "value1": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "value2": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "value3": {
+                        "type": "integer",
+                        "nullable": false
+                    }
+                }
+            },
+            "CompositeObjectExample-nullable-post": {
+                "type": "object",
+                "required": [
+                    "value1",
+                    "value2",
+                    "value3"
+                ],
+                "nullable": true,
+                "properties": {
+                    "value1": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "value2": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "value3": {
+                        "type": "integer",
+                        "nullable": false
+                    }
+                }
+            },
+            "CompositeObjectExample-post": {
+                "type": "object",
+                "required": [
+                    "value1",
+                    "value2",
+                    "value3"
+                ],
+                "properties": {
+                    "value1": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "value2": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "value3": {
+                        "type": "integer",
+                        "nullable": false
+                    }
+                }
+            },
+            "Cow-get": {
+                "type": "object",
+                "required": [
+                    "animalType",
+                    "id"
+                ],
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "cow"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-get"
+                    },
+                    "hasMilk": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
+            "Cow-nullable-get": {
+                "type": "object",
+                "required": [
+                    "animalType",
+                    "id"
+                ],
+                "nullable": true,
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "cow"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-get"
+                    },
+                    "hasMilk": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
+            "Cow-post": {
+                "type": "object",
+                "required": [
+                    "animalType"
+                ],
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "cow"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-nullable-post"
+                    },
+                    "hasMilk": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
             "DateTime-post": {
                 "pattern": "^((|\\-)[0-9]{4})\\-((0[1-9])|(1[0-2]))\\-((0[1-9])|([12][0-9])|(3[01]))T(([01][0-9])|(2[0-3]))\\:[0-5][0-9]\\:[0-5][0-9](\\+\\d{2}:\\d{2})$",
                 "type": "string",
                 "format": "datetime"
             },
+            "DropdownOption-get": {
+                "type": "object",
+                "required": [
+                    "value",
+                    "displayValue"
+                ],
+                "properties": {
+                    "value": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "displayValue": {
+                        "type": "string",
+                        "nullable": false
+                    }
+                }
+            },
+            "DropdownOptionList-get": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/DropdownOption-get"
+                }
+            },
+            "DutchPhoneNumber-get": {
+                "type": "string",
+                "format": "dutchphonenumber"
+            },
             "DutchPhoneNumber-post": {
                 "type": "string",
                 "format": "dutchphonenumber"
+            },
+            "Elephant-get": {
+                "type": "object",
+                "required": [
+                    "animalType",
+                    "id"
+                ],
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "elephant"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-get"
+                    },
+                    "starving": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
+            "Elephant-nullable-get": {
+                "type": "object",
+                "required": [
+                    "animalType",
+                    "id"
+                ],
+                "nullable": true,
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "elephant"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-get"
+                    },
+                    "starving": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
+            "Elephant-post": {
+                "type": "object",
+                "required": [
+                    "animalType"
+                ],
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "elephant"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-nullable-post"
+                    },
+                    "starving": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
+            "Fish-get": {
+                "type": "object",
+                "required": [
+                    "animalType",
+                    "id"
+                ],
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "fish"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-get"
+                    },
+                    "poisonous": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
+            "Fish-nullable-get": {
+                "type": "object",
+                "required": [
+                    "animalType",
+                    "id"
+                ],
+                "nullable": true,
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "fish"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-get"
+                    },
+                    "poisonous": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
+            },
+            "Fish-post": {
+                "type": "object",
+                "required": [
+                    "animalType"
+                ],
+                "properties": {
+                    "animalType": {
+                        "enum": [
+                            "fish"
+                        ],
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "id": {
+                        "$ref": "#/components/schemas/AnimalIdentifier-nullable-post"
+                    },
+                    "poisonous": {
+                        "type": "boolean",
+                        "nullable": false
+                    }
+                }
             },
             "Gender-post": {
                 "enum": [
@@ -628,32 +2283,355 @@
                 "type": "integer"
             },
             "ManyColumns-get": {
-                "required": [
-                    "id"
-                ],
                 "type": "object",
+                "required": [
+                    "id",
+                    "stringValue",
+                    "intValue",
+                    "booleanValue",
+                    "floatValue",
+                    "stringList",
+                    "stringListHashmap",
+                    "animalList",
+                    "compositeObject",
+                    "nullableCompositeObject",
+                    "passwordList",
+                    "phonenumber"
+                ],
                 "properties": {
                     "id": {
                         "$ref": "#/components/schemas/ManyColumnsIdentifier-get"
+                    },
+                    "stringValue": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "intValue": {
+                        "type": "integer",
+                        "nullable": false
+                    },
+                    "booleanValue": {
+                        "type": "boolean",
+                        "nullable": false
+                    },
+                    "floatValue": {
+                        "type": "number",
+                        "nullable": false
+                    },
+                    "nullableStringValue": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "nullableIntValue": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "nullableBooleanValue": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "nullableFloatValue": {
+                        "type": "number",
+                        "nullable": true
+                    },
+                    "stringList": {
+                        "$ref": "#/components/schemas/StringList-get"
+                    },
+                    "nullableStringList": {
+                        "$ref": "#/components/schemas/StringList-nullable-get"
+                    },
+                    "stringListHashmap": {
+                        "$ref": "#/components/schemas/StringListHashmap-get"
+                    },
+                    "nullableStringListHashmap": {
+                        "$ref": "#/components/schemas/StringListHashmap-nullable-get"
+                    },
+                    "conflictingTypes": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CompositeObjectExample-get"
+                            },
+                            {
+                                "$ref": "#/components/schemas/AnimalList-get"
+                            },
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "nullable": true,
+                                "default": null
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "animalList": {
+                        "$ref": "#/components/schemas/AnimalList-get"
+                    },
+                    "nullableAnimalList": {
+                        "$ref": "#/components/schemas/AnimalList-nullable-get"
+                    },
+                    "compositeObject": {
+                        "$ref": "#/components/schemas/CompositeObjectExample-get"
+                    },
+                    "nullableCompositeObject": {
+                        "$ref": "#/components/schemas/CompositeObjectExample-nullable-get"
+                    },
+                    "passwordList": {
+                        "$ref": "#/components/schemas/StrongPasswordList-get"
+                    },
+                    "nullablePasswordList": {
+                        "$ref": "#/components/schemas/StrongPasswordList-nullable-get"
+                    },
+                    "userIdentifier": {
+                        "$ref": "#/components/schemas/UserIdentifier-nullable-get"
+                    },
+                    "mixedType": {
+                        "$ref": "#/components/schemas/mixed"
+                    },
+                    "phonenumber": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/DutchPhoneNumber-get"
+                            },
+                            {
+                                "$ref": "#/components/schemas/BelgianPhoneNumber-get"
+                            }
+                        ],
+                        "nullable": false
+                    }
+                }
+            },
+            "ManyColumns-patch": {
+                "type": "object",
+                "properties": {
+                    "stringValue": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "intValue": {
+                        "type": "integer",
+                        "nullable": false
+                    },
+                    "booleanValue": {
+                        "type": "boolean",
+                        "nullable": false
+                    },
+                    "floatValue": {
+                        "type": "number",
+                        "nullable": false
+                    },
+                    "nullableStringValue": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "nullableIntValue": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "nullableBooleanValue": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "nullableFloatValue": {
+                        "type": "number",
+                        "nullable": true
+                    },
+                    "stringList": {
+                        "$ref": "#/components/schemas/StringList-post"
+                    },
+                    "nullableStringList": {
+                        "$ref": "#/components/schemas/StringList-nullable-post"
+                    },
+                    "stringListHashmap": {
+                        "$ref": "#/components/schemas/StringListHashmap-post"
+                    },
+                    "nullableStringListHashmap": {
+                        "$ref": "#/components/schemas/StringListHashmap-nullable-post"
+                    },
+                    "conflictingTypes": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CompositeObjectExample-post"
+                            },
+                            {
+                                "$ref": "#/components/schemas/AnimalList-post"
+                            },
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "nullable": true,
+                                "default": null
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "animalList": {
+                        "$ref": "#/components/schemas/AnimalList-post"
+                    },
+                    "nullableAnimalList": {
+                        "$ref": "#/components/schemas/AnimalList-nullable-post"
+                    },
+                    "compositeObject": {
+                        "$ref": "#/components/schemas/CompositeObjectExample-post"
+                    },
+                    "nullableCompositeObject": {
+                        "$ref": "#/components/schemas/CompositeObjectExample-nullable-post"
+                    },
+                    "passwordList": {
+                        "$ref": "#/components/schemas/StrongPasswordList-post"
+                    },
+                    "nullablePasswordList": {
+                        "$ref": "#/components/schemas/StrongPasswordList-nullable-post"
+                    },
+                    "userIdentifier": {
+                        "$ref": "#/components/schemas/UserIdentifier-nullable-post"
+                    },
+                    "mixedType": {
+                        "$ref": "#/components/schemas/mixed"
+                    },
+                    "phonenumber": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/DutchPhoneNumber-post"
+                            },
+                            {
+                                "$ref": "#/components/schemas/BelgianPhoneNumber-post"
+                            }
+                        ],
+                        "nullable": false
                     }
                 }
             },
             "ManyColumns-post": {
-                "required": [
-                    "id"
-                ],
                 "type": "object",
+                "required": [
+                    "stringValue",
+                    "intValue",
+                    "booleanValue",
+                    "floatValue",
+                    "stringList",
+                    "stringListHashmap",
+                    "animalList",
+                    "compositeObject",
+                    "nullableCompositeObject",
+                    "passwordList",
+                    "phonenumber"
+                ],
                 "properties": {
                     "id": {
-                        "$ref": "#/components/schemas/ManyColumnsIdentifier-post"
+                        "$ref": "#/components/schemas/ManyColumnsIdentifier-nullable-post"
+                    },
+                    "stringValue": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "intValue": {
+                        "type": "integer",
+                        "nullable": false
+                    },
+                    "booleanValue": {
+                        "type": "boolean",
+                        "nullable": false
+                    },
+                    "floatValue": {
+                        "type": "number",
+                        "nullable": false
+                    },
+                    "nullableStringValue": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "nullableIntValue": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "nullableBooleanValue": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "nullableFloatValue": {
+                        "type": "number",
+                        "nullable": true
+                    },
+                    "stringList": {
+                        "$ref": "#/components/schemas/StringList-post"
+                    },
+                    "nullableStringList": {
+                        "$ref": "#/components/schemas/StringList-nullable-post"
+                    },
+                    "stringListHashmap": {
+                        "$ref": "#/components/schemas/StringListHashmap-post"
+                    },
+                    "nullableStringListHashmap": {
+                        "$ref": "#/components/schemas/StringListHashmap-nullable-post"
+                    },
+                    "conflictingTypes": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/CompositeObjectExample-post"
+                            },
+                            {
+                                "$ref": "#/components/schemas/AnimalList-post"
+                            },
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "nullable": true,
+                                "default": null
+                            }
+                        ],
+                        "nullable": true
+                    },
+                    "animalList": {
+                        "$ref": "#/components/schemas/AnimalList-post"
+                    },
+                    "nullableAnimalList": {
+                        "$ref": "#/components/schemas/AnimalList-nullable-post"
+                    },
+                    "compositeObject": {
+                        "$ref": "#/components/schemas/CompositeObjectExample-post"
+                    },
+                    "nullableCompositeObject": {
+                        "$ref": "#/components/schemas/CompositeObjectExample-nullable-post"
+                    },
+                    "passwordList": {
+                        "$ref": "#/components/schemas/StrongPasswordList-post"
+                    },
+                    "nullablePasswordList": {
+                        "$ref": "#/components/schemas/StrongPasswordList-nullable-post"
+                    },
+                    "userIdentifier": {
+                        "$ref": "#/components/schemas/UserIdentifier-nullable-post"
+                    },
+                    "mixedType": {
+                        "$ref": "#/components/schemas/mixed"
+                    },
+                    "phonenumber": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/components/schemas/DutchPhoneNumber-post"
+                            },
+                            {
+                                "$ref": "#/components/schemas/BelgianPhoneNumber-post"
+                            }
+                        ],
+                        "nullable": false
                     }
                 }
             },
             "ManyColumnsIdentifier-get": {
-                "type": "integer"
+                "type": "integer",
+                "nullable": true
+            },
+            "ManyColumnsIdentifier-nullable-post": {
+                "type": "integer",
+                "nullable": true
             },
             "ManyColumnsIdentifier-post": {
-                "type": "integer"
+                "type": "integer",
+                "nullable": true
             },
             "NoValueEnum-post": {
                 "enum": [
@@ -663,34 +2641,179 @@
                 ],
                 "type": "string"
             },
+            "NonEmptyString-post": {
+                "type": "string",
+                "format": "nonemptystring",
+                "pattern": "^.+$"
+            },
+            "NotAcceptedException-get": {
+                "type": "object",
+                "required": [
+                    "message",
+                    "code"
+                ],
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "code": {
+                        "$ref": "#/components/schemas/mixed"
+                    }
+                }
+            },
+            "PartialInput-post": {
+                "type": "object",
+                "required": [
+                    "input"
+                ],
+                "properties": {
+                    "input": {
+                        "type": "string",
+                        "nullable": false
+                    }
+                }
+            },
+            "Password-post": {
+                "type": "string",
+                "format": "password",
+                "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\-_\\+\\.]{6,42}$"
+            },
+            "StringList-get": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "StringList-nullable-get": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "nullable": true
+                },
+                "nullable": true
+            },
+            "StringList-nullable-post": {
+                "type": "array",
+                "items": {
+                    "type": "string",
+                    "nullable": true
+                },
+                "nullable": true
+            },
+            "StringList-post": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "StringListHashmap-get": {
+                "type": "object",
+                "additionalProperties": {
+                    "$ref": "#/components/schemas/StringList-get"
+                }
+            },
+            "StringListHashmap-nullable-get": {
+                "type": "object",
+                "additionalProperties": {
+                    "$ref": "#/components/schemas/StringList-nullable-get"
+                },
+                "nullable": true
+            },
+            "StringListHashmap-nullable-post": {
+                "type": "object",
+                "additionalProperties": {
+                    "$ref": "#/components/schemas/StringList-nullable-post"
+                },
+                "nullable": true
+            },
+            "StringListHashmap-post": {
+                "type": "object",
+                "additionalProperties": {
+                    "$ref": "#/components/schemas/StringList-post"
+                }
+            },
+            "StrongPassword-get": {
+                "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
+                "type": "string",
+                "format": "password"
+            },
+            "StrongPassword-nullable-get": {
+                "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
+                "type": "string",
+                "format": "password",
+                "nullable": true
+            },
+            "StrongPassword-nullable-post": {
+                "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
+                "type": "string",
+                "format": "password",
+                "nullable": true
+            },
             "StrongPassword-post": {
                 "pattern": "^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]){1,})[a-zA-Z0-9\\!@#\\$%\\^&\\*\\(\\)\\-_\\+\\.]{6,42}$",
                 "type": "string",
                 "format": "password"
             },
+            "StrongPasswordList-get": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/StrongPassword-get"
+                }
+            },
+            "StrongPasswordList-nullable-get": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/StrongPassword-nullable-get"
+                },
+                "nullable": true
+            },
+            "StrongPasswordList-nullable-post": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/StrongPassword-nullable-post"
+                },
+                "nullable": true
+            },
+            "StrongPasswordList-post": {
+                "type": "array",
+                "items": {
+                    "$ref": "#/components/schemas/StrongPassword-post"
+                }
+            },
             "Throwable-get": {
+                "type": "object",
                 "required": [
                     "message",
-                    "trace"
+                    "code"
                 ],
-                "type": "object",
                 "properties": {
                     "message": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": false
                     },
-                    "trace": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "$ref": "#/components/schemas/mixed"
-                        }
+                    "code": {
+                        "$ref": "#/components/schemas/mixed"
                     }
                 }
             },
             "User-get": {
+                "type": "object",
                 "required": [
                     "id"
                 ],
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/UserIdentifier-get"
+                    }
+                }
+            },
+            "User-nullable-get": {
                 "type": "object",
+                "required": [
+                    "id"
+                ],
+                "nullable": true,
                 "properties": {
                     "id": {
                         "$ref": "#/components/schemas/UserIdentifier-get"
@@ -698,14 +2821,17 @@
                 }
             },
             "User-post": {
+                "type": "object",
                 "required": [
                     "password",
                     "phoneNumber"
                 ],
-                "type": "object",
                 "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/UserIdentifier-nullable-post"
+                    },
                     "password": {
-                        "$ref": "#/components/schemas/StrongPassword-post"
+                        "$ref": "#/components/schemas/Password-post"
                     },
                     "phoneNumber": {
                         "oneOf": [
@@ -715,7 +2841,8 @@
                             {
                                 "$ref": "#/components/schemas/BritishPhoneNumber-post"
                             }
-                        ]
+                        ],
+                        "nullable": false
                     }
                 }
             },
@@ -724,10 +2851,56 @@
                 "format": "useridentifier",
                 "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$"
             },
+            "UserIdentifier-nullable-get": {
+                "type": "string",
+                "format": "useridentifier",
+                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$",
+                "nullable": true
+            },
+            "UserIdentifier-nullable-post": {
+                "type": "string",
+                "format": "useridentifier",
+                "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$",
+                "nullable": true
+            },
             "UserIdentifier-post": {
                 "type": "string",
                 "format": "useridentifier",
                 "pattern": "^[a-f0-9]{8}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{4}\\-[a-f0-9]{12}$"
+            },
+            "ValidationException-get": {
+                "required": [
+                    "message",
+                    "errors"
+                ],
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    },
+                    "errors": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "WrongTokenException-get": {
+                "type": "object",
+                "required": [
+                    "message",
+                    "code"
+                ],
+                "properties": {
+                    "message": {
+                        "type": "string",
+                        "nullable": false
+                    },
+                    "code": {
+                        "$ref": "#/components/schemas/mixed"
+                    }
+                }
             },
             "mixed": {
                 "nullable": true

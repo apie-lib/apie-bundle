@@ -1,0 +1,15 @@
+services:
+  apie.cms.dashboard_content:
+    alias: Apie\ApieBundle\Wrappers\DashboardContents
+  
+  Apie\ApieBundle\Twig\ComponentExtension:
+    arguments:
+      - '@Apie\HtmlBuilders\Interfaces\ComponentRendererInterface'
+      - '@Apie\HtmlBuilders\Factories\FieldDisplayComponentFactory'
+    tags:
+      - { name: twig.extension }
+
+  Apie\ApieBundle\Wrappers\DashboardContents:
+    arguments:
+      - '@?Twig\Environment'
+      - '%apie.cms.dashboard_template%'

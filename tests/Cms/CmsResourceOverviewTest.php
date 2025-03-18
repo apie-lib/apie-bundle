@@ -2,8 +2,10 @@
 namespace Apie\Tests\ApieBundle\Cms;
 
 use Apie\Core\BoundedContext\BoundedContextId;
+use Apie\CountryAndPhoneNumber\DutchPhoneNumber;
 use Apie\Tests\ApieBundle\ApieBundleTestingKernel;
 use Apie\Tests\ApieBundle\BoundedContext\Entities\ManyColumns;
+use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\CompositeObjectExample;
 use Apie\Tests\ApieBundle\BoundedContext\ValueObjects\ManyColumnsIdentifier;
 use Apie\Tests\ApieBundle\Concerns\ItCreatesASymfonyApplication;
 use Apie\Tests\ApieBundle\HtmlOutput;
@@ -19,7 +21,7 @@ class CmsResourceOverviewTest extends TestCase
         /** @var ApieFacade $facade */
         $facade = $kernel->getContainer()->get('apie');
         for ($i = 0; $i < 100; $i++) {
-            $object = new ManyColumns(new ManyColumnsIdentifier($i));
+            $object = new ManyColumns(new DutchPhoneNumber('0611223344'), new ManyColumnsIdentifier($i));
             $object->stringValue = 'This is text ' . $i;
             $object->intValue = $i * $i;
             $object->booleanValue = ($i & 1) ? true : false;
@@ -30,13 +32,25 @@ class CmsResourceOverviewTest extends TestCase
                 $object->nullableBooleanValue = ($i & 1) ? true : false;
                 $object->nullableFloatValue = 1 / (2 + $i);
             }
+            $object->compositeObject = CompositeObjectExample::fromNative(
+                [
+                    'value1' => '1',
+                    'value2' => '2',
+                    'value3' => '12',
+                ]
+            );
+            $object->nullableCompositeObject = CompositeObjectExample::fromNative(
+                [
+                    'value1' => 'fwqwqfwq1',
+                    'value2' => '2fwqfwq',
+                    'value3' => $i * $i * $i,
+                ]
+            );
             $facade->persistNew($object, new BoundedContextId('default'));
         }
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_can_display_a_table_with_users(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();
@@ -51,9 +65,7 @@ class CmsResourceOverviewTest extends TestCase
         HtmlOutput::writeHtml(__METHOD__, $response->getContent());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_has_no_pagination_with_few_records(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();
@@ -68,9 +80,7 @@ class CmsResourceOverviewTest extends TestCase
         HtmlOutput::writeHtml(__METHOD__, $response->getContent());
     }
 
-    /**
-     * @test
-     */
+    #[\PHPUnit\Framework\Attributes\Test]
     public function it_supports_pagination(): void
     {
         $testItem = $this->given_a_symfony_application_with_apie();

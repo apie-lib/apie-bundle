@@ -1,11 +1,13 @@
 <?php
 namespace Apie\Tests\ApieBundle\Concerns;
 
+use Apie\Common\Wrappers\RequestAwareInMemoryDatalayer;
 use Apie\Tests\ApieBundle\ApieBundleTestingKernel;
+use PHPUnit\Framework\Attributes\After;
 
 trait ItCreatesASymfonyApplication
 {
-    public function given_a_symfony_application_with_apie(bool $includeTwig = false): ApieBundleTestingKernel
+    public function given_a_symfony_application_with_apie(bool $includeTwig = false, string $defaultDatalayer = RequestAwareInMemoryDatalayer::class): ApieBundleTestingKernel
     {
         $boundedContexts = [
             'default' => [
@@ -17,12 +19,29 @@ trait ItCreatesASymfonyApplication
         ];
         $testItem = new ApieBundleTestingKernel(
             [
-                'bounded_contexts' => $boundedContexts
+                'encryption_key' => 'test',
+                'bounded_contexts' => $boundedContexts,
+                'datalayers' => [
+                    'default_datalayer' => $defaultDatalayer,
+                ],
+                'enable_doctrine_bundle_connection' => false,
+                'doctrine' => [
+                    'run_migrations' => true,
+                    'connection_params' => [
+                        'driver' => 'pdo_sqlite'
+                    ]
+                ],
             ],
             $includeTwig
         );
         $testItem->boot();
 
         return $testItem;
+    }
+
+    #[After()]
+    public function __internalDisableErrorHandler(): void
+    {
+        restore_exception_handler();
     }
 }

@@ -1,8 +1,10 @@
 <?php
 namespace Apie\ApieBundle;
 
-use Apie\ApieBundle\Wrappers\ConsoleCommandFactory;
+use Apie\ApieBundle\DependencyInjection\Compiler\AutoTagActionsCompilerPass;
+use Apie\Common\Wrappers\ConsoleCommandFactory;
 use Symfony\Component\Console\Application;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class ApieBundle extends Bundle
@@ -14,5 +16,10 @@ final class ApieBundle extends Bundle
             $factory = $this->container->get('apie.console.factory');
             $application->addCommands(iterator_to_array($factory->create($application)));
         }
+    }
+
+    public function build(ContainerBuilder $container): void
+    {
+        $container->addCompilerPass(new AutoTagActionsCompilerPass());
     }
 }
