@@ -9,6 +9,7 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
  * Actions ony work properly in a Symfony application if they are services with the
@@ -25,7 +26,11 @@ class AutoTagActionsCompilerPass implements CompilerPassInterface
     {
         $boundedContextConfig = $container->getParameter('apie.bounded_contexts');
         $scanBoundedContextConfig = $container->getParameter('apie.scan_bounded_contexts');
-        $factory = new BoundedContextHashmapFactory($boundedContextConfig, $scanBoundedContextConfig);
+        $factory = new BoundedContextHashmapFactory(
+            $boundedContextConfig,
+            $scanBoundedContextConfig,
+            new EventDispatcher()
+        );
         $hashmap = $factory->create();
         foreach ($hashmap as $boundedContext) {
             foreach ($boundedContext->actions as $action) {

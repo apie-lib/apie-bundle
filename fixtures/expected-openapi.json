@@ -593,23 +593,23 @@
                         "name": "items_per_page",
                         "in": "query",
                         "schema": {
-                            "type": "int",
-                            "min": 1
+                            "minimum": 1,
+                            "type": "integer"
                         }
                     },
                     {
                         "name": "page",
                         "in": "query",
                         "schema": {
-                            "type": "int",
-                            "min": 0
+                            "minimum": 0,
+                            "type": "integer"
                         }
                     },
                     {
                         "name": "search",
                         "in": "query",
                         "schema": {
-                            "minLength": 1,
+                            "minimum": 1,
                             "type": "string"
                         }
                     },
@@ -978,23 +978,23 @@
                         "name": "items_per_page",
                         "in": "query",
                         "schema": {
-                            "type": "int",
-                            "min": 1
+                            "minimum": 1,
+                            "type": "integer"
                         }
                     },
                     {
                         "name": "page",
                         "in": "query",
                         "schema": {
-                            "type": "int",
-                            "min": 0
+                            "minimum": 0,
+                            "type": "integer"
                         }
                     },
                     {
                         "name": "search",
                         "in": "query",
                         "schema": {
-                            "minLength": 1,
+                            "minimum": 1,
                             "type": "string"
                         }
                     },
