@@ -32,6 +32,9 @@ final class ApieExtension extends Extension
      * @var array<string, array<int, string>>
      */
     private array $dependencies = [
+        'enable_ai_instructor' => [
+            'ai_instructor.yaml'
+        ],
         'enable_common_plugin' => [
             'apie_common_plugin.yaml',
         ],
@@ -111,6 +114,8 @@ final class ApieExtension extends Extension
         $container->setParameter('apie.scan_bounded_contexts', $config['scan_bounded_contexts'] ?? []);
         $container->setParameter('apie.storage', $config['storage'] ? : [['class' => InlineStorage::class]]);
         $container->setParameter('apie.datalayers', $config['datalayers'] ?? []);
+        $container->setParameter('apie.ai.base_url', $config['ai']['base_url'] ?? 'http://ollama:11434');
+        $container->setParameter('apie.ai.api_key', $config['ai']['api_key'] ?? 'No key');
         $container->setParameter('apie.cms.asset_folders', $config['cms']['asset_folders'] ?? []);
         $container->setParameter('apie.cms.dashboard_template', $config['cms']['dashboard_template'] ?? '@Apie/dashboard.html.twig');
         $container->setParameter('apie.cms.error_template', $config['cms']['error_template'] ?? '@Apie/error.html.twig');
