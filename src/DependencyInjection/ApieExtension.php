@@ -77,6 +77,9 @@ final class ApieExtension extends Extension
             'maker.yaml',
             "sf_maker.yaml",
         ],
+        'enable_messenger' => [
+            'sf_messenger.yaml',
+        ],
         'enable_profiler' => [
             'sf_profiler.yaml',
         ],

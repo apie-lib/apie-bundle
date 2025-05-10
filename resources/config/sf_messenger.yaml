@@ -1,0 +1,7 @@
+services:
+  Apie\ApieBundle\Messenger\RunSequentialProcessMessageHandler:
+    arguments:
+      - '@Apie\Core\Datalayers\ApieDatalayer'
+      - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
+    tags:
+      - { name: 'messenger.message_handler' }
