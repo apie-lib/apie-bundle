@@ -5,3 +5,8 @@ services:
       - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
     tags:
       - { name: 'messenger.message_handler' }
+
+  Apie\ApieBundle\Messenger\BackgroundProcessPersistListener:
+    arguments:
+      - '@messenger.default_bus'
+    tags: ['kernel.event_subscriber']

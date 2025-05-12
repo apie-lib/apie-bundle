@@ -1,6 +1,7 @@
 <?php
 namespace Apie\ApieBundle\Messenger;
 
+use Apie\Core\BackgroundProcess\BackgroundProcessStatus;
 use Apie\Core\BoundedContext\BoundedContextId;
 use Apie\Core\ContextBuilders\ContextBuilderFactory;
 use Apie\Core\ContextConstants;
@@ -18,6 +19,9 @@ class RunSequentialProcessMessageHandler
     {
         $boundedContextId = $message->getBoundedContextId();
         $process = $this->apieDatalayer->find($message->getProcessId(), $boundedContextId);
+        if ($process->getStatus() !== BackgroundProcessStatus::Active) {
+            return;
+        }
         $context = [];
         if ($boundedContextId) {
             $context[ContextConstants::BOUNDED_CONTEXT_ID] = $boundedContextId->toNative();

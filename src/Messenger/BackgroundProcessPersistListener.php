@@ -1,8 +1,8 @@
 <?php
 namespace Apie\ApieBundle\Messenger;
 
-use Apie\Common\Events\ApieResourceCreated;
 use Apie\Core\BackgroundProcess\SequentialBackgroundProcess;
+use Apie\Core\Datalayers\Events\EntityPersisted;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -15,16 +15,18 @@ class BackgroundProcessPersistListener implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            ApieResourceCreated::class => 'onApieResourceCreated'
+            EntityPersisted::class => 'onApieResourceUpdated'
         ];
     }
 
-    public function onApieResourceCreated(ApieResourceCreated $apieResourceCreated): void
+    public function onApieResourceUpdated(EntityPersisted $apieResourceCreated): void
     {
-        $resource = $apieResourceCreated->resource;
+        $resource = $apieResourceCreated->entity;
         if ($resource instanceof SequentialBackgroundProcess) {
-            // TODO ApieContext
-            $this->bus->dispatch(new RunSequentialProcessMessage($resource->getId()));
+            $this->bus->dispatch(new RunSequentialProcessMessage(
+                $resource->getId(),
+                $apieResourceCreated->boundedContextId
+            ));
         }
     }
 }

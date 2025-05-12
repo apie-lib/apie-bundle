@@ -11,8 +11,10 @@ final class Configuration extends CommonConfiguration
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $tree = parent::getConfigTreeBuilder();
-        $tree->getRootNode()
-            ->children()
+
+        $children = $tree->getRootNode()->children();
+
+        $children
             ->booleanNode('enable_messenger')->defaultValue(class_exists('Symfony\Component\Messenger\MessageBusInterface'))->end()
             ->booleanNode('enable_profiler')->defaultValue(true)->end()
             ->booleanNode('enable_doctrine_bundle_connection')->defaultValue(class_exists('Apie\DoctrineEntityDatalayer\DoctrineEntityDatalayer') && class_exists('Doctrine\Bundle\DoctrineBundle\DoctrineBundle'))->end()
