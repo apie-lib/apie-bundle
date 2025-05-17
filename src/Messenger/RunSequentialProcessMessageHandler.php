@@ -1,10 +1,8 @@
 <?php
 namespace Apie\ApieBundle\Messenger;
 
-use Apie\Core\BackgroundProcess\BackgroundProcessStatus;
-use Apie\Core\BoundedContext\BoundedContextId;
+use Apie\Core\BackgroundProcess\Utils;
 use Apie\Core\ContextBuilders\ContextBuilderFactory;
-use Apie\Core\ContextConstants;
 use Apie\Core\Datalayers\ApieDatalayer;
 
 class RunSequentialProcessMessageHandler
@@ -17,19 +15,11 @@ class RunSequentialProcessMessageHandler
 
     public function __invoke(RunSequentialProcessMessage $message): void
     {
-        $boundedContextId = $message->getBoundedContextId();
-        $process = $this->apieDatalayer->find($message->getProcessId(), $boundedContextId);
-        if ($process->getStatus() !== BackgroundProcessStatus::Active) {
-            return;
-        }
-        $context = [];
-        if ($boundedContextId) {
-            $context[ContextConstants::BOUNDED_CONTEXT_ID] = $boundedContextId->toNative();
-            $context[BoundedContextId::class] = $boundedContextId;
-        }
-            
-        $apieContext = $this->contextBuilderFactory->createGeneralContext($context);
-        $process->runStep($apieContext);
-        $this->apieDatalayer->persistExisting($process, $boundedContextId);
+        Utils::runBackgroundProcess(
+            $message->getProcessId(),
+            $message->getBoundedContextId(),
+            $this->apieDatalayer,
+            $this->contextBuilderFactory
+        );
     }
 }

@@ -2,7 +2,6 @@
 namespace Apie\ApieBundle\DependencyInjection;
 
 use Apie\ApieBundle\Interfaces\ApieContextService;
-use Apie\ApieBundle\Messenger\RunSequentialProcessMessage;
 use Apie\CmsApiDropdownOption\DropdownOptionProvider\DropdownOptionProviderInterface;
 use Apie\Common\DependencyInjection\ApieConfigFileLocator;
 use Apie\Common\Interfaces\RouteDefinitionProviderInterface;
