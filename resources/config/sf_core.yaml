@@ -1,3 +1,7 @@
 services:
+  Apie\Common\ContextBuilders\FrameworkContextBuilder:
+    arguments:
+      - 'symfony'
+    tags: ['apie.core.context_builder']
   Apie\Core\Session\CsrfTokenProvider:
     alias: Apie\ApieBundle\ContextBuilders\CsrfTokenContextBuilder
