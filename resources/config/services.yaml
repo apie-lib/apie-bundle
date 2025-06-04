@@ -7,6 +7,7 @@ services:
       - "@apie.bounded_context.hashmap"
       - '@Apie\Common\RouteDefinitions\PossibleRoutePrefixProvider'
       - '@Apie\Core\ContextBuilders\ContextBuilderFactory'
+      - '@logger'
       - "%apie.scan_bounded_contexts%"
     tags: [routing.loader]
 

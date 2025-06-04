@@ -14,9 +14,12 @@ use Apie\Core\ContextBuilders\ContextBuilderFactory;
 use Apie\Core\Enums\RequestMethod;
 use Apie\Core\ValueObjects\UrlRouteDefinition;
 use Apie\RestApi\RouteDefinitions\RestApiRouteDefinitionProvider;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use ReflectionClass;
 use Symfony\Component\Config\Loader\Loader;
 use Symfony\Component\Config\Resource\DirectoryResource;
+use Symfony\Component\Config\Resource\FileExistenceResource;
 use Symfony\Component\Config\Resource\GlobResource;
 use Symfony\Component\Config\Resource\ReflectionClassResource;
 use Symfony\Component\Routing\Route;
@@ -37,7 +40,8 @@ final class ApieRouteLoader extends Loader
         private readonly BoundedContextHashmap $boundedContextHashmap,
         private readonly PossibleRoutePrefixProvider $routePrefixProvider,
         private readonly ContextBuilderFactory $contextBuilder,
-        private readonly array $scanBoundedContexts
+        private readonly LoggerInterface $logger = new NullLogger(),
+        private readonly array $scanBoundedContexts = [],
     ) {
     }
 
@@ -70,9 +74,15 @@ final class ApieRouteLoader extends Loader
         ];
         if (!empty($this->scanBoundedContexts['search_path'])) {
             if (!is_dir($this->scanBoundedContexts['search_path'])) {
-                mkdir($this->scanBoundedContexts['search_path'], recursive: true);
+                if (!@mkdir($this->scanBoundedContexts['search_path'], recursive: true)) {
+                    $this->logger->error('I could not create path: "' . $this->scanBoundedContexts['search_path'] . '"');
+                }
             }
-            $routes->addResource(new GlobResource($this->scanBoundedContexts['search_path'], '*', true));
+            if (is_dir($this->scanBoundedContexts['search_path'])) {
+                $routes->addResource(new GlobResource($this->scanBoundedContexts['search_path'], '*', true));
+            } else {
+                $routes->addResource(new FileExistenceResource($this->scanBoundedContexts['search_path']));
+            }
         }
         
         foreach ($classesForCaching as $classForCaching) {
