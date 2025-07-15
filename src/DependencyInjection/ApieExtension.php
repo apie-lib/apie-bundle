@@ -100,6 +100,9 @@ final class ApieExtension extends Extension
         'enable_twig_template_layout_renderer' => [
             'twig_template_layout_renderer.yaml',
         ],
+        'enable_typescript_client_builder' => [
+            'typescript_client_builder.yaml',
+        ],
     ];
 
     /**
