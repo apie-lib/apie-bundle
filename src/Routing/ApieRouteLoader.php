@@ -2,6 +2,7 @@
 namespace Apie\ApieBundle\Routing;
 
 use Apie\Cms\RouteDefinitions\CmsRouteDefinitionProvider;
+use Apie\Common\Interfaces\GlobalRouteDefinitionProviderInterface;
 use Apie\Common\Interfaces\HasRouteDefinition;
 use Apie\Common\Interfaces\RouteDefinitionProviderInterface;
 use Apie\Common\Lists\UrlPrefixList;
@@ -104,6 +105,31 @@ final class ApieRouteLoader extends Loader
         $apieContext = $this->contextBuilder->createGeneralContext([
             'route-gen' => true,
         ]);
+        if ($this->routeProvider instanceof GlobalRouteDefinitionProviderInterface) {
+            foreach ($this->routeProvider->getGlobalRoutes() as $routeDefinition) {
+                $routes->addResource(new ReflectionClassResource(new ReflectionClass($routeDefinition)));
+                /** @var HasRouteDefinition $routeDefinition */
+
+                $requirements = [];
+                $url = $routeDefinition->getUrl();
+                $placeholders = $url->getPlaceholders();
+                if (in_array('properties', $placeholders)) {
+                    $requirements['properties'] = '[a-zA-Z0-9]+(/[a-zA-Z0-9]+)*';
+                }
+                $path = ltrim($url, '/');
+                $method = $routeDefinition->getMethod();
+                $defaults = $routeDefinition->getRouteAttributes()
+                    + [
+                        '_controller' => $routeDefinition->getController(),
+                        '_is_apie' => true,
+                    ];
+                $route = (new Route($path, $defaults, $requirements))->setMethods([$method->value]);
+                $routes->add(
+                    'apie._global.' . $routeDefinition->getOperationId(),
+                    $route
+                );
+            }
+        }
         foreach ($this->boundedContextHashmap as $boundedContextId => $boundedContext) {
             foreach ($this->routeProvider->getActionsForBoundedContext($boundedContext, $apieContext) as $routeDefinition) {
                 $routes->addResource(new ReflectionClassResource(new ReflectionClass($routeDefinition)));
