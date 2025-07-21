@@ -48,7 +48,7 @@ abstract class AbstractFieldData implements \Stringable
         $modified = [];
         foreach (array_intersect_key($this->data, $next->data) as $key => $value) {
             if (!$this->data[$key]->isSame($next->data[$key])) {
-                $modified[$key] = $next->data;
+                $modified[$key] = $next->data[$key];
             }
         }
 

@@ -35,8 +35,7 @@ final class ArrayType extends AbstractFieldData
         if ($this->typehint !== $fieldData->typehint) {
             return false;
         }
-        $intersect = array_intersect_key($this->data, $fieldData->data);
-        return count($intersect) === count($fieldData->data);
+        return $this->__toString() === $fieldData->__toString();
     }
 
     public function __toString(): string
