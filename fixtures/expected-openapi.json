@@ -2016,15 +2016,18 @@
             },
             "BelgianPhoneNumber-get": {
                 "type": "string",
-                "format": "belgianphonenumber"
+                "format": "belgianphonenumber",
+                "description": "A phone number valid in Belgium in national format or E164 format"
             },
             "BelgianPhoneNumber-post": {
                 "type": "string",
-                "format": "belgianphonenumber"
+                "format": "belgianphonenumber",
+                "description": "A phone number valid in Belgium in national format or E164 format"
             },
             "BritishPhoneNumber-post": {
                 "type": "string",
-                "format": "britishphonenumber"
+                "format": "britishphonenumber",
+                "description": "A phone number valid in the UK in national format or E164 format"
             },
             "ColorEnum-post": {
                 "enum": [
@@ -2223,11 +2226,13 @@
             },
             "DutchPhoneNumber-get": {
                 "type": "string",
-                "format": "dutchphonenumber"
+                "format": "dutchphonenumber",
+                "description": "A phone number valid in the Netherlands in national format or E164 format"
             },
             "DutchPhoneNumber-post": {
                 "type": "string",
-                "format": "dutchphonenumber"
+                "format": "dutchphonenumber",
+                "description": "A phone number valid in the Netherlands in national format or E164 format"
             },
             "Elephant-get": {
                 "type": "object",
@@ -2497,6 +2502,7 @@
                                 "$ref": "#/components/schemas/BelgianPhoneNumber-get"
                             }
                         ],
+                        "description": "A phone number valid in the Netherlands in national format or E164 format",
                         "nullable": false
                     }
                 }
@@ -2599,6 +2605,7 @@
                                 "$ref": "#/components/schemas/BelgianPhoneNumber-post"
                             }
                         ],
+                        "description": "A phone number valid in the Netherlands in national format or E164 format",
                         "nullable": false
                     }
                 }
@@ -2717,6 +2724,7 @@
                                 "$ref": "#/components/schemas/BelgianPhoneNumber-post"
                             }
                         ],
+                        "description": "A phone number valid in the Netherlands in national format or E164 format",
                         "nullable": false
                     }
                 }
@@ -2744,6 +2752,7 @@
             "NonEmptyString-post": {
                 "type": "string",
                 "format": "nonemptystring",
+                "description": "Any text, except the empty string.",
                 "pattern": "^.+$"
             },
             "NotAcceptedException-get": {
@@ -2942,6 +2951,7 @@
                                 "$ref": "#/components/schemas/BritishPhoneNumber-post"
                             }
                         ],
+                        "description": "A phone number valid in the Netherlands in national format or E164 format",
                         "nullable": false
                     }
                 }
