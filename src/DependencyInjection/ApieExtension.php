@@ -77,6 +77,12 @@ final class ApieExtension extends Extension
             'maker.yaml',
             "sf_maker.yaml",
         ],
+        'enable_mcp_server' => [
+            'common.yaml',
+            'mcp_server.yaml',
+            'schema_generator.yaml',
+            'serializer.yaml',
+        ],
         'enable_messenger' => [
             'sf_messenger.yaml',
         ],
