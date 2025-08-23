@@ -136,6 +136,7 @@ final class ApieExtension extends Extension
         $container->setParameter('apie.doctrine.connection_params', $config['doctrine']['connection_params'] ?? []);
         $container->setParameter('apie.doctrine.run_migrations', $config['doctrine']['run_migrations'] ?? false);
         $container->setParameter('apie.rest_api.base_url', rtrim($config['rest_api']['base_url'] ?? '/api', '/'));
+        $container->setParameter('apie.remote_mcp_path', $config['remote_mcp_path'] ?? null);
         if (($config['enable_maker'] ?? false) && is_array($config['maker'] ?? null)) {
             $container->setParameter('apie.maker', $config['maker']);
         } else {
