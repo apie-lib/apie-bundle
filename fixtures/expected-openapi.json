@@ -609,7 +609,7 @@
                         "name": "search",
                         "in": "query",
                         "schema": {
-                            "minimum": 1,
+                            "minLength": 1,
                             "type": "string"
                         }
                     },
@@ -994,7 +994,7 @@
                         "name": "search",
                         "in": "query",
                         "schema": {
-                            "minimum": 1,
+                            "minLength": 1,
                             "type": "string"
                         }
                     },
@@ -1774,6 +1774,11 @@
                 ],
                 "properties": {
                     "animalType": {
+                        "enum": [
+                            "cow",
+                            "elephant",
+                            "fish"
+                        ],
                         "type": "string",
                         "nullable": false
                     },
@@ -1820,8 +1825,13 @@
                 ],
                 "properties": {
                     "animalType": {
+                        "enum": [
+                            "cow",
+                            "elephant",
+                            "fish"
+                        ],
                         "type": "string",
-                        "nullable": true
+                        "nullable": false
                     },
                     "id": {
                         "$ref": "#/components/schemas/AnimalIdentifier-nullable-get"
@@ -1866,8 +1876,13 @@
                 ],
                 "properties": {
                     "animalType": {
+                        "enum": [
+                            "cow",
+                            "elephant",
+                            "fish"
+                        ],
                         "type": "string",
-                        "nullable": true
+                        "nullable": false
                     },
                     "id": {
                         "$ref": "#/components/schemas/AnimalIdentifier-nullable-post"
@@ -1912,6 +1927,11 @@
                 ],
                 "properties": {
                     "animalType": {
+                        "enum": [
+                            "cow",
+                            "elephant",
+                            "fish"
+                        ],
                         "type": "string",
                         "nullable": false
                     },
