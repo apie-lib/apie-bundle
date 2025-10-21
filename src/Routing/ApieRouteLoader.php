@@ -116,6 +116,9 @@ final class ApieRouteLoader extends Loader
                 if (in_array('properties', $placeholders)) {
                     $requirements['properties'] = '[a-zA-Z0-9]+(/[a-zA-Z0-9]+)*';
                 }
+                if (in_array('path', $placeholders)) {
+                    $requirements['path'] = '.*';
+                }
                 $path = ltrim($url, '/');
                 $method = $routeDefinition->getMethod();
                 $defaults = $routeDefinition->getRouteAttributes()
@@ -141,6 +144,9 @@ final class ApieRouteLoader extends Loader
                 $placeholders = $url->getPlaceholders();
                 if (in_array('properties', $placeholders)) {
                     $requirements['properties'] = '[a-zA-Z0-9]+(/[a-zA-Z0-9]+)*';
+                }
+                if (in_array('path', $placeholders)) {
+                    $requirements['path'] = '.*';
                 }
                 $path = $prefix . $boundedContextId . '/' . ltrim($url, '/');
                 $method = $routeDefinition->getMethod();
