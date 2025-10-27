@@ -68,6 +68,11 @@ final class ApieExtension extends Extension
             'doctrine_entity_datalayer.yaml',
             'sf_doctrine.yaml',
         ],
+        'enable_export' => [
+            'html_builders.yaml',
+            'serializer.yaml',
+            'export.yaml',
+        ],
         'enable_console' => [
             'common.yaml',
             'console.yaml',
