@@ -32,6 +32,9 @@ final class ApieExtension extends Extension
      * @var array<string, array<int, string>>
      */
     private array $dependencies = [
+        'enable_basic_auth' => [
+            'add_basic_auth.yaml',
+        ],
         'enable_ai_instructor' => [
             'ai_instructor.yaml'
         ],
