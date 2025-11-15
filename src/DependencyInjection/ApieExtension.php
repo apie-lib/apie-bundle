@@ -76,6 +76,10 @@ final class ApieExtension extends Extension
             'serializer.yaml',
             'export.yaml',
         ],
+        'enable_ftp' => [
+            'apie_file_system.yaml',
+            'ftp.yaml',
+        ],
         'enable_console' => [
             'common.yaml',
             'console.yaml',
