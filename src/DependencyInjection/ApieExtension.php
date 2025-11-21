@@ -154,6 +154,10 @@ final class ApieExtension extends Extension
         $container->setParameter('apie.rest_api.base_url', rtrim($config['rest_api']['base_url'] ?? '/api', '/'));
         $container->setParameter('apie.remote_mcp_path', $config['remote_mcp_path'] ?? null);
         $container->setParameter('apie.ftp_server.public_ip', $config['ftp_server']['public_ip'] ?? '127.0.0.1');
+        $container->setParameter('apie.ftp_server.passive_min_port', $config['ftp_server']['passive_min_port'] ?? '127.0.0.1');
+        $container->setParameter('apie.ftp_server.passive_max_port', $config['ftp_server']['passive_max_port'] ?? '127.0.0.1');
+        
+
         if (($config['enable_maker'] ?? false) && is_array($config['maker'] ?? null)) {
             $container->setParameter('apie.maker', $config['maker']);
         } else {
