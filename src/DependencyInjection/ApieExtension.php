@@ -80,6 +80,11 @@ final class ApieExtension extends Extension
             'apie_file_system.yaml',
             'ftp.yaml',
         ],
+        'enable_graphql' => [
+            'common.yaml',
+            'graphql.yaml',
+            'serializer.yaml',
+        ],
         'enable_console' => [
             'common.yaml',
             'console.yaml',
@@ -156,7 +161,7 @@ final class ApieExtension extends Extension
         $container->setParameter('apie.ftp_server.public_ip', $config['ftp_server']['public_ip'] ?? '127.0.0.1');
         $container->setParameter('apie.ftp_server.passive_min_port', $config['ftp_server']['passive_min_port'] ?? '127.0.0.1');
         $container->setParameter('apie.ftp_server.passive_max_port', $config['ftp_server']['passive_max_port'] ?? '127.0.0.1');
-        
+        $container->setParameter('apie.graphql.base_url', rtrim($config['graphql']['base_url'] ?? 'graphql', '/'));
 
         if (($config['enable_maker'] ?? false) && is_array($config['maker'] ?? null)) {
             $container->setParameter('apie.maker', $config['maker']);
