@@ -2103,12 +2103,14 @@
             "DutchPhoneNumber-get": {
                 "type": "string",
                 "format": "dutchphonenumber",
-                "description": "A phone number valid in the Netherlands in national format or E164 format"
+                "description": "A phone number valid in the Netherlands in national format or E164 format",
+                "example": "0612345678"
             },
             "DutchPhoneNumber-post": {
                 "type": "string",
                 "format": "dutchphonenumber",
-                "description": "A phone number valid in the Netherlands in national format or E164 format"
+                "description": "A phone number valid in the Netherlands in national format or E164 format",
+                "example": "0612345678"
             },
             "Elephant-get": {
                 "type": "object",
