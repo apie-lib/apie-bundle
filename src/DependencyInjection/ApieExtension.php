@@ -163,6 +163,7 @@ final class ApieExtension extends Extension
         $container->setParameter('apie.ftp_server.passive_max_port', $config['ftp_server']['passive_max_port'] ?? '127.0.0.1');
         $container->setParameter('apie.graphql.base_url', rtrim($config['graphql']['base_url'] ?? 'graphql', '/'));
         $container->setParameter('apie.open_api.max_enum_size', $config['open_api']['max_enum_size'] ?? 100);
+        $container->setParameter('apie.language_typehint', $config['language_typehint'] ?? null);
 
         if (($config['enable_maker'] ?? false) && is_array($config['maker'] ?? null)) {
             $container->setParameter('apie.maker', $config['maker']);
