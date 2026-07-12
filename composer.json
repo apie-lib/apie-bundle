@@ -55,6 +55,12 @@
     "symfony/twig-bundle": "^7.2",
     "symfony/validator": "^7.2"
   },
+  "extra": {
+    "apie-objects": [
+    "Apie\\ApieBundle\\DataCollector\\ContextChange",
+    "Apie\\ApieBundle\\Security\\SymfonyUserDecoratorIdentifier"
+]
+  },
   "minimum-stability": "dev",
   "prefer-stable": true
 }
