@@ -11,6 +11,11 @@ services:
       - "%apie.scan_bounded_contexts%"
     tags: [routing.loader]
 
+  Apie\ApieBundle\ContextBuilders\SymfonyLocaleContextBuilder:
+    arguments:
+      - '@Symfony\Component\Translation\LocaleSwitcher'
+    tags: [apie.core.context_builder]
+
   Apie\ApieBundle\ContextBuilders\SessionContextBuilder:
     arguments:
       - '@request_stack'
