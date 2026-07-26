@@ -46,6 +46,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -112,6 +115,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -187,6 +193,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -253,6 +262,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -319,6 +331,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -385,6 +400,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -451,6 +469,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -509,6 +530,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -888,6 +912,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -1208,6 +1235,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -1453,6 +1483,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -1596,6 +1629,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -1702,6 +1738,9 @@
                     },
                     {
                         "$ref": "#/components/parameters/AcceptLanguage"
+                    },
+                    {
+                        "$ref": "#/components/parameters/ContentLanguage"
                     }
                 ],
                 "requestBody": {
@@ -2897,6 +2936,28 @@
                 "name": "Accept-Language",
                 "in": "header",
                 "description": "Preferred language for the response.",
+                "required": false,
+                "schema": {
+                    "type": "string",
+                    "format": "languageandregion",
+                    "example": "nl",
+                    "pattern": "[^\\-]+(\\-[^\\-]+)?$"
+                },
+                "examples": {
+                    "language_only": {
+                        "summary": "Language only",
+                        "value": "nl"
+                    },
+                    "language_and_region": {
+                        "summary": "Language and region",
+                        "value": "en-US"
+                    }
+                }
+            },
+            "ContentLanguage": {
+                "name": "Content-Language",
+                "in": "header",
+                "description": "Language of content body.",
                 "required": false,
                 "schema": {
                     "type": "string",
