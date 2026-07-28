@@ -10,8 +10,11 @@ use Apie\Common\RouteDefinitions\ActionHashmap;
 use Apie\Common\RouteDefinitions\PossibleRoutePrefixProvider;
 use Apie\Core\ApieLib;
 use Apie\Core\Attributes\Route as AttributesRoute;
+use Apie\Core\BoundedContext\BoundedContext;
 use Apie\Core\BoundedContext\BoundedContextHashmap;
+use Apie\Core\BoundedContext\BoundedContextId;
 use Apie\Core\ContextBuilders\ContextBuilderFactory;
+use Apie\Core\ContextConstants;
 use Apie\Core\Enums\RequestMethod;
 use Apie\Core\ValueObjects\UrlRouteDefinition;
 use Apie\RestApi\RouteDefinitions\RestApiRouteDefinitionProvider;
@@ -134,7 +137,10 @@ final class ApieRouteLoader extends Loader
             }
         }
         foreach ($this->boundedContextHashmap as $boundedContextId => $boundedContext) {
-            foreach ($this->routeProvider->getActionsForBoundedContext($boundedContext, $apieContext) as $routeDefinition) {
+            $subcontext = $apieContext->withContext(BoundedContext::class, $boundedContext)
+                ->withContext(BoundedContextId::class, $boundedContext->getId())
+                ->withContext(ContextConstants::BOUNDED_CONTEXT_ID, $boundedContextId);
+            foreach ($this->routeProvider->getActionsForBoundedContext($boundedContext, $subcontext) as $routeDefinition) {
                 $routes->addResource(new ReflectionClassResource(new ReflectionClass($routeDefinition)));
                 /** @var HasRouteDefinition $routeDefinition */
                 $prefix = $this->routePrefixProvider->getPossiblePrefixes($routeDefinition);

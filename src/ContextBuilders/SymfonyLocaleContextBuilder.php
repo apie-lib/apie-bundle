@@ -8,13 +8,13 @@ use Symfony\Component\Translation\LocaleSwitcher;
 
 final class SymfonyLocaleContextBuilder implements ContextBuilderInterface
 {
-    public function __construct(private readonly LocaleSwitcher $localeSwitcher)
+    public function __construct(private readonly ?LocaleSwitcher $localeSwitcher = null)
     {
     }
 
     public function process(ApieContext $context): ApieContext
     {
-        $locale = $this->localeSwitcher->getLocale();
+        $locale = $this->localeSwitcher?->getLocale();
         if (!$locale) {
             return $context;
         }

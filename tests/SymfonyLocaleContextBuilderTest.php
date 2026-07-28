@@ -19,6 +19,16 @@ final class SymfonyLocaleContextBuilderTest extends TestCase
         $this->assertSame('nl_BE', $context->getContext(ContextConstants::DATA_LOCALE));
     }
 
+    public function test_no_locale_context_from_symfony_request_without_symfony_translator(): void
+    {
+        $builder = new SymfonyLocaleContextBuilder(null);
+        $context = $builder->process(new ApieContext([]));
+
+        $this->assertFalse($context->hasContext(ContextConstants::LOCALE));
+        $this->assertFalse($context->hasContext(ContextConstants::ACCEPT_LOCALE));
+        $this->assertFalse($context->hasContext(ContextConstants::DATA_LOCALE));
+    }
+
     public function test_does_not_override_existing_locale_context(): void
     {
         $builder = new SymfonyLocaleContextBuilder(new LocaleSwitcher('nl_BE', []));

@@ -13,7 +13,7 @@ services:
 
   Apie\ApieBundle\ContextBuilders\SymfonyLocaleContextBuilder:
     arguments:
-      - '@Symfony\Component\Translation\LocaleSwitcher'
+      - '@?Symfony\Component\Translation\LocaleSwitcher'
     tags: [apie.core.context_builder]
 
   Apie\ApieBundle\ContextBuilders\SessionContextBuilder:
