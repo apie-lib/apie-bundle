@@ -9,6 +9,7 @@ use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\UX\Icons\UXIconsBundle;
 
 class ApieBundleTestingKernel extends Kernel
 {
@@ -35,10 +36,11 @@ class ApieBundleTestingKernel extends Kernel
     {
         $res = [
             new FrameworkBundle(), // this is needed to have a functional http_kernel service.
-            new ApieBundle()
+            new ApieBundle(),
         ];
         if ($this->includeTwigBundle) {
             $res[] = new TwigBundle();
+            $res[] = new UXIconsBundle();
         }
         if ($this->includeSecurityBundle) {
             $res[] = new SecurityBundle();
