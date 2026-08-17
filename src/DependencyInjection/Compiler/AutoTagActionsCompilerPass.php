@@ -60,7 +60,7 @@ class AutoTagActionsCompilerPass implements CompilerPassInterface
     }
 
     /**
-     * @param ReflectionClass<object> $refl
+     * @param ReflectionClass<covariant object> $refl
      */
     private function createDefinition(ReflectionClass $refl): Definition
     {
