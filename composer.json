@@ -26,7 +26,7 @@
     "apie/rest-api": "Access domain object actions in a fully working REST API to your application"
   },
   "require": {
-    "php": ">=8.3",
+    "php": ">=8.4",
     "apie/common": "self.version",
     "apie/core": "self.version",
     "symfony/config": "^7.2",
@@ -38,7 +38,7 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^11.5.2",
-    "phpspec/prophecy-phpunit": "^2.2",
+    "phpspec/prophecy-phpunit": "^2.5",
     "apie/cms": "self.version",
     "apie/cms-layout-graphite": "self.version",
     "apie/console": "self.version",
@@ -47,7 +47,7 @@
     "apie/fixtures": "self.version",
     "apie/text-value-objects": "self.version",
     "apie/rest-api": "self.version",
-    "doctrine/persistence": "^3.1.0",
+    "doctrine/persistence": "^3.4.5",
     "league/openapi-psr7-validator": "0.22",
     "symfony/framework-bundle": "^7.2",
     "symfony/messenger": "^7.2",
