@@ -2,15 +2,18 @@
 
 namespace Apie\ApieBundle\Security;
 
+use Apie\Core\Attributes\FakeMethod;
 use Apie\Core\Identifiers\IdentifierInterface;
 use Apie\Core\ValueObjects\Exceptions\InvalidStringForValueObjectException;
 use Apie\Core\ValueObjects\IsStringValueObject;
 use ReflectionClass;
+use Symfony\Component\Security\Core\User\InMemoryUser;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @implements IdentifierInterface<SymfonyUserDecorator>
  */
+#[FakeMethod('createRandom')]
 final class SymfonyUserDecoratorIdentifier implements IdentifierInterface
 {
     use IsStringValueObject;
@@ -36,6 +39,13 @@ final class SymfonyUserDecoratorIdentifier implements IdentifierInterface
         $this->userClass = $split[0];
         $this->userId = $split[1];
         return $this->userClass . '@' . $this->userId;
+    }
+
+    public static function createRandom(): self
+    {
+        return self::createFrom(
+            new InMemoryUser('username' . random_int(0, 100), 'password', ['ROLE_USER'])
+        );
     }
 
     public static function getReferenceFor(): ReflectionClass
