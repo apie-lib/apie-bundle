@@ -11,6 +11,11 @@ class SymfonyUserDecoratorIdentifierTest extends ValueObjectTestCase
         return SymfonyUserDecoratorIdentifier::class;
     }
 
+    public static function createExampleObject(): object
+    {
+        return SymfonyUserDecoratorIdentifier::createRandom();
+    }
+
     public static function provideFromNative(): array
     {
         $id = SymfonyUserDecoratorIdentifier::createRandom()->toNative();
