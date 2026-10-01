@@ -38,6 +38,9 @@ final class ApieExtension extends Extension
         'enable_ai_instructor' => [
             'ai_instructor.yaml'
         ],
+        'enable_exchangerate' => [
+            'exchangerate.yaml',
+        ],
         'enable_common_plugin' => [
             'apie_common_plugin.yaml',
         ],
