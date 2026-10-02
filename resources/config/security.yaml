@@ -1,4 +1,7 @@
 services:
+    Apie\ApieBundle\EventListeners\ClearAuthenticationCookieOnLogoutListener:
+        tags: ['kernel.event_subscriber']
+
     Apie\ApieBundle\Security\ContextBuilders\UserAuthenticationContextBuilder:
         arguments:
             - '@security.helper'
