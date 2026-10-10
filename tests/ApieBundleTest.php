@@ -1,6 +1,7 @@
 <?php
 namespace Apie\Tests\ApieBundle;
 
+use Apie\CmsApiDropdownOption\RouteDefinitions\DropdownOptionsForExistingObjectRouteDefinition;
 use Apie\Core\BoundedContext\BoundedContextHashmap;
 use Apie\Fixtures\Enums\IntEnum;
 use Apie\RestApi\OpenApi\OpenApiGenerator;
@@ -58,5 +59,31 @@ class ApieBundleTest extends TestCase
         /** @var Generator */
         $faker = $container->get('apie.faker');
         $this->assertInstanceOf(IntEnum::class, $faker->fakeClass(IntEnum::class));
+    }
+
+    #[\PHPUnit\Framework\Attributes\Test]
+    #[\PHPUnit\Framework\Attributes\RunInSeparateProcess]
+    public function bundle_does_not_load_cms_dropdown_routes_when_disabled(): void
+    {
+        if (!class_exists(DropdownOptionsForExistingObjectRouteDefinition::class)) {
+            $this->markTestSkipped('CMS Dropdown Option is not installed');
+        }
+        $testItem = $this->given_a_symfony_application_with_apie(enableCmsDropdown: false);
+        $routeNames = array_keys($testItem->getContainer()->get('router')->getRouteCollection()->all());
+        $dropdownRouteNames = array_filter(
+            $routeNames,
+            static fn (string $name) => str_contains($name, 'cms.dropdown_options')
+        );
+
+        $this->assertSame([], $dropdownRouteNames);
+
+        $response = $testItem->handle(
+            Request::create('/api/default/openapi.yaml'),
+            HttpKernelInterface::MAIN_REQUEST,
+            false
+        );
+
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertStringNotContainsString('cms.dropdown_options', (string) $response->getContent());
     }
 }

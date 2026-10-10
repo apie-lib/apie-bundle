@@ -7,7 +7,7 @@ use PHPUnit\Framework\Attributes\After;
 
 trait ItCreatesASymfonyApplication
 {
-    public function given_a_symfony_application_with_apie(bool $includeTwig = false, string $defaultDatalayer = RequestAwareInMemoryDatalayer::class): ApieBundleTestingKernel
+    public function given_a_symfony_application_with_apie(bool $includeTwig = false, string $defaultDatalayer = RequestAwareInMemoryDatalayer::class, bool $enableCmsDropdown = true): ApieBundleTestingKernel
     {
         $boundedContexts = [
             'default' => [
@@ -25,6 +25,7 @@ trait ItCreatesASymfonyApplication
                     'default_datalayer' => $defaultDatalayer,
                 ],
                 'enable_doctrine_bundle_connection' => false,
+                'enable_cms_dropdown' => $enableCmsDropdown,
                 'doctrine' => [
                     'run_migrations' => true,
                     'connection_params' => [
