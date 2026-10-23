@@ -1148,6 +1148,18 @@
                         }
                     },
                     {
+                        "name": "If-None-Match",
+                        "in": "header",
+                        "required": false,
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
                         "$ref": "#/components/parameters/AcceptLanguage"
                     }
                 ],
@@ -1191,6 +1203,9 @@
                                 }
                             }
                         }
+                    },
+                    "304": {
+                        "description": "Not Modified"
                     }
                 }
             },
@@ -1231,6 +1246,18 @@
                         "required": true,
                         "schema": {
                             "$ref": "#/components/schemas/ManyColumnsIdentifier-post"
+                        }
+                    },
+                    {
+                        "name": "If-Match",
+                        "in": "header",
+                        "required": false,
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
                         }
                     },
                     {
@@ -1354,6 +1381,18 @@
                         }
                     },
                     {
+                        "name": "If-None-Match",
+                        "in": "header",
+                        "required": false,
+                        "explode": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
                         "$ref": "#/components/parameters/AcceptLanguage"
                     }
                 ],
@@ -1397,6 +1436,9 @@
                                 }
                             }
                         }
+                    },
+                    "304": {
+                        "description": "Not Modified"
                     }
                 }
             }
