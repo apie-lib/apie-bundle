@@ -23,14 +23,14 @@ class MergedRegistryTest extends TestCase
     protected function createEntityManager(): EntityManagerInterface
     {
         $isDevMode = true;
-        $proxyDir = null;
         $cache = null;
-        $config = ORMSetup::createAttributeMetadataConfiguration(
+        $config = ORMSetup::createAttributeMetadataConfig(
             [__DIR__ . '/Entities'],
             $isDevMode,
-            $proxyDir,
+            null,
             $cache
         );
+        $config->enableNativeLazyObjects(true);
         $conn = [
             'driver' => 'pdo_sqlite',
             'memory' => true,
@@ -121,7 +121,6 @@ class MergedRegistryTest extends TestCase
             false,
             false,
             true,
-            $this->tempPath . '/proxies',
             null,
             $this->tempPath . '/entities',
             [
